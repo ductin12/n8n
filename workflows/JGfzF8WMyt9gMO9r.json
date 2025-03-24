@@ -1,0 +1,721 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get Ideas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Ideas": {
+      "main": [
+        [
+          {
+            "node": "Set your prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set your prompt": {
+      "main": [
+        [
+          {
+            "node": "Generate article with DeepSeek",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create post on Wordpress": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload image": {
+      "main": [
+        [
+          {
+            "node": "Set Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Image": {
+      "main": [
+        [
+          {
+            "node": "Update Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate article with DeepSeek": {
+      "main": [
+        [
+          {
+            "node": "Generate title with DeepSeek",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate title with DeepSeek": {
+      "main": [
+        [
+          {
+            "node": "Create post on Wordpress",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Image with DALL-E": {
+      "main": [
+        []
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Upload image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-10T01:53:58.786Z",
+  "id": "JGfzF8WMyt9gMO9r",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "ĐĂNG BÀI WP VỚI DEEPSEEK AI",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "1f92a7e3-a24d-4b17-8aed-3145b1313393",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        340,
+        140
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1-z2FOWv1yEhylWUPLd2_5jPfT6lLISERYuus5ookYv4/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1-z2FOWv1yEhylWUPLd2_5jPfT6lLISERYuus5ookYv4/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "id": "47b459cc-510f-4273-95be-7329594bd224",
+      "name": "Get Ideas",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [
+        560,
+        140
+      ],
+      "typeVersion": 4.5,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3e8d2523-66aa-46fe-adcc-39dc78b9161e",
+              "name": "prompt",
+              "type": "string",
+              "value": "={{ $json.PROMPT }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4c2148c3-c705-467f-a52d-7ad84ed5c529",
+      "name": "Set your prompt",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        780,
+        140
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "title": "={{ $json.message.content }}",
+        "additionalFields": {
+          "content": "={{ $('Generate article with DeepSeek').item.json.message.content }}",
+          "status": "draft"
+        }
+      },
+      "id": "0fa7c2c1-5082-47af-80fb-51059f880235",
+      "name": "Create post on Wordpress",
+      "type": "n8n-nodes-base.wordpress",
+      "position": [
+        360,
+        440
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "wordpressApi": {
+          "id": "4dqp1RB993rj7nwx",
+          "name": "Wordpress tinthanhphat.com.vn"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://hanaweb.vn/wp-json/wp/v2/media",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "wordpressApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Disposition",
+              "value": "=attachment; filename=\"copertina-{{ $('Create post on Wordpress').item.json.id }}.jpg\""
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "binaryData",
+        "inputDataFieldName": "data",
+        "options": {}
+      },
+      "id": "1aa96370-e495-4a5f-83c8-ef2384709beb",
+      "name": "Upload image",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        800,
+        440
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "wordpressApi": {
+          "id": "HTpgaU1LmTgTRUy3",
+          "name": "Wordpress hanaweb.vn"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://wp.test.7hype.com/wp-json/wp/v2/posts/{{ $('Create post on Wordpress').item.json.id }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "wordpressApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "featured_media",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "490fce90-5c67-4b32-bfba-90ca82bb91f3",
+      "name": "Set Image",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1000,
+        440
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "wordpressApi": {
+          "id": "HTpgaU1LmTgTRUy3",
+          "name": "Wordpress hanaweb.vn"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "16VFeCrE5BkMBoA_S5HD-9v7C0sxcXAUiDbq5JvkDqnI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16VFeCrE5BkMBoA_S5HD-9v7C0sxcXAUiDbq5JvkDqnI/edit?usp=drivesdk",
+          "cachedResultName": "Plan Blog wp.test.7hype.com"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gid=0",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16VFeCrE5BkMBoA_S5HD-9v7C0sxcXAUiDbq5JvkDqnI/edit#gid=0",
+          "cachedResultName": "Foglio1"
+        },
+        "columns": {
+          "value": {
+            "DATA": "={{ $now.format('dd/LL/yyyy') }}",
+            "TITOLO": "={{ $('Generate title with DeepSeek').item.json.message.content }}",
+            "ID POST": "={{ $('Create post on Wordpress').item.json.id }}",
+            "row_number": "={{ $('Get Ideas').item.json.row_number }}"
+          },
+          "schema": [
+            {
+              "id": "DATA",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "DATA",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "PROMPT",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "PROMPT",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TITOLO",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "TITOLO",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID POST",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "ID POST",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "readOnly": true,
+              "required": false,
+              "displayName": "row_number",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            }
+          ],
+          "mappingMode": "defineBelow",
+          "matchingColumns": [
+            "row_number"
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "e1615a65-563f-4559-9c57-f259910ea844",
+      "name": "Update Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [
+        1240,
+        440
+      ],
+      "typeVersion": 4.5,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "Connect with your Google Sheet. This node select only rows for which no content has been generated yet in WordPress",
+        "height": 260
+      },
+      "id": "3690b180-6a8e-456f-8e52-0b41c8b61f30",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        500,
+        40
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "=deepseek-reasoner"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are an SEO expert, write an article based on this topic:\n{{ $json.prompt }}\n\nInstructions:\n- In the introduction, introduce the topic that will be explored in the rest of the text\n- The introduction should be about 120 words\n- The conclusions should be about 120 words\n- Use the conclusions to summarize everything said in the article and offer a conclusion to the reader\n- Write a maximum of 4-5 chapters and argue them.\n- The chapters should follow a logical flow and not repeat the same concepts.\n- The chapters should be related to each other and not isolated blocks of text. The text should flow and follow a linear logic.\n- Do not start chapters with \"Chapter 1\", \"Chapter 2\", \"Chapter 3\" ... write only the chapter title\n- For the text, use HTML for formatting, but limit yourself to bold, italics, paragraphs and lists.\n- Don't put the output in ```html but only text\n- Don't use markdown for formatting.\n- Go deeper into the topic you're talking about, don't just throw superficial information there\n- In output I want only the HTML format"
+            }
+          ]
+        },
+        "options": {
+          "maxTokens": 2048
+        }
+      },
+      "id": "6d264303-003d-4474-a81a-8349dda5b87c",
+      "name": "Generate article with DeepSeek",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "position": [
+        1000,
+        140
+      ],
+      "typeVersion": 1.8,
+      "credentials": {
+        "openAiApi": {
+          "id": "snI6pHiFFgCPXK2g",
+          "name": "Perplexity account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "=deepseek-reasoner"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are an SEO Copywriter and you need to think of a title of maximum 60 characters for the following article:\n{{ $json.message.content }}\n\nInstructions:\n- Use keywords contained in the article\n- Do not use any HTML characters\n- Output only the string containing the title.\n- Do not use quotation marks. The only special characters allowed are \":\" and \",\""
+            }
+          ]
+        },
+        "options": {
+          "maxTokens": 2048
+        }
+      },
+      "id": "8cd44b4c-ea44-487b-90e7-b04a335af97c",
+      "name": "Generate title with DeepSeek",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "position": [
+        1240,
+        140
+      ],
+      "typeVersion": 1.8,
+      "credentials": {
+        "openAiApi": {
+          "id": "mE4tY6rLFI7CyMqz",
+          "name": "OpenrouterAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "Add your DeepSeek API credential. If you want you can change the model with \"deepseek-chat\"",
+        "height": 260,
+        "width": 420
+      },
+      "id": "bbb358ed-28b0-45c1-81c5-925fd07e634c",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        940,
+        40
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "Add your WordPress API credential\n",
+        "height": 260,
+        "width": 160
+      },
+      "id": "471790ad-896a-4895-aedb-763c29afa823",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        340,
+        360
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "model": "=google/gemini-2.0-flash-lite-preview-02-05:free",
+        "prompt": "=Generate a real photographic image used as a cover for a blog post:\n\nImage prompt:\n{{ $('Generate title with DeepSeek').item.json.message.content }}, photography, realistic, sigma 85mm f/1.4",
+        "options": {
+          "quality": "hd",
+          "size": "1792x1024",
+          "style": "natural"
+        }
+      },
+      "id": "9c93457f-b90a-4f70-ba84-835cb099765e",
+      "name": "Generate Image with DALL-E",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "position": [
+        1080,
+        700
+      ],
+      "typeVersion": 1.8,
+      "credentials": {
+        "openAiApi": {
+          "id": "mE4tY6rLFI7CyMqz",
+          "name": "OpenrouterAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "Add your OpenAI API credential\n",
+        "height": 260,
+        "width": 160
+      },
+      "id": "b93f5ca0-84ba-4c4e-b50a-9ed7de5eb5be",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        540,
+        360
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "Upload the image on your WordPress via APIs\n",
+        "height": 260,
+        "width": 180
+      },
+      "id": "c953c30c-b18e-4453-b3e4-ef70d6e85a10",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        740,
+        360
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "Set the uploaded image with the newly created article\n",
+        "height": 260,
+        "width": 180
+      },
+      "id": "52050bca-a898-43b8-b30b-cc4ced038284",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        960,
+        360
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"model\": \"qwen/qwen2.5-vl-72b-instruct:free\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Draw a picture about THE LIFE\"\n    }\n  ],\n  \"top_p\": 1,\n  \"temperature\": 1,\n  \"frequency_penalty\": 0,\n  \"presence_penalty\": 0,\n  \"repetition_penalty\": 1,\n  \"top_k\": 0\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        840,
+        800
+      ],
+      "id": "609f4468-42f7-49fd-8cbc-b58cd83f91ce",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "SBSczc8pL7sNtSL1",
+          "name": "Header Auth Openrouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        300,
+        700
+      ],
+      "id": "8efd2eb2-3995-4364-b2d2-21fcd3fc0d9f",
+      "name": "When chat message received",
+      "webhookId": "e33d7690-8704-488d-9dfd-f73b6fe52dbc"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.together.xyz/v1/images/generations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "black-forest-labs/FLUX.1-schnell-Free"
+            },
+            {
+              "name": "prompt",
+              "value": "={{ $json?.chatInput || $('Generate title with DeepSeek').item.json.message.content }}, photography, realistic, sigma 85mm f/1.4"
+            },
+            {
+              "name": "width",
+              "value": 1024
+            },
+            {
+              "name": "height",
+              "value": 768
+            },
+            {
+              "name": "steps",
+              "value": 1
+            },
+            {
+              "name": "n",
+              "value": 1
+            },
+            {
+              "name": "response_format",
+              "value": "b64_json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        540,
+        440
+      ],
+      "id": "01261122-0d13-4ae4-a0da-db15f13381fd",
+      "name": "HTTP Request1",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Vm11EVXu8p9jBqXP",
+          "name": "Header Auth together.xyz"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data[0].b64_json",
+        "options": {
+          "fileName": ""
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        680,
+        600
+      ],
+      "id": "4f947aa3-a4be-4f21-8bad-1b912f059f76",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "content": "## Mục tiêu\nQuy trình làm việc này được thiết kế để tự động tạo nội dung thân thiện với SEO cho WordPress thông qua Deepseek R1 bằng cách đưa ra các ý tưởng đầu vào về cách cấu trúc bài viết. Một hình ảnh bìa cũng được tạo và tải lên với Openai Dall-E 3. Lưu lượng này được thiết kế để được thực hiện tự động (AD \"trên một lịch biểu\") và do đó có một kế hoạch biên tập hoàn chỉnh.\n\nQuá trình này rất hữu ích cho các nhà quản lý blog muốn tự động hóa việc tạo và xuất bản nội dung.\n\n## Hướng dẫn\nTạo một Sheet với các cột sau:\n- Ngày\n- Prompt\n- Tiêu đề\n- Post ID\n\nChỉ điền vào cột \"Prompt\" với những ý tưởng cơ bản mà Deepseek sẽ hoạt động để tạo nội dung.",
+        "height": 380,
+        "width": 800,
+        "color": 3
+      },
+      "id": "f4999cca-68b6-4b91-b67c-e6556c5a02d9",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        260,
+        -420
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1380,
+        700
+      ],
+      "id": "58f92bbc-6b19-43e1-9447-44cff892da87",
+      "name": "HTTP Request2"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-13T01:05:34.000Z",
+  "versionId": "f9a226c0-7bb5-4358-a76c-9a3ca4473ab4"
+}
