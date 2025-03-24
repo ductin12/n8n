@@ -1,0 +1,456 @@
+{
+  "active": false,
+  "connections": {
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "Chat Memory Manager",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Assistant": {
+      "main": [
+        []
+      ]
+    },
+    "Chat Memory Manager": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Memory Manager1": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Chat Trigger",
+            "type": "ai_memory",
+            "index": 0
+          },
+          {
+            "node": "Chat Memory Manager",
+            "type": "ai_memory",
+            "index": 0
+          },
+          {
+            "node": "Chat Memory Manager1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        []
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Chat Memory Manager1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-20T03:06:11.397Z",
+  "id": "MId1buaO8zTZm52p",
+  "meta": {
+    "templateId": "2098"
+  },
+  "name": "Chat with OpenAI Assistant (by adding a memory)",
+  "nodes": [
+    {
+      "parameters": {
+        "assistantId": "asst_HDSAnzsp4WqY4UC1iI9auH5z",
+        "text": "=## Our Previous Conversation:\n{{ $json[\"messages\"].map(m => `\nHuman: ${m.human}\nAI Assistant: ${m.ai}\n`) }}\n## Current message:\n{{ $('Chat Trigger').item.json.chatInput }}",
+        "options": {
+          "baseURL": "https://openrouter.ai/api/v1"
+        }
+      },
+      "id": "087ae6e2-b333-4a30-9010-c78050203961",
+      "name": "OpenAI Assistant",
+      "type": "@n8n/n8n-nodes-langchain.openAiAssistant",
+      "position": [
+        1780,
+        -100
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "openAiApi": {
+          "id": "mE4tY6rLFI7CyMqz",
+          "name": "OpenrouterAI account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "3793b10a-ebb7-42ec-8b9b-7fa3a353d9a3",
+      "name": "Calculator",
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "position": [
+        1500,
+        440
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "7bee2882-bb9e-402e-ba42-9b1ed0e1264b",
+      "name": "Chat Memory Manager",
+      "type": "@n8n/n8n-nodes-langchain.memoryManager",
+      "position": [
+        680,
+        240
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "messages": {
+          "messageValues": [
+            {
+              "type": "user",
+              "message": "={{ $('Chat Trigger').item.json.chatInput }}"
+            },
+            {
+              "type": "ai",
+              "message": "={{ $json.output }}"
+            }
+          ]
+        }
+      },
+      "id": "5c66e482-819e-47e7-90be-779e92364e2a",
+      "name": "Chat Memory Manager1",
+      "type": "@n8n/n8n-nodes-langchain.memoryManager",
+      "position": [
+        1640,
+        240
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "messages",
+        "options": {}
+      },
+      "id": "b96bf629-bd21-4528-8988-e63c5af89fd7",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "position": [
+        1060,
+        240
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "output",
+              "stringValue": "={{ $('AI Agent').item.json.output }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "95001be1-f046-47e3-a58c-25bff170ba06",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        2240,
+        240
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {},
+      "id": "4ea04793-c7fb-4b81-abf7-49590aa76ca7",
+      "name": "Limit",
+      "type": "n8n-nodes-base.limit",
+      "position": [
+        2020,
+        240
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "public": true,
+        "options": {
+          "loadPreviousSession": "memory"
+        }
+      },
+      "id": "16921f74-d420-445a-9e09-19a6116a3267",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "position": [
+        380,
+        240
+      ],
+      "webhookId": "1f83e8ac-d465-454a-8327-cef7f0149cb1",
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "Read contents of the chat from memory",
+        "height": 196.64941360686112,
+        "width": 514.8706020514577,
+        "color": 7
+      },
+      "id": "c0826494-779a-4c2d-93c9-746150ac9482",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        660,
+        180
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "Call the assistant, passing in the previous chat messages",
+        "height": 196.64941360686112,
+        "width": 298.02823821086326,
+        "color": 7
+      },
+      "id": "4ce4594d-070a-4985-9c5d-fcd4ebc4a627",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1240,
+        180
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "Add the latest chat messages to the memory",
+        "height": 196.64941360686112,
+        "width": 298.02823821086326,
+        "color": 7
+      },
+      "id": "49885b3b-de77-4c02-a35e-d188fee38831",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1620,
+        180
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "Return the model output",
+        "height": 196.64941360686112,
+        "width": 356.0564764217267,
+        "color": 7
+      },
+      "id": "f45e8589-d61b-440a-ae89-31ded2738ef7",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2000,
+        180
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Try me out\n1. In the OpenAI Assistant node, make sure your OpenAI credentials are set and choose an assistant to use (you'll need to create one if you don't have one already)\n2. Click the 'Chat' button below\n\n  - In the first message, tell the AI what your name is\n  - In a second message, ask the AI what your name is",
+        "height": 300.48941882630095
+      },
+      "id": "3b72a676-aaa2-472a-b055-1fed03f52101",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        280,
+        420
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "sessionKey": "={{ $('Chat Trigger').item.json.sessionId }}123",
+        "contextWindowLength": 20
+      },
+      "id": "a2250328-e4ce-4ac6-b4fe-658ab173bc28",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "position": [
+        1040,
+        500
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=## Our Previous Conversation:\n{{ $json[\"messages\"].map(m => `\nHuman: ${m.human}\nAI Assistant: ${m.ai}\n`) }}\n## Current message:\n{{ $('Chat Trigger').item.json.chatInput }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1260,
+        240
+      ],
+      "id": "1ed88049-6fa0-4109-8ef4-6b4345a7a9c6",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "=google/gemini-exp-1206:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.1,
+      "position": [
+        2220,
+        20
+      ],
+      "id": "593e08f5-ca95-475e-98b1-50eda2f8301a",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "mE4tY6rLFI7CyMqz",
+          "name": "OpenrouterAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        440
+      ],
+      "id": "bbaa3612-62f7-4797-8673-1cb2f7c9755f",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Chat Trigger').item.json.sessionId }}",
+        "contextWindowLength": 20
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        1360,
+        460
+      ],
+      "id": "f300bfff-4d3a-41aa-aab9-323428e62e80",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "D0sy6b7AfFnPrtgQ",
+          "name": "Postgres account render.com"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-28T10:14:41.000Z",
+  "versionId": "2d6f743c-621b-45c6-9749-140851a12ab4"
+}
