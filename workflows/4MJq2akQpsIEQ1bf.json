@@ -1,0 +1,123 @@
+{
+  "active": false,
+  "connections": {
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-08T08:39:46.581Z",
+  "id": "4MJq2akQpsIEQ1bf",
+  "meta": {
+    "templateId": "598"
+  },
+  "name": "Create a table in MySQL and insert data",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        380,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "49275202-22cd-4bc4-9aa0-5d354f725511"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "CREATE TABLE test (id INT, name VARCHAR(255), PRIMARY KEY (id));"
+      },
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "position": [
+        580,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "241eed90-b24a-4e2b-b819-44b24a2b6ef0"
+    },
+    {
+      "parameters": {
+        "table": "test",
+        "columns": "id, name",
+        "options": {}
+      },
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "position": [
+        980,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "36d152f0-1d0b-4a96-a705-9848381ba92c"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "number": [
+            {
+              "name": "id"
+            }
+          ],
+          "string": [
+            {
+              "name": "name",
+              "value": "n8n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        780,
+        240
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": false,
+      "id": "1d234819-55a7-472c-aff8-05924269ee69"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-08T08:39:46.581Z",
+  "versionId": "bf3c0adc-1ec1-4841-a6f7-14bcfd72a715"
+}
