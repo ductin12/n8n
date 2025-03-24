@@ -1,0 +1,1350 @@
+{
+  "active": false,
+  "connections": {
+    "Gửi SMS tuyển dụng": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Da_goi_va_dat_lich_pv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Upload image to S3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Kiểm tra SDT đã tồn tại hay chưa?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kiểm tra SDT đã tồn tại hay chưa?": {
+      "main": [
+        [
+          {
+            "node": "Nếu đã tồn tại ứng viên",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nếu đã tồn tại ứng viên": {
+      "main": [
+        [
+          {
+            "node": "Cập nhật thông tin ứng viên",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Thêm ứng viên",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload image to S3": {
+      "main": [
+        [
+          {
+            "node": "Get file",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get file": {
+      "main": [
+        [
+          {
+            "node": "KT Loại file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "KT Loại file": {
+      "main": [
+        [
+          {
+            "node": "Extract from File PDF",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract from File docx",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File PDF": {
+      "main": [
+        [
+          {
+            "node": "Nếu nội dung file PDF trống",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nếu nội dung file PDF trống": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Da_goi_va_dat_lich_pv": {
+      "main": [
+        [
+          {
+            "node": "Gửi SMS tuyển dụng",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Trigger1": {
+      "main": [
+        []
+      ]
+    },
+    "Gửi SMS nhắc lịch pv": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Đến lịch nhắc hẹn": {
+      "main": [
+        [
+          {
+            "node": "Gửi SMS nhắc lịch pv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-12T01:18:24.040Z",
+  "id": "elQgrHFRFQsKCBdy",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Tuyển dụng tự động",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://trigger.macrodroid.com/0cc0db01-60a5-43e0-9b05-e8adc7fe0f6a/sentsms",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "phone",
+              "value": "=0{{ $json.SDT }}"
+            },
+            {
+              "name": "text",
+              "value": "=Mời ứng viên {{ $json['Họ tên'] }} đến Công ty Tín Thành Phát phỏng vấn vị trí {{ $json['Vị trí'] }}. \nThời gian:  {{ $json['Lịch hẹn'] }}\nĐịa chỉ: 238/25 Lê Văn Quới, Phường Bình Hưng Hòa A, Bình Tân.\nKhi đi mang theo đầy đủ hồ sơ. Lưu ý: vui lòng phản hồi tin nhắn này và đến đúng thời gian. Xin cảm ơn."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -480,
+        1460
+      ],
+      "id": "b5971ec7-1e5d-4495-9b7d-1330cdd4e8b2",
+      "name": "Gửi SMS tuyển dụng"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Tag": "da_gui_sms",
+            "Họ tên": "={{ $('Da_goi_va_dat_lich_pv').item.json['Họ tên'] }}",
+            "Nhắc hẹn": "={{ $('Da_goi_va_dat_lich_pv').item.json['Lịch hẹn'].slice(-10) }} 08:00:00"
+          },
+          "matchingColumns": [
+            "Họ tên"
+          ],
+          "schema": [
+            {
+              "id": "Họ tên",
+              "displayName": "Họ tên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "SDT",
+              "displayName": "SDT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Vị trí",
+              "displayName": "Vị trí",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Lịch hẹn",
+              "displayName": "Lịch hẹn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Hồ sơ",
+              "displayName": "Hồ sơ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tag",
+              "displayName": "Tag",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nhắc hẹn",
+              "displayName": "Nhắc hẹn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -260,
+        1460
+      ],
+      "id": "20117310-8c36-48aa-b714-3010d15686d2",
+      "name": "Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw",
+          "mode": "list",
+          "cachedResultName": "Tuyển dụng Tín Thành Phát",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -940,
+        1460
+      ],
+      "id": "90c92c39-3b67-4e0b-881e-b6980c14db98",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "eyjnkmY3Z9DM6ykH",
+          "name": "Google Sheets Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formTitle": "Upload CV ứng viên",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "data",
+              "fieldType": "file",
+              "acceptFileTypes": ".docx, .pdf",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -940,
+        600
+      ],
+      "id": "16f7a36d-bcaa-4d0c-bc4a-f43eff00b158",
+      "name": "On form submission",
+      "webhookId": "5b2a0508-db9e-4f7b-962c-e5e8192adea6"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-pro-exp-02-05",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        580,
+        800
+      ],
+      "id": "a9b8073a-9218-40ca-860a-a5faff8796ed",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\"name\" : \"string\",\n\"phone\" : \"phone number\",\n\"email\" : \"Email\", \n\"vitri_tuyendung\" : \"string\",\n\"mota_ungvien\" : \"string\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        760,
+        800
+      ],
+      "id": "8c0298d0-1702-41d0-a0ac-d4c271382eae",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Based on the information getting from the Content CV of recruitment candidates are extracted. Please help me detect all the data of  recruitment candidates and get the necessary information such as: full name, phone number, email, Application Position, Summary of Candidate Information. \n\nIf the information is not found appropriately for the required fields, please leave it blank in the json resuts data return, do not return the error result.\n\n- Vitri_tuyendung: Based on the information in the candidate's CV, please fill in the recruitment position appropriately for the candidate's CV. The positions are in need of hiring: Nhân viên kinh doanh, nhân viên Marketing, Cộng tác viên livestream.\n- mota_ungvien: based on the candidate's CV information, briefly summarize the work process and the core capacity of the candidate. Just write down the bullet bricks each main idea is very brief and concise.\n\nAll the results are returned in Vietnamese and in the form of JSON in the following format:\n\n{\n\"name\" : \"string\",\n\"phone\" : \"phone number\",\n\"email\" : \"Email\", \n\"vitri_tuyendung\" : \"string\",\n\"mota_ungvien\" : \"string\"\n}\n\nThe Content CV of recruitment candidates: {{ $json.text }}\n",
+        "hasOutputParser": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        580,
+        580
+      ],
+      "id": "fe0892e1-c55b-45e0-850a-ce2f0a0446c8",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw",
+          "mode": "list",
+          "cachedResultName": "Tuyển dụng Tín Thành Phát",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "SDT",
+              "lookupValue": "={{ $json.output.phone }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1040,
+        580
+      ],
+      "id": "19211c29-bd4a-4e8f-84cf-b61eb37c8d5f",
+      "name": "Kiểm tra SDT đã tồn tại hay chưa?",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d0fe4f58-352b-47bd-9d41-478d9d3f7818",
+              "leftValue": "={{ $('Kiểm tra SDT đã tồn tại hay chưa?') }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1300,
+        580
+      ],
+      "id": "24a0b9c0-402f-46e2-84d4-6f62a41ec2fc",
+      "name": "Nếu đã tồn tại ứng viên"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw",
+          "mode": "list",
+          "cachedResultName": "Tuyển dụng Tín Thành Phát",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "SDT": "={{ $json.SDT }}",
+            "Vị trí": "={{ $('Basic LLM Chain').item.json.output.vitri_tuyendung }}",
+            "Hồ sơ": "={{ $('Basic LLM Chain').item.json.output.mota_ungvien }}",
+            "Họ tên": "={{ $('Basic LLM Chain').item.json.output.name }}",
+            "Email": "={{ $('Basic LLM Chain').item.json.output.email }}"
+          },
+          "matchingColumns": [
+            "SDT"
+          ],
+          "schema": [
+            {
+              "id": "Họ tên",
+              "displayName": "Họ tên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SDT",
+              "displayName": "SDT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Vị trí",
+              "displayName": "Vị trí",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lịch hẹn",
+              "displayName": "Lịch hẹn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Hồ sơ",
+              "displayName": "Hồ sơ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tag",
+              "displayName": "Tag",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1580,
+        480
+      ],
+      "id": "c516d0da-629e-462c-a528-16dd695b851f",
+      "name": "Cập nhật thông tin ứng viên",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw",
+          "mode": "list",
+          "cachedResultName": "Tuyển dụng Tín Thành Phát",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Họ tên": "={{ $('Basic LLM Chain').item.json.output.name }}",
+            "SDT": "={{ $('Basic LLM Chain').item.json.output.phone }}",
+            "Email": "={{ $('Basic LLM Chain').item.json.output.email }}",
+            "Vị trí": "={{ $('Basic LLM Chain').item.json.output.vitri_tuyendung }}",
+            "Hồ sơ": "={{ $('Basic LLM Chain').item.json.output.mota_ungvien }}"
+          },
+          "matchingColumns": [
+            "Họ tên"
+          ],
+          "schema": [
+            {
+              "id": "Họ tên",
+              "displayName": "Họ tên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "SDT",
+              "displayName": "SDT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Vị trí",
+              "displayName": "Vị trí",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lịch hẹn",
+              "displayName": "Lịch hẹn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Hồ sơ",
+              "displayName": "Hồ sơ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tag",
+              "displayName": "Tag",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1580,
+        700
+      ],
+      "id": "b7d0bd37-da2e-4486-a990-2406a9fa6e36",
+      "name": "Thêm ứng viên",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.ocr.space/Parse/Image/?isOverlayRequired=true&url=https://pub-9ae70035a5fa43b7987f38778de704a2.r2.dev/{{ $('On form submission').item.json.data[0].filename }}&language=vnm&filetype=pdf",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -480,
+        420
+      ],
+      "id": "bdb65e15-a0ae-49c2-9175-c2af53485096",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "o9F5YaqYr6TaVo2G",
+          "name": "Header Auth OCR FREE"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upload",
+        "bucketName": "n8n",
+        "fileName": "={{ $('On form submission').item.json.data[0].filename }}",
+        "additionalFields": {}
+      },
+      "id": "d4d57b98-6aae-473c-b186-12b5bfb9ccfe",
+      "name": "Upload image to S3",
+      "type": "n8n-nodes-base.s3",
+      "position": [
+        -700,
+        600
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "s3": {
+          "id": "5xKdY0kzuetxFgzQ",
+          "name": "S3 account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "url": "=https://pub-9ae70035a5fa43b7987f38778de704a2.r2.dev/{{ $('On form submission').item.json.data[0].filename }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -420,
+        580
+      ],
+      "id": "8a8070c7-7fbf-4eec-91b2-b629a375cae9",
+      "name": "Get file"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('On form submission').first().json.data[0].filename }}",
+                    "rightValue": ".pdf",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "0e37c3cf-5842-4816-bc0c-4efa4abcb036"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "100ac08a-64df-4661-b9b2-92e776ac4ce9",
+                    "leftValue": "={{ $('On form submission').first().json.data[0].filename }}",
+                    "rightValue": ".docx",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -160,
+        580
+      ],
+      "id": "c6dab1c4-2c87-478a-992a-2a4df006d8ea",
+      "name": "KT Loại file"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "=data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        100,
+        560
+      ],
+      "id": "2a66e062-1a2a-4198-8187-af2223782449",
+      "name": "Extract from File PDF"
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "destinationKey": "text",
+        "options": {
+          "encoding": "utf8"
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        100,
+        840
+      ],
+      "id": "9316843a-5989-409a-b520-2b827498ea99",
+      "name": "Extract from File docx"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ff1f6c6b-4f87-414f-99e2-0f7119efe18c",
+              "leftValue": "={{ $json.text.length }}",
+              "rightValue": "=5",
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        340,
+        560
+      ],
+      "id": "c7374326-2dfc-4388-8444-0c3322bba453",
+      "name": "Nếu nội dung file PDF trống"
+    },
+    {
+      "parameters": {
+        "content": "## Gửi SMS xác nhận lịch phỏng vấn\n**Tự động gửi SMS đến ứng viên xác nhận lịch phỏng vấn sau khi HR đã gọi và đặt lịch hẹn**",
+        "height": 400,
+        "width": 1420
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1040,
+        1280
+      ],
+      "typeVersion": 1,
+      "id": "61be1bc9-a793-4ded-ae3c-00adf4191615",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6eac2120-2a8c-44bd-ba8d-88a5da1d3ae2",
+              "leftValue": "={{ $json.Tag }}",
+              "rightValue": "da_goi",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "f67c4355-5f2c-4243-b20c-2ff6eb232718",
+              "leftValue": "={{ $json['Lịch hẹn'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -720,
+        1460
+      ],
+      "id": "08cf0278-aba2-468a-9d0a-87acb88d41f2",
+      "name": "Da_goi_va_dat_lich_pv"
+    },
+    {
+      "parameters": {
+        "content": "# Upload file CV ứng viên và trích xuất hồ sơ ứng viên vào file Google sheet quản lý ứng viên",
+        "height": 800,
+        "width": 2980,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1040,
+        300
+      ],
+      "typeVersion": 1,
+      "id": "f1954abd-e556-4150-b6d1-76d6f47a431e",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Tag": "sms_nhac_hen",
+            "Họ tên": "={{ $('Đến lịch nhắc hẹn').item.json['Họ tên'] }}"
+          },
+          "matchingColumns": [
+            "Họ tên"
+          ],
+          "schema": [
+            {
+              "id": "Họ tên",
+              "displayName": "Họ tên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "SDT",
+              "displayName": "SDT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Vị trí",
+              "displayName": "Vị trí",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Lịch hẹn",
+              "displayName": "Lịch hẹn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Hồ sơ",
+              "displayName": "Hồ sơ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tag",
+              "displayName": "Tag",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nhắc hẹn",
+              "displayName": "Nhắc hẹn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -200,
+        1780
+      ],
+      "id": "eb91e4f9-3381-4872-a04c-091efb203525",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw",
+          "mode": "list",
+          "cachedResultName": "Tuyển dụng Tín Thành Phát",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw/edit#gid=0"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -940,
+        1780
+      ],
+      "id": "1271271c-873a-4826-8509-b856ebef183f",
+      "name": "Google Sheets Trigger1",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "eyjnkmY3Z9DM6ykH",
+          "name": "Google Sheets Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://trigger.macrodroid.com/0cc0db01-60a5-43e0-9b05-e8adc7fe0f6a/sentsms",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "phone",
+              "value": "=0{{ $json.SDT }}"
+            },
+            {
+              "name": "text",
+              "value": "=Chào{{ $json['Họ tên'] }}, hôm nay bạn có lịch hẹn phỏng vấn tại  Công ty Tín Thành Phát phỏng vấn. Bạn nhớ đến đúng giờ nhé. \n\nThời gian:  {{ $json['Lịch hẹn'] }}\nĐịa chỉ: 238/25 Lê Văn Quới, Phường Bình Hưng Hòa A, Bình Tân.\nKhi đi mang theo đầy đủ hồ sơ."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -480,
+        1780
+      ],
+      "id": "dd37404c-d4ea-41d9-b0cc-aa61b6c7c246",
+      "name": "Gửi SMS nhắc lịch pv"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6eac2120-2a8c-44bd-ba8d-88a5da1d3ae2",
+              "leftValue": "={{ $json[\"Nhắc hẹn\"] }}",
+              "rightValue": "={{ $now.format('dd/MM/y hh:mm:00') }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -720,
+        1780
+      ],
+      "id": "ed9b2bcb-56d9-4157-a2c5-637943c5946d",
+      "name": "Đến lịch nhắc hẹn"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -960,
+        2000
+      ],
+      "id": "f8075993-7acd-4ca8-a8c8-2545a286f605",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Google Sheets Trigger": {
+      "documentId": "1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw",
+      "sheetId": 0,
+      "lastIndexChecked": 4,
+      "lastRevision": 87,
+      "lastRevisionLink": "https://docs.google.com/spreadsheets/export?id=1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw&revision=87&exportFormat=xlsx"
+    },
+    "node:Google Sheets Trigger1": {
+      "documentId": "1Ey7fubHJyFxbfcDiHOBNizPY9v356rcVDXVBSBAkMTw",
+      "sheetId": 0,
+      "lastIndexChecked": 4
+    },
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 5,
+  "updatedAt": "2025-03-17T04:10:11.000Z",
+  "versionId": "dd256f3f-993b-474c-90d8-db9d1ceb39c1"
+}
