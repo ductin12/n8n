@@ -1,0 +1,452 @@
+{
+  "active": false,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Flux Schnell Cloudflare": {
+      "main": [
+        [
+          {
+            "node": "Get_Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Flux Schnell Cloudflare",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload image to S3": {
+      "main": [
+        [
+          {
+            "node": "add response field1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "add response field",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get_Image": {
+      "main": [
+        [
+          {
+            "node": "Upload image to S3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "stable-diffusion-xl-lightning": {
+      "main": [
+        [
+          {
+            "node": "Get_Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "lykon/dreamshaper-8-lcm": {
+      "main": [
+        [
+          {
+            "node": "Get_Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "runwayml/stable-diffusion-v1-5-img2img": {
+      "main": [
+        [
+          {
+            "node": "Get_Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-25T09:15:53.591Z",
+  "id": "gT0e660jw9zXkQqu",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Flux Schnell Cloudflare Image Tool",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -320,
+        0
+      ],
+      "id": "1785d265-f978-49f9-92df-454f668121be",
+      "name": "When chat message received",
+      "webhookId": "ce91c12f-325b-41f6-8bfb-f34ea28fc792"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.cloudflare.com/client/v4/accounts/8fb50b38f91243ef6e3345bd97501448/ai/run/@cf/black-forest-labs/flux-1-schnell",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "JSON",
+        "body": "={ \"prompt\": \"{{ $('Basic LLM Chain').first().json.output.prompt }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        360,
+        -80
+      ],
+      "id": "50171876-1774-4d0b-8adf-e596373aa863",
+      "name": "Flux Schnell Cloudflare",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "2PyMtpuCf6Rf9bu0",
+          "name": "Header Auth Cloudflare Worker AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=data:image/jpeg;charset=utf-8;base64,{{ $json.result.image }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        680,
+        -80
+      ],
+      "id": "dead8451-d419-4eb7-9648-c4f5e2705edd",
+      "name": "Get_Image"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json?.chatInput || $json.query }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are an expert Prompt maker and checker.  \n1. If the user's input is not in English, please translate it into English. \n\n2. You will check the user's input prompt to see if the prompt contains words or phrases containing NSFW, you will change the words or phrases so that it is no longer penalized for related to NSFW. Please don't change the meaning of the prompt sentence.\n\nExample: if the user sends words like nude, naked, 18+,... change to words like without clothes, no clothes, no shirt and pain, have not thing on his/her body,...\n\nIf the user's prompt has not NSWF word, keep that prompt, don't change. \n\nWrite all output in English.\n\nOutput in JSON format: \n{\n\"nsfw_prompt\" : \"user's prompt with NSFW\",\n\"prompt\" : \"new prompt without NSFW\"\n}"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        -60,
+        -80
+      ],
+      "id": "ed1afe3f-cd35-4bef-8da2-da5c7a19b1db",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-thinking-exp-1219",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -120,
+        100
+      ],
+      "id": "4dc71ef2-1ed3-4327-b073-ec8b255f3d1f",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\"nsfw_prompt\" : \"user's prompt with NSFW\",\n\"prompt\" : \"new prompt without NSFW\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        80,
+        120
+      ],
+      "id": "32a3f309-8f45-47ed-8717-3830fa2ad9c2",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "operation": "upload",
+        "bucketName": "n8n",
+        "fileName": "=fg-{{ $execution.id }}.jpg",
+        "additionalFields": {}
+      },
+      "id": "2d8adbfc-f610-4319-a7b8-7ea5ea2b1114",
+      "name": "Upload image to S3",
+      "type": "n8n-nodes-base.s3",
+      "position": [
+        880,
+        -80
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "s3": {
+          "id": "5xKdY0kzuetxFgzQ",
+          "name": "S3 account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "content": "### Respond to Form\nServe a webform with image on success. On error, send message to form.",
+        "height": 90.99855957953969,
+        "width": 302.9292231993488,
+        "color": 7
+      },
+      "id": "cda09510-c243-4c11-8756-c03105337edd",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1040,
+        -240
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "response",
+              "stringValue": "Fail"
+            }
+          ]
+        },
+        "options": {
+          "includeBinary": false
+        }
+      },
+      "id": "73a38e53-2225-41c7-bef6-226082ae3c34",
+      "name": "add response field",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1140,
+        40
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "response",
+              "stringValue": "Success"
+            },
+            {
+              "name": "file_url",
+              "stringValue": "=https://pub-9ae70035a5fa43b7987f38778de704a2.r2.dev/fg-{{ $execution.id }}.jpg"
+            }
+          ]
+        },
+        "options": {
+          "includeBinary": false
+        }
+      },
+      "id": "4b73a147-4ef6-4f13-ac28-10c6b398b045",
+      "name": "add response field1",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1140,
+        -160
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.cloudflare.com/client/v4/accounts/8fb50b38f91243ef6e3345bd97501448/ai/run/@cf/bytedance/stable-diffusion-xl-lightning",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "JSON",
+        "body": "={ \"prompt\": \"{{ $('Basic LLM Chain').first().json.output.prompt }}\" }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        360,
+        -500
+      ],
+      "id": "b7261128-0edd-4e3b-9c4a-615f6ab1942a",
+      "name": "stable-diffusion-xl-lightning",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "2PyMtpuCf6Rf9bu0",
+          "name": "Header Auth Cloudflare Worker AI"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.cloudflare.com/client/v4/accounts/8fb50b38f91243ef6e3345bd97501448/ai/run/@cf/lykon/dreamshaper-8-lcm",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "JSON",
+        "body": "={ \"prompt\": \"{{ $('Basic LLM Chain').first().json.output.prompt }}\" }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        360,
+        -240
+      ],
+      "id": "941ad527-a25c-4567-be2e-a66e46d4a768",
+      "name": "lykon/dreamshaper-8-lcm",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "2PyMtpuCf6Rf9bu0",
+          "name": "Header Auth Cloudflare Worker AI"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.cloudflare.com/client/v4/accounts/8fb50b38f91243ef6e3345bd97501448/ai/run/@cf/stabilityai/stable-diffusion-xl-base-1.0",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "JSON",
+        "body": "={ \"prompt\": \"{{ $('Basic LLM Chain').first().json.output.prompt }}\" }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        360,
+        200
+      ],
+      "id": "41ce72ae-d05a-42ef-9069-5c2ed2bcef03",
+      "name": "runwayml/stable-diffusion-v1-5-img2img",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "2PyMtpuCf6Rf9bu0",
+          "name": "Header Auth Cloudflare Worker AI"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -300,
+        -200
+      ],
+      "id": "d75bedf0-c022-4a5b-bdbc-8830ed58abb5",
+      "name": "When Executed by Another Workflow"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-28T14:32:47.000Z",
+  "versionId": "fbcdbe7d-e603-429e-9ff2-454a2a5ace85"
+}
