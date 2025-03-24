@@ -1,0 +1,719 @@
+{
+  "active": true,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "GET YT CAPTION1 TO SRT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET YT CAPTION1 TO SRT": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "GET YT CAPTION1 TO SRT1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        []
+      ]
+    },
+    "GET YT CAPTION1 TO SRT1": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Searchapi.io - Get Youtube Sub": {
+      "main": [
+        [
+          {
+            "node": "transcript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rewrite_Content_Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Replace Me",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replace Me": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini 2.0": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text to voice": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-07T10:13:45.768Z",
+  "id": "7narAphMnnSQn7bU",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Youtube Link To Caption To Video Script",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://hanaweb.vn/get-yt/get-yt.php",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "Hanaweb-123456789"
+            },
+            {
+              "name": "ytlink",
+              "value": "={{ $json.query }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        900,
+        -420
+      ],
+      "id": "a19e0df7-11a8-4dd2-baf5-aeaf10f9bbed",
+      "name": "GET YT CAPTION1 TO SRT",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        680,
+        -420
+      ],
+      "id": "f05ae059-7837-4b5d-9459-641b26f61f84",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1240,
+        -820
+      ],
+      "id": "0010f957-f884-438a-9375-3fb482d1f4a1",
+      "name": "When chat message received",
+      "webhookId": "d3b15b31-8fa0-4ea4-b4ac-dc7624dd7b1d"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "transcript.transcript",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1700,
+        -820
+      ],
+      "id": "084c479e-dcf4-4569-8efe-42350fa9a880",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "url": "https://hanaweb.vn/get-yt/get-yt.php",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "Hanaweb-123456789"
+            },
+            {
+              "name": "ytlink",
+              "value": "={{ $json.chatInput }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1460,
+        -820
+      ],
+      "id": "1667b072-1067-4533-88ba-af01a67db988",
+      "name": "GET YT CAPTION1 TO SRT1"
+    },
+    {
+      "parameters": {
+        "url": "https://translate.google.com.vn/translate_tts",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "ie",
+              "value": "UTF-8"
+            },
+            {
+              "name": "q",
+              "value": "=Xin chào tôi là Tin đẹp trai đây!"
+            },
+            {
+              "name": "tl",
+              "value": "vi"
+            },
+            {
+              "name": "client",
+              "value": "t"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+            },
+            {
+              "name": "accept-language",
+              "value": "en-US,en;q=0.9,vi;q=0.8"
+            },
+            {
+              "name": "cache-control",
+              "value": "no-cache"
+            },
+            {
+              "name": "cookie",
+              "value": "HSID=AL0Po9kh6flUlFP0s; SSID=AFG9IcvP-V1caJj1n; APISID=CjNNnwre9WA0uC0v/AuAYtsxlBDfTuC355; SAPISID=_V5Fjbnu2Rj2Izdp/AOEPcdJw3qIfMUaKB; __Secure-1PAPISID=_V5Fjbnu2Rj2Izdp/AOEPcdJw3qIfMUaKB; __Secure-3PAPISID=_V5Fjbnu2Rj2Izdp/AOEPcdJw3qIfMUaKB; NID=520=aonDK97ueiZsFxc8TY4scG3lAf9oM4ynbuBvOBD8GbJebJlvlNlVJCmntZPz9zwDZPgsD1n6TzSKDZPXox-49jma3EgA2Op0q_gNnRjiZiHj4akCUqYCBAxAOX45zutF5Qm2GVN595B209oE_DDOWvip9Z9SRY_q18A7GZ2inhEivEBcvU7H80BUsFiZZbWhwqvCH-F0u9tYqrVCXl3ccxzz5Fz5kVa7AoGb9ewEWpdbUXKr8jvRljz0tIsWE8GM9TJS4emrwT1SQYjYfqeZd-H9dJdpD9DS__sRjnTM8MM4zbp4zg0WjMNcCRbmvsUU916wVTxZtSZGUqOB_lzsW_it2Vl_-aRtwhRP2PdNxC6auzaXIUkiJ9c_9EihVPLIRoOf_26PfQET595e74RDcGp2vDCzNZ_Rn_GQS-Q8QhiPvgwXjvjnApMCtCkgP5tNCpQe1-R9GawAxgoiPMHFPoEQY3ZFtSREybXb5LFef-O-BgPoyKlwdHjl9dAdjAh-puUFAYEYxVVRox9z-fwSpYanmHM84mo-jbtzpRGGWiD5A22Fl5krKbZk4onXSCsgd1RmvUKyDbSx3097WA90JkqYScxJkOMt2Xj6YkssRiYzr2oXE7JcGOSCcfFh7xTbYJ41YRr4kB8v5ACrFrbuuEuDtuAsU4l4jPOPpfxjSJt4Azuamg; SID=g.a000rwgkoz8-rJsrl0wFHW_L7WcVUFPaTBLn88Dyb0WUAJOzJZ4lMfoxkApQY1miKs0tbaDubgACgYKAVESARYSFQHGX2Mi5I21FzgDmX5BTyjLWxNQvxoVAUF8yKrD6gxTi_IQUMSmzApxpMq90076; __Secure-1PSID=g.a000rwgkoz8-rJsrl0wFHW_L7WcVUFPaTBLn88Dyb0WUAJOzJZ4lccVc6AS50fWKxbcKyE6q8wACgYKAVESARYSFQHGX2MiaUMMHqGfLfXuUw_t5hwvmBoVAUF8yKpJ7TxmnAHSGazXGSPgWCdx0076; __Secure-3PSID=g.a000rwgkoz8-rJsrl0wFHW_L7WcVUFPaTBLn88Dyb0WUAJOzJZ4lL3br3gcKX8eXJ0uPYyUZtAACgYKAYkSARYSFQHGX2MiLbfmRSnWoqOTtrVQwIx51BoVAUF8yKoQknBlj-mWA7IIxLule4B70076; SL_G_WPT_TO=vi; SL_GWPT_Show_Hide_tmp=1; SL_wptGlobTipTmp=1"
+            },
+            {
+              "name": "pragma",
+              "value": "no-cache"
+            },
+            {
+              "name": "priority",
+              "value": "u=0, i"
+            },
+            {
+              "name": "sec-ch-ua",
+              "value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+            },
+            {
+              "name": "sec-ch-ua-arch",
+              "value": "\"x86\""
+            },
+            {
+              "name": "sec-ch-ua-bitness",
+              "value": "\"64\""
+            },
+            {
+              "name": "sec-ch-ua-form-factors",
+              "value": "\"Desktop\""
+            },
+            {
+              "name": "sec-ch-ua-full-version",
+              "value": "\"131.0.6778.266\""
+            },
+            {
+              "name": "sec-ch-ua-full-version-list",
+              "value": "\"Google Chrome\";v=\"131.0.6778.266\", \"Chromium\";v=\"131.0.6778.266\", \"Not_A Brand\";v=\"24.0.0.0\""
+            },
+            {
+              "name": "sec-ch-ua-mobile",
+              "value": "?0"
+            },
+            {
+              "name": "sec-ch-ua-model",
+              "value": "\"\""
+            },
+            {
+              "name": "sec-ch-ua-platform",
+              "value": "\"macOS\""
+            },
+            {
+              "name": "sec-ch-ua-platform-version",
+              "value": "\"11.7.10\""
+            },
+            {
+              "name": "sec-ch-ua-wow64",
+              "value": "?0"
+            },
+            {
+              "name": "sec-fetch-dest",
+              "value": "document"
+            },
+            {
+              "name": "sec-fetch-mode",
+              "value": "navigate"
+            },
+            {
+              "name": "sec-fetch-site",
+              "value": "none"
+            },
+            {
+              "name": "sec-fetch-user",
+              "value": "?1"
+            },
+            {
+              "name": "upgrade-insecure-requests",
+              "value": "1"
+            },
+            {
+              "name": "user-agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+            },
+            {
+              "name": "x-browser-channel",
+              "value": "stable"
+            },
+            {
+              "name": "x-browser-copyright",
+              "value": "Copyright 2025 Google LLC. All rights reserved."
+            },
+            {
+              "name": "x-browser-validation",
+              "value": "ML+Ko0QpRXQS2gN7CwuA69q1mXA="
+            },
+            {
+              "name": "x-client-data",
+              "value": "CJK2yQEIpbbJAQipncoBCJHgygEIlqHLAQiKo8sBCIagzQEIucjNAQj9pc4BCPnXzgEIwdjOAQj82c4BCMHbzgEYwMvMARjO1c4B"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        140,
+        -300
+      ],
+      "id": "eb36233b-4ca4-444e-96d1-358b03866000",
+      "name": "Text to speech - Google translate"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.audioURL }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        340,
+        -520
+      ],
+      "id": "c55682ab-fffe-4c18-8fd2-800a7d213258",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "url": "https://www.searchapi.io/api/v1/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "engine",
+              "value": "youtube_transcripts"
+            },
+            {
+              "name": "video_id",
+              "value": "sjykJIJk0l8"
+            },
+            {
+              "name": "api_key",
+              "value": "iV2aH9qZERQbggMqEPb6NETA"
+            },
+            {
+              "name": "lang",
+              "value": "vi"
+            },
+            {
+              "name": "transcript_type",
+              "value": "auto"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        -800
+      ],
+      "id": "725398f3-a9f4-4e7a-b1ff-396cf802dae1",
+      "name": "Searchapi.io - Get Youtube Sub"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f562db61-854a-446d-896c-87e05a28617f",
+              "name": "transcript",
+              "value": "={{ $json.transcripts.map(transcripts => `${transcripts.text}`).join(' ') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        880,
+        -800
+      ],
+      "id": "40d0897b-1dd1-46ee-a8d0-e5de14aaf531",
+      "name": "transcript"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=# Role\nYou are a content expert with more than 10 years of experience. You can use tools to assist for your work\n\n# Instruction\n- Check the language of input data to rewrite and rewrite in the same. For example, if the input is English, please write a summary in English, if the input is Vietnamese, rewrite in Vietnamese. \n\n- Use Rewrite_Content_Tool to fix all spelling errors in the content provided. Make sure the sentence is clear and suitable for the context of the whole content.\n\n- Write a summary of the main ideas for the content provided. Make sure to keep all the main ideas and sub -intentions in the content.\n\n- Divide the layout for full content: Title, short description, H2, H3, H4, H5, ... Bullet, Table, Bold, Bold, Brick and Formats Other if necessary.\n\n- Explore all results in Markdown format.\n- There is no need to write the introduction or opening as: Here is the content summary,... or anthing like that.\n\n# Input\nThe content to be rewrite is:\n{{ $json.transcript }}\n\nResult sent include all informations: \n- Title: {{ $json.title }}\n- Author: {{ $json.author }}\n- Description: {{ $json.description }}\n- Thumbnail: {{ $json.thumbnail_url }}",
+        "options": {
+          "systemMessage": "You are a helpful assistant"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1220,
+        -440
+      ],
+      "id": "818da3e7-6b47-4d56-a2b6-27eff2f1714d",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Call this Rewrite_Content_Tool when you need to rewrite the text content ",
+        "method": "POST",
+        "url": "https://api.perplexity.ai/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "parametersHeaders": {
+          "values": [
+            {
+              "name": "Content-Type",
+              "valueProvider": "fieldValue",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"sonar\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"Be precise and concise.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Rewrise the entire text as follows as required: Revisor of spelling words, seals, marks. In the right place to separate sentences, ideas, paragraphs. The content of the text to rewrite is: {{ $json.transcript }}\"\n    }\n  ],\n  \"max_tokens\": 4000,\n  \"temperature\": 0.2,\n  \"top_p\": 0.9,\n  \"search_domain_filter\": null,\n  \"return_images\": false,\n  \"return_related_questions\": false,\n  \"top_k\": 0,\n  \"stream\": false,\n  \"presence_penalty\": 0,\n  \"frequency_penalty\": 1,\n  \"response_format\": null\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        1420,
+        -220
+      ],
+      "id": "c0916722-4d8f-41c4-ab23-956d50830cda",
+      "name": "Rewrite_Content_Tool",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "X3igE0h4nQTKMTMm",
+          "name": "Perplexity Auth account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Hàm thoát ký tự đặc biệt cho JSON\nfunction escapeForJson(str) {\n  return str.replace(/[\\n\\r\\t]/g, '\\\\n').replace(/\"/g, '\\\\\"');\n}\n\n// Loop over input items and process the JSON\nfor (const item of $input.all()) {\n  // Lấy dữ liệu đầu vào từ item\n  const content = item.json.choices?.[0]?.message?.content || '';\n  const citations = item.json.citations || [];\n\n  // Xử lý trường \"think\" bằng substring\n  const thinkStart = content.indexOf('<think>');\n  const thinkEnd = content.indexOf('</think>');\n  const thinkContent = (thinkStart !== -1 && thinkEnd !== -1 && thinkEnd > thinkStart)\n    ? content.substring(thinkStart, thinkEnd + 8) // +8 để bao gồm </think>\n    : '';\n  item.json.text = escapeForJson(thinkContent);\n\n  // Xử lý trường \"message\"\n  const messageContent = thinkEnd !== -1 \n    ? content.substring(thinkEnd + 8).trim() \n    : content.trim();\n  item.json.message = escapeForJson(messageContent);\n\n  // Xử lý trường \"source\"\n  const sourceContent = citations.length > 0 \n    ? citations.map((link, index) => `- Nguồn ${index + 1}: ${link}`).join('\\n')\n    : '';\n  item.json.source = escapeForJson(sourceContent);\n\n  // Xóa các trường không cần thiết từ JSON gốc\n  delete item.json.id;\n  delete item.json.model;\n  delete item.json.created;\n  delete item.json.usage;\n  delete item.json.citations;\n  delete item.json.object;\n  delete item.json.choices;\n}\n\n// Trả về tất cả items đã xử lý\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1800,
+        -400
+      ],
+      "id": "d91f59c0-745f-466f-9183-3ebfa7db2a2e",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "text"
+            },
+            {
+              "fieldToAggregate": "message"
+            },
+            {
+              "fieldToAggregate": "source"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2040,
+        -400
+      ],
+      "id": "e6a5401a-5ebe-455c-9f0f-8f573744f23e",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2280,
+        -400
+      ],
+      "id": "ac27bd56-cc12-429f-9e9b-7388d84276ac",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "name": "Replace Me",
+      "typeVersion": 1,
+      "position": [
+        2540,
+        -400
+      ],
+      "id": "5722dc40-a5ff-401a-870b-7def40c3c681"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-pro-exp-02-05",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        -240
+      ],
+      "id": "2ab3c126-fc29-486c-841c-f5945a45c56c",
+      "name": "Google Gemini 2.0",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://ivcqahposk.execute-api.eu-central-1.amazonaws.com/prod/audio",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "accept-language",
+              "value": "en-US,en;q=0.9,vi;q=0.8"
+            },
+            {
+              "name": "cache-control",
+              "value": "no-cache"
+            },
+            {
+              "name": "origin",
+              "value": "https://vog.voicebooking.com"
+            },
+            {
+              "name": "pragma",
+              "value": "no-cache"
+            },
+            {
+              "name": "priority",
+              "value": "u=1, i"
+            },
+            {
+              "name": "sec-ch-ua",
+              "value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+            },
+            {
+              "name": "sec-ch-ua-mobile",
+              "value": "?0"
+            },
+            {
+              "name": "sec-ch-ua-platform",
+              "value": "\"macOS\""
+            },
+            {
+              "name": "sec-fetch-dest",
+              "value": "empty"
+            },
+            {
+              "name": "sec-fetch-mode",
+              "value": "cors"
+            },
+            {
+              "name": "sec-fetch-site",
+              "value": "cross-site"
+            },
+            {
+              "name": "user-agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json;charset=UTF-8",
+        "body": "={ \"input\":{\n  \"ssml\":\"<speak>Xin chào, tôi là Linh. Tôi là người Việt Nam</speak>\"\n  },\n  \"voice\":{\n    \"languageCode\":\"vi-VN\",\n    \"name\":\"vi-VN-Neural2-A\",\n    \"ssmlGender\":\"Linh (F)\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        140,
+        -520
+      ],
+      "id": "a3248ebc-8ae1-4815-88fc-50e6fd7f9f39",
+      "name": "Text to voice"
+    }
+  ],
+  "pinData": {
+    "Code": [
+      {
+        "json": {
+          "text": "<think>\\nOkay, let me tackle this query about the top 10 hottest jobs for marketers in 2025. The user is asking for the most in-demand marketing roles next year, so I need to synthesize the information from the provided search results to come up with a comprehensive list. \\n\\nFirst, I'll start by going through each source to identify the mentioned roles. Source [1] lists trends like AI, Social Media, Short-form Video, Influencer Marketing, Personalization, etc., but these are more trends than job titles. However, these trends might correlate with specific roles. For example, AI in marketing could relate to Marketing Automation Specialists or AI Marketing Strategists.\\n\\nSource [2] directly lists five jobs: SEO Specialist, Online Advertising Specialist, Content Marketing Specialist, Social Media Marketing Specialist, and Affiliate Marketing Specialist. These are solid entries for the list.\\n\\nSource [3] from Kantar mentions trends like Video (TV and streaming), Social Media needing innovation, Generative AI, Sustainability, Creator Communities, etc. These might translate into roles such as Video Marketing Strategist or Sustainability Marketing Manager.\\n\\nSource [4] talks about Digital Marketing, PR, Market Research. Roles here could include Digital Marketing Manager and Market Research Analyst.\\n\\nSource [5] again from Kantar discusses similar trends as source [3], emphasizing video convergence and livestreaming. Livestreaming could lead to a role like Livestream Marketing Coordinator.\\n\\nSource [6] lists various positions like Brand Marketing Specialist, Content Marketing Specialist, Social Media Manager, etc. It also mentions career paths up to CMO.\\n\\nSource [7] focuses on AI-generated content and Gen Z's influence. This might relate to AI Content Creators or Gen Z Marketing Strategists.\\n\\nSource [8] highlights Digital Marketing and Content Marketing as hot roles.\\n\\nSource [9] emphasizes Livestreaming as a strategic long-term role.\\n\\nSource [10] lists Digital Marketing under top fields.\\n\\nNow, compiling these into 10 roles. The direct mentions from sources are SEO Specialist, Online Advertising Specialist, Content Marketing Specialist, Social Media Marketing Specialist, Affiliate Marketing Specialist. Then considering trends mentioned: AI roles (Automation or Strategist), Influencer Marketing (especially Micro/Nano-Influencer Manager), Personalization Expert, Video/Livestreaming Specialist, Sustainability Marketer. Also roles like Data Analytics Manager and CMO from career paths.\\n\\nWait, need to ensure they are specific job titles. Let me cross-reference:\\n\\nFrom source [2]: 5 roles.\\nFrom source [6]: Brand Marketing, Content, Social Media.\\nFrom source [9]: Livestreaming.\\nFrom source [1]: Influencer Marketing (Micro/Nano focus), AI Automation.\\nFrom source [3]: Sustainability.\\nFrom source [5]: Retail Media Networks (maybe Retail Media Strategist).\\nFrom source [7]: AI Content Creator.\\nBut need to make sure there are 10 distinct roles without overlap.\\n\\nLet me structure them:\\n\\n1. SEO Specialist (source 2)\\n2. Online Advertising Specialist (source 2)\\n3. Content Marketing Specialist (sources 2,6)\\n4. Social Media Marketing Manager (sources 2,6)\\n5. Affiliate Marketing Specialist (source 2)\\n6. AI Marketing Automation Specialist (source 1)\\n7. Influencer Marketing Manager (Micro/Nano focus) (source 1)\\n8. Personalization & Customer Experience Expert (source 1)\\n9. Video & Livestreaming Strategist (sources 1,9)\\n10. Sustainability Marketing Manager (sources 3,5)\\n\\nThat makes 10 roles. Need to check if any other prominent ones are missing. Data Analytics is mentioned in source 1 as trend 8 (\\\"Ứng dụng và phát triển phân tích dữ liệu\\\"), so maybe Data-Driven Marketing Analyst as another role? But since the user asked for top 10 and some sources mention Data Analytics but not explicitly as a job title... Maybe include it as another point or adjust one of the existing ones.\\n\\nAlternatively, combine some roles or adjust based on frequency across sources. Let's see:\\n\\n- SEO and Online Ads are directly listed in multiple sources.\\n- Content and Social Media are common.\\n- Affiliate is in source 2.\\n- AI Automation is in source 1.\\n- Influencer (Micro/Nano) from source 1.\\n- Personalization from source 1.\\n- Video/Livestreaming from sources 1 and 9.\\n- Sustainability from sources 3/5.\\n- Retail Media Networks from source 5 as a trend but not a job title yet; maybe Retail Media Strategist?\\n- Gen Z Strategist from source 7?\\n\\nBut since the user asked for top jobs for Marketers in 2025 based on the provided sources, I need to prioritize roles explicitly mentioned or strongly implied by the trends in the sources.\\n\\nAnother approach: check which jobs are most frequently mentioned across sources.\\n\\nSEO: sources 2 and 6.\\nOnline Ads: sources 2 and maybe others.\\nContent: sources 2,4,6.\\nSocial Media: sources 2,4,6.\\nAffiliate: source 2.\\nAI-related: sources 1,3,5.\\nInfluencer: source1.\\nVideo/Livestreaming: sources1,9.\\nSustainability: sources3/5/9?\\nData Analytics: source1.\\n\\nHmm... Maybe combine some of these trends into roles:\\n\\nFor example:\\n\\nAI-Powered Marketing Strategist\\nLivestreaming & Video Content Manager\\nSustainability & Ethical Branding Manager\\n\\nBut need to stick to job titles that are recognizable and mentioned in the sources.\\n\\nAlternatively:\\n\\n1. SEO Specialist\\n2. Digital Advertising Specialist\\n3. Content Marketing Strategist\\n4. Social Media Manager\\n5. Affiliate Marketing Manager\\n6. AI & Automation Marketing Expert\\n7. Micro/Nano-Influencer Coordinator\\n8. Customer Experience & Personalization Specialist\\n9. Video & Livestreaming Marketer\\n10. Sustainability Communications Manager\\n\\nThis covers the key areas from the sources while creating distinct roles.\\n\\nAdditionally, some sources mention roles like Market Research Analyst (source4) or Brand Manager (source6). But given the limit of top10 and prioritizing those most emphasized in the search results.\\n\\nI think this list captures the essence of what's discussed across all provided materials while forming coherent job titles that align with current industry terminology and future trends highlighted in the sources.\\n</think>",
+          "message": "Các xu hướng công việc trong lĩnh vực Marketing năm 2025 phản ánh sự phát triển mạnh mẽ của công nghệ và thay đổi hành vi người tiêu dùng. Dưới đây là tổng hợp 10 vị trí được dự báo sẽ \\\"hot\\\" nhất dựa trên phân tích từ các nguồn tham khảo:\\n\\n---\\n\\n### **1. Chuyên gia SEO**  \\nTối ưu hóa công cụ tìm kiếm vẫn là yếu tố sống còn để doanh nghiệp cạnh tranh trực tuyến[2][6]. Vai trò bao gồm phân tích từ khóa, xây dựng backlink và cải thiện trải nghiệm người dùng trên website[2].\\n\\n### **2. Chuyên viên Quảng cáo Trực tuyến**  \\nQuản lý chiến dịch quảng cáo đa nền tảng như Google Ads và Meta Ads với kỹ năng tối ưu ngân sách[2][6]. Nhu cầu tăng do sự bùng nổ của thương mại điện tử và mạng xã hội[2].\\n\\n### **3. Chuyên gia Content Marketing**  \\nSáng tạo nội dung đa dạng từ blog đến video nhằm thu hút và giữ chân khách hàng[2][6]. Xu hướng tập trung vào storytelling và giá trị thực cho người dùng[4][8].\\n\\n### **4. Quản lý Mạng xã hội**  \\nPhát triển chiến lược TikTok/Instagram Reels và quản lý cộng đồng trực tuyến[2][4]. Kỹ năng phân tích metrics và ứng dụng AR/VR vào chiến dịch là yêu cầu hàng đầu[1][7].\\n\\n### **5. Chuyên viên Affiliate Marketing**  \\nTối đa hóa doanh thu qua hợp tác với các nền tảng TMĐT như Shopee/Lazada[2]. Đòi hỏi khả năng phân tích hiệu suất liên kết và xây dựng mạng lưới đối tác[6].\\n\\n---\\n\\n### **6. Chuyên gia Tự động hóa & AI**  \\nỨng dụng trí tuệ nhân tạo để tự động hóa email marketing, chatbot và phân tích dữ liệu người dùng[1][7]. Kỹ năng làm việc với các công cụ như ChatGPT/MidJourney là bắt buộc[3][9].\\n\\n### **7. Quản lý Influencer (Micro/Nano)**  \\nChuyển dịch từ KOL lớn sang hợp tác với influencers có lượng follow nhỏ nhưng tương tác cao[1]. Ưu tiên những người có chuyên môn sâu trong niche cụ thể[1][7].\\n\\n### **8. Chuyên viên Cá nhân hóa Trải nghiệm**  \\nXây dựng chiến lược hyper-personalization bằng cách kết hợp dữ liệu hành vi và công nghệ AI[1][5]. Mục tiêu tăng tỷ lệ chuyển đổi qua trải nghiệm độc quyền cho từng khách hàng[5].\\n\\n### **9. Chiến lược gia Video & Livestream**  \\nThiết kế chiến dịch video ngắn (<60 giây) cho TikTok/YouTube Shorts và tổ chức livestream bán hàng tích hợp AR[1][9]. Kỹ năng sản xuất nội dung real-time và phân tích phản ứng khán giả là then chốt[9].\\n\\n### **10. Quản lý Tiếp thị Bền vững**  \\nKết hợp giá trị ESG vào chiến lược thương hiệu để thu hút Gen Z[3][5]. Đòi hỏi hiểu biết về chuỗi cung ứng xanh và truyền thông CSR hiệu quả[5][9].\\n\\n---\\n\\n**Xu hướng chung:** Sự hội tụ giữa công nghệ AI và tính nhân văn trong tiếp thị sẽ định hình ngành năm 2025[7][9]. Các doanh nghiệp cần đầu tư vào đội ngũ am hiểu cả kỹ thuật số lẫn kỹ năng sáng tạo để duy trì lợi thế cạnh tranh[3][5].",
+          "source": "- Nguồn 1: https://medialabs.asia/our-update/marketing-insights/top-10-xu-huong-tiep-thi-2024-dinh-huong-giup-doanh-nghiep-phat-trien-97\\n- Nguồn 2: https://caodang.fpt.edu.vn/tin-tuc-poly/top-5-cong-viec-du-doan-se-la-xu-huong-trong-linh-vuc-digital-marketing-trong-nam-2025.html\\n- Nguồn 3: https://growstack.vn/xu-huong-marketing-2025\\n- Nguồn 4: https://caodangquoctehanoi.edu.vn/top-nghe-nghiep-hot-nhat-cua-nganh-marketing/\\n- Nguồn 5: https://caodang.fpt.edu.vn/tin-tuc-poly/10-xu-huong-marketing-2025-va-giai-phap-vuot-ngan-chong-gai-cua-marketer.html\\n- Nguồn 6: https://www.topcv.vn/nganh-marketing-la-gi-cac-vi-tri-trong-nganh-marketing\\n- Nguồn 7: https://theleader.vn/10-xu-huong-truyen-thong-tiep-thi-2025-d38656.html\\n- Nguồn 8: https://ngoisao.vn/theo-dong-su-kien/kien-thuc/nam-2025-co-5-nganh-nghe-se-rat-hot-thu-nhap-cao-ngat-nguong-neu-ban-dang-lam-thi-xin-chuc-mung-444088.htm\\n- Nguồn 9: https://www.brandsvietnam.com/congdong/topic/344727-10-xu-huong-marketing-2025-theo-kantar\\n- Nguồn 10: https://nuedu.vn/tin-tuc/nganh-de-kiem-viec-nhat-nam-537.html"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Google Sheets Trigger": {
+      "documentId": "1vZM3Bo8cST2vK_pDTSbhC0oNncbYwNQc_I8U9ZkNXkg",
+      "sheetId": 0,
+      "lastRevision": 327,
+      "lastRevisionLink": "https://docs.google.com/spreadsheets/export?id=1vZM3Bo8cST2vK_pDTSbhC0oNncbYwNQc_I8U9ZkNXkg&revision=327&exportFormat=xlsx"
+    }
+  },
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-03-16T08:42:30.000Z",
+  "versionId": "03148c71-de53-407f-865b-b56c930ddb60"
+}
