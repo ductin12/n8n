@@ -1,0 +1,1423 @@
+{
+  "active": false,
+  "connections": {
+    "List Youtube Links": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "List Youtube Links",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Youtube Captions": {
+      "main": [
+        [
+          {
+            "node": "If Caption empty",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Rewrite with struction layout",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Captions empty": {
+      "main": [
+        [
+          {
+            "node": "GET YT CAPTION",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If Caption empty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Video Scripts": {
+      "main": [
+        [
+          {
+            "node": "Update Short Video Script",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Summary": {
+      "main": [
+        [
+          {
+            "node": "Update Outline",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Short Video empty": {
+      "main": [
+        [
+          {
+            "node": "Write Video Scripts",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If Long Video empty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Long Video empty": {
+      "main": [
+        [
+          {
+            "node": "Write Long Video Scripts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Long Video Scripts": {
+      "main": [
+        [
+          {
+            "node": "Update Long Video Script",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates": {
+      "main": [
+        [
+          {
+            "node": "If Captions empty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Youtube Captions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Outline": {
+      "main": [
+        [
+          {
+            "node": "If Short Video empty",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Summary_text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Short Video Script": {
+      "main": [
+        [
+          {
+            "node": "If Long Video empty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If<5000": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Summary content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Caption empty": {
+      "main": [
+        [
+          {
+            "node": "Write Summary",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If Short Video empty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Docs": {
+      "main": [
+        [
+          {
+            "node": "Update content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rewrite with struction layout": {
+      "main": [
+        [
+          {
+            "node": "Google Docs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update content": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summary content": {
+      "main": [
+        [
+          {
+            "node": "Youtube Captions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET YT CAPTION": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "If<5000",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Summary content",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Rewrite with struction layout",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Write Summary",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Write Video Scripts",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Write Long Video Scripts",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-04T08:33:55.553Z",
+  "id": "OUx3ktqhWQnylokV",
+  "meta": null,
+  "name": "Rewrite Content From Youtube Link To Sheet",
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1vZM3Bo8cST2vK_pDTSbhC0oNncbYwNQc_I8U9ZkNXkg/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vZM3Bo8cST2vK_pDTSbhC0oNncbYwNQc_I8U9ZkNXkg/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Captions"
+            },
+            {
+              "lookupColumn": "Summary"
+            },
+            {
+              "lookupColumn": " Short Video"
+            },
+            {
+              "lookupColumn": "Long Video"
+            }
+          ]
+        },
+        "combineFilters": "OR",
+        "options": {}
+      },
+      "id": "db24dd3f-3d25-4e51-8c98-ee4a5f5fc740",
+      "name": "List Youtube Links",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [
+        -2100,
+        400
+      ],
+      "executeOnce": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1vZM3Bo8cST2vK_pDTSbhC0oNncbYwNQc_I8U9ZkNXkg/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vZM3Bo8cST2vK_pDTSbhC0oNncbYwNQc_I8U9ZkNXkg/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2320,
+        400
+      ],
+      "id": "beecbd81-0d1a-4e7f-84fc-592a59a0bfd0",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "eyjnkmY3Z9DM6ykH",
+          "name": "Google Sheets Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1vZM3Bo8cST2vK_pDTSbhC0oNncbYwNQc_I8U9ZkNXkg/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vZM3Bo8cST2vK_pDTSbhC0oNncbYwNQc_I8U9ZkNXkg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Link": "={{ $('If Captions empty').first().json.Link }}",
+            "Captions": "={{ $json.caption }}"
+          },
+          "matchingColumns": [
+            "Link"
+          ],
+          "schema": [
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Format",
+              "displayName": "Format",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Captions",
+              "displayName": "Captions",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": " Short Video",
+              "displayName": " Short Video",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Long Video",
+              "displayName": "Long Video",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Link tài liệu",
+              "displayName": "Link tài liệu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "890a509f-0fc2-4d05-b3c3-0ec1bf1927bd",
+      "name": "Youtube Captions",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [
+        40,
+        280
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "37f120e6-0591-45a1-8ada-4f1268423172",
+              "leftValue": "={{ $json.Captions }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1560,
+        400
+      ],
+      "id": "82994380-0336-4a13-955f-6ef215f3d7e9",
+      "name": "If Captions empty"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Based on the Summary, write a 30s short video script for the following outline. \n- Stick to the outline and pay attention to keywords to create content according to the idea. \n- No need to introduce or respond, only to record the results.\n- Write the output in Vietnamese\n- The Summary is in below: \n{{ $('Update Outline')?.item?.json?.Summary || $('Remove Duplicates').item.json.Summary }}\n\n",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are a expert to create video scripts to make video. "
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        320,
+        1000
+      ],
+      "id": "85f4b31c-b96b-42ff-a066-268a70e3cfad",
+      "name": "Write Video Scripts"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Summary of the main ideas in the following content. \n- List the main keywords in that content.\n- No need to introduce or respond only to record the results. Write the output in the same language as the video's caption. \n\n- Video caption is in below: \n{{ $('Youtube Captions')?.item?.json?.Captions || $('Remove Duplicates').item.json.Captions }}\n",
+        "options": {
+          "systemMessage": "You are a content expert. You can summarize and analyze the main ideas in a content provided."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -100,
+        600
+      ],
+      "id": "4377fa68-6074-44bb-9ea6-c96cc9a07608",
+      "name": "Write Summary"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "52528c6f-d74c-4f55-817a-7ff786ba4580",
+              "leftValue": "={{ $('Remove Duplicates').first().json[' Short Video'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -120,
+        1060
+      ],
+      "id": "813658d1-9acc-4063-9624-1263d7efc6de",
+      "name": "If Short Video empty"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "52528c6f-d74c-4f55-817a-7ff786ba4580",
+              "leftValue": "={{ $('Remove Duplicates').first().json['Long Video'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        160,
+        1420
+      ],
+      "id": "59603f00-9f32-4d6a-809e-153c52cd645e",
+      "name": "If Long Video empty"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Based on the Summary, write a 30-minute video script for the following outline. Stick to the outline and pay attention to keywords to create content according to the idea. \nNo need to introduce or respond, only to record the results.\nWrite the output in the language of the Summary. \nThe summary: \n{{  $('List Youtube Links')?.item?.json?.Summary || $('Update Outline')?.item?.json?.Summary }}\n",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are a expert to create video scripts to make video. "
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        460,
+        1400
+      ],
+      "id": "8872a90b-8696-48cb-9991-3aaadae49b4f",
+      "name": "Write Long Video Scripts"
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "Link",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        -1860,
+        400
+      ],
+      "id": "569d126d-4a1c-4ed8-bbfc-3e70b1d515b8",
+      "name": "Remove Duplicates"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "18f4f506-088d-44ae-be62-b600a274b342",
+              "name": "caption",
+              "value": "={{ $json.transcript }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -440,
+        120
+      ],
+      "id": "02850de3-c416-4e8e-aab9-babcb66c0746",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1vZM3Bo8cST2vK_pDTSbhC0oNncbYwNQc_I8U9ZkNXkg/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vZM3Bo8cST2vK_pDTSbhC0oNncbYwNQc_I8U9ZkNXkg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Link": "={{ $('List Youtube Links').first().json.Link }}",
+            "Summary": "={{ $('Write Summary').first().json.output }}"
+          },
+          "matchingColumns": [
+            "Link"
+          ],
+          "schema": [
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Captions",
+              "displayName": "Captions",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "id": "e820de5e-31c8-4179-993e-6db6101c8ed9",
+      "name": "Update Outline",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [
+        300,
+        600
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1vZM3Bo8cST2vK_pDTSbhC0oNncbYwNQc_I8U9ZkNXkg/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vZM3Bo8cST2vK_pDTSbhC0oNncbYwNQc_I8U9ZkNXkg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Link": "={{ $('List Youtube Links').first().json.Link }}",
+            " Short Video": "={{ $json.output }}"
+          },
+          "matchingColumns": [
+            "Link"
+          ],
+          "schema": [
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Captions",
+              "displayName": "Captions",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": " Short Video",
+              "displayName": " Short Video",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Long Video",
+              "displayName": "Long Video",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "id": "87dc5f0d-bc14-4b01-b98b-5e9831b9bcc7",
+      "name": "Update Short Video Script",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [
+        840,
+        1000
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1vZM3Bo8cST2vK_pDTSbhC0oNncbYwNQc_I8U9ZkNXkg/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vZM3Bo8cST2vK_pDTSbhC0oNncbYwNQc_I8U9ZkNXkg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Link": "={{ $('Remove Duplicates').item.json.Link }}",
+            "Long Video": "={{ $json.output }}"
+          },
+          "matchingColumns": [
+            "Link"
+          ],
+          "schema": [
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Captions",
+              "displayName": "Captions",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": " Short Video",
+              "displayName": " Short Video",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Long Video",
+              "displayName": "Long Video",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "id": "8a2acbd0-def7-46a5-b038-5da37633c82f",
+      "name": "Update Long Video Script",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [
+        920,
+        1400
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "Summary",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        580,
+        600
+      ],
+      "id": "725de0fd-852b-4a5b-9b92-77f7bf61044d",
+      "name": "Summary_text"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9ec9bff6-a782-49cf-98e1-961ae07d05c1",
+              "leftValue": "={{ $json.transcript.length }}",
+              "rightValue": 50000,
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -700,
+        260
+      ],
+      "id": "ba68c650-be21-4c59-9be4-2351107ec42d",
+      "name": "If<5000"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1vZM3Bo8cST2vK_pDTSbhC0oNncbYwNQc_I8U9ZkNXkg",
+          "mode": "list",
+          "cachedResultName": "Youtube Caption ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vZM3Bo8cST2vK_pDTSbhC0oNncbYwNQc_I8U9ZkNXkg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vZM3Bo8cST2vK_pDTSbhC0oNncbYwNQc_I8U9ZkNXkg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Link": "={{ $('Remove Duplicates').item.json.Link }}",
+            "Link tài liệu": "=https://docs.google.com/document/d/{{ $('Google Docs').item.json.id }}/edit?tab=t.0"
+          },
+          "matchingColumns": [
+            "Link"
+          ],
+          "schema": [
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Format",
+              "displayName": "Format",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Captions",
+              "displayName": "Captions",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": " Short Video",
+              "displayName": " Short Video",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Long Video",
+              "displayName": "Long Video",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link tài liệu",
+              "displayName": "Link tài liệu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1180,
+        280
+      ],
+      "id": "600f99fc-63bd-4413-886b-0cd96e9d3429",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "07a1fa63-6f01-4da7-ab57-5a11e7256ec3",
+              "leftValue": "={{ $('Remove Duplicates').first().json.Summary }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -720,
+        600
+      ],
+      "id": "f2be8fd8-1875-47a7-87dd-959ea1d41f4b",
+      "name": "If Caption empty"
+    },
+    {
+      "parameters": {
+        "folderId": "1I6hol-h3WMHSVP-04zDC2SuPDOyIZTsy",
+        "title": "={{ $('GET YT CAPTION').item.json.title}}"
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        720,
+        280
+      ],
+      "id": "5f22bcb4-f4ee-4fb4-9052-20344334952a",
+      "name": "Google Docs",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "JdI0YIG9dOZTEort",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=- Rewrite the following content in a complete layout to be able to post on the website or announce the press. Write all outputs in Vietnamese.\n- No need to introduce, just write directly into the main content.\n- The content need to be rewritten: \n{{ $json.Captions }}\n",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are a content expert with more than 10 years of experience. You have the ability to complete documents, records, notes, ... into complete documents with clear and clear content layouts without changing the initial ideas and voice."
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        320,
+        280
+      ],
+      "id": "80f3a05b-f380-41ae-bfb1-e262ee68cc73",
+      "name": "Rewrite with struction layout"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentURL": "={{ $json.id }}",
+        "actionsUi": {
+          "actionFields": [
+            {
+              "action": "insert",
+              "text": "={{ $('Rewrite with struction layout').item.json.text }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        960,
+        280
+      ],
+      "id": "03a11859-fe63-4adf-ab2b-2a6d83135fdb",
+      "name": "Update content",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "JdI0YIG9dOZTEort",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=# Vai trò\nBạn là một chuyên gia viết content với hơn 10 năm kinh nghiệm. \n\n# Hướng dẫn\nBước 1: Kiểm tra ngôn ngữ của dữ liệu đầu vào để viết lại đúng với ngôn ngữ đầu vào. Ví dụ: nếu đầu vào là tiếng anh thì hãy viết tóm tắt bằng tiếng anh. \n\nBước 2: Viết tóm tắt các ý chính cho nội dung sau đây. Đảm bảo vẫn giữ tất cả các ý trong nội dung. \n\nBước 3: Phân chia bố cục cho nội dung với đầy đủ: tiêu đề, mô tả ngắn, các thẻ h2,h3,h4,h5,... bullet, table, in đậm, in nghiêng, gạch chân và các định dạng khác nếu cần thiết. \n\nBước 4: Chỉ xuất nội dung tóm tắt không cần viết giới thiệu. Viết tóm tắt dưới 5000 từ. Dữ liệu xuất ra ở dạng markdown.\n\n#Input\nNội dung cần tóm tắt là: \n{{ $('GET YT CAPTION').item.json.transcript }}\n",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are a helpful assistant for content writer."
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        -420,
+        360
+      ],
+      "id": "7c7a4188-9339-4853-b98e-9720da3b376c",
+      "name": "Summary content"
+    },
+    {
+      "parameters": {
+        "url": "https://hanaweb.vn/get-yt/get-yt.php",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "ytlink",
+              "value": "={{ $json.Link }}"
+            },
+            {
+              "name": "lang",
+              "value": "vi"
+            },
+            {
+              "name": "format",
+              "value": "text"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1180,
+        300
+      ],
+      "id": "cd4cbabf-ed6c-4202-96b8-d046ddcd10fe",
+      "name": "GET YT CAPTION",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "W894N0hToqGubioR",
+          "name": "Header Auth Hanaweb.vn"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "0c03a7f5-04cb-4378-a9b6-33a29b9bbb7a",
+              "leftValue": "={{ $json.error }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -960,
+        300
+      ],
+      "id": "39f94024-a15a-4f79-addc-4fc0e553397d",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-thinking-exp-1219",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        1060
+      ],
+      "id": "a520a99f-98e1-4fdb-9458-606fe2fd5f5c",
+      "name": "Google Gemini Chat Model5",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-19T06:45:58.000Z",
+  "versionId": "9f4905e7-4b34-4ce6-abaf-9b1d24e98b7d"
+}
