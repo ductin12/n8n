@@ -1,0 +1,389 @@
+{
+  "active": false,
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Upload image to S3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Audio to text": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Workflow Input Trigger": {
+      "main": [
+        [
+          {
+            "node": "Upload image to S3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload image to S3": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Whisper Large V3 Turbo: Transcribe Audio - Step 1": {
+      "main": [
+        [
+          {
+            "node": "Whisper Large V3 Turbo: Transcribe Audio - Step 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Whisper Large V3 Turbo: Transcribe Audio - Step 2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "add response field",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Whisper Large V3 Turbo: Transcribe Audio - Step 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Audio to text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-28T10:43:50.294Z",
+  "id": "y3oL7SKQ0e5ewfO9",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Audio to text",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Upload mp3 file",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "data",
+              "fieldType": "file",
+              "multipleFiles": false,
+              "acceptFileTypes": ".mp3, .wav, .flac, m4p, .m4a, .opus, .wma"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -220,
+        180
+      ],
+      "id": "538781d6-8dec-41ed-8274-52ac07961cdb",
+      "name": "On form submission",
+      "webhookId": "dd6a2ea6-9e8d-4a27-a257-5a3b2fe62e14"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.cloudflare.com/client/v4/accounts/8fb50b38f91243ef6e3345bd97501448/ai/run/@cf/openai/whisper",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "binaryData",
+        "inputDataFieldName": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        820,
+        -120
+      ],
+      "id": "ef64d6b4-5537-492b-96fa-14829730e6fc",
+      "name": "Audio to text",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "2PyMtpuCf6Rf9bu0",
+          "name": "Header Auth Cloudflare Worker AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "response",
+              "stringValue": "Success"
+            },
+            {
+              "name": "result",
+              "stringValue": "={{ $json.result.text }}"
+            },
+            {
+              "name": "errors",
+              "stringValue": "={{ $json.errors }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {
+          "includeBinary": false
+        }
+      },
+      "id": "68d260d3-8854-4f88-b9e6-a90ef9d68848",
+      "name": "add response field",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1280,
+        -140
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -220,
+        -20
+      ],
+      "id": "30654784-14f2-483b-82e6-7452b79e8421",
+      "name": "Workflow Input Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "upload",
+        "bucketName": "n8n",
+        "fileName": "=audio_{{ $execution.id }}",
+        "additionalFields": {}
+      },
+      "id": "fc81d5b7-8574-435e-978b-a2be0b5e74ac",
+      "name": "Upload image to S3",
+      "type": "n8n-nodes-base.s3",
+      "position": [
+        60,
+        -20
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": false,
+      "credentials": {
+        "s3": {
+          "id": "5xKdY0kzuetxFgzQ",
+          "name": "S3 account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://hf-audio-whisper-large-v3-turbo.hf.space/gradio_api/call/predict_1",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"data\": [\n    {\n      \"path\": \"https://pub-9ae70035a5fa43b7987f38778de704a2.r2.dev/audio_{{ $execution.id }}\"\n    },\n    \"transcribe\"\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1280,
+        40
+      ],
+      "id": "9f449e93-a8a5-4ac1-beb7-5b9ea3f30912",
+      "name": "Whisper Large V3 Turbo: Transcribe Audio - Step 1"
+    },
+    {
+      "parameters": {
+        "url": "=https://hf-audio-whisper-large-v3-turbo.hf.space/gradio_api/call/predict_1/{{ $json.event_id }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1500,
+        40
+      ],
+      "id": "53de0e01-1783-4e06-b5fe-2baf90d92ea7",
+      "name": "Whisper Large V3 Turbo: Transcribe Audio - Step 2",
+      "retryOnFail": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f47b8b5b-143a-457f-bce9-061a8ceb001d",
+              "name": "response",
+              "value": "Success",
+              "type": "string"
+            },
+            {
+              "id": "ba8348c7-54cd-400b-a9ce-42025d47d395",
+              "name": "result",
+              "value": "={{ \n  $json.data\n    .match(/data:\\s*\\[\\s*\"([^\"]+)\"\\s*\\]/)[1] // Trích xuất nội dung\n    .trim()                                   // Loại bỏ khoảng trắng thừa\n}}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1680,
+        40
+      ],
+      "id": "6b18e7fb-1ac3-49fa-b6c5-919eaddbde6d",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ea8cad4f-9f1c-4207-9243-74eefa18f9b7",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1020,
+        -120
+      ],
+      "id": "1a2ad916-0312-425e-a411-f1bb9236891d",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "url": "=https://pub-9ae70035a5fa43b7987f38778de704a2.r2.dev/audio_{{ $execution.id }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        620,
+        -120
+      ],
+      "id": "0517c4f4-7603-47d0-b4d9-127b1fd5a8cb",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "01d23d50-743d-4103-90da-4a4898b9a756",
+              "name": "url",
+              "value": "=https://pub-9ae70035a5fa43b7987f38778de704a2.r2.dev/audio_{{ $execution.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        380,
+        -120
+      ],
+      "id": "5c1ddb4c-4f46-4bbc-abef-7ea7edf3f95b",
+      "name": "Edit Fields1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-30T15:55:25.000Z",
+  "versionId": "cf245296-5683-4252-984d-21765ee4cc01"
+}
