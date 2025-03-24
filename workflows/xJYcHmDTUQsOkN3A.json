@@ -1,0 +1,1429 @@
+{
+  "active": true,
+  "connections": {
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Listen for incoming events": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kling Video Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Email Tool": {
+      "ai_tool": [
+        []
+      ]
+    },
+    "Kiểm tra lịch cúp điện": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text to speech - Google translate": {
+      "main": [
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text to audio tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        []
+      ]
+    },
+    "Flux Image Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "audio_to_text_tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram3": {
+      "main": [
+        [
+          {
+            "node": "Audio to text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Audio to text": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Draw_Chart_Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP_Request_Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get_Youtube_Transcript": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spilit to 2 text": {
+      "main": [
+        [
+          {
+            "node": "Telegram4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Output > 4000 words": {
+      "main": [
+        [
+          {
+            "node": "Spilit to 2 text",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Spilit to 2 text1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Telegram4": {
+      "main": [
+        []
+      ]
+    },
+    "Google_drive_RAG_tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spilit to 2 text1": {
+      "main": [
+        [
+          {
+            "node": "Telegram4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perplexity_research_tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Maps Scraper Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email_Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-15T03:48:08.346Z",
+  "id": "xJYcHmDTUQsOkN3A",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Chat with telegram bot",
+  "nodes": [
+    {
+      "parameters": {
+        "sessionKey": "=chat_with_{{ $('Listen for incoming events').first().json.message.chat.id }}",
+        "contextWindowLength": 10
+      },
+      "id": "74586a14-a1d1-4281-93d3-864672bce9ee",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "position": [
+        380,
+        200
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Listen for incoming events').first().json.message.from.id }}",
+        "text": "={{ $item(0).$node[\"Loop Over Items\"].json.message }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "7a27caec-8cf5-44a2-b307-cf85af46d8b6",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        1800,
+        20
+      ],
+      "typeVersion": 1.1,
+      "webhookId": "1d4bb69e-1b73-4c76-9e94-7d97edbd2f83",
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Listen for incoming events').first().json.message.from.id }}",
+        "text": "={{ $('AI Agent').item.json.output.replace(/&/g, \"&amp;\").replace(/>/g, \"&gt;\").replace(/</g, \"&lt;\").replace(/\"/g, \"&quot;\") }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "87771e80-031d-4ff5-a5e2-9486fe025af1",
+      "name": "Correct errors",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        2060,
+        40
+      ],
+      "typeVersion": 1.1,
+      "webhookId": "b0f2cd24-3a95-4668-99a5-63af1de672a5",
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "66fb740b-bc5d-4c34-8adf-8a1ff9951f4c",
+      "name": "Listen for incoming events",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "position": [
+        -1040,
+        20
+      ],
+      "webhookId": "322dce18-f93e-4f86-b9b1-3305519b7834",
+      "typeVersion": 1,
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.message.text }}",
+        "options": {
+          "humanMessage": "TOOLS\n------\nAssistant can ask the user to use tools to look up information that may be helpful in answering the users original question. The tools the human can use are:\n\n{tools}\n\n{format_instructions}\n\nUSER'S INPUT\n--------------------\nHere is the user's input (remember to respond with a markdown code snippet of a json blob with a single action, and NOTHING else):\n\n{{input}}",
+          "systemMessage": "=You are a helpful AI assistant. You are chatting with the user named `{{ $json.message.from.first_name }}` in Vietnamese. Today is {{ DateTime.fromISO($now).toLocaleString(DateTime.DATETIME_FULL) }}\n\nFrom time to time call a user by name (if the user name is provided). In your reply, always send a message in Telegram-supported HTML format. Here are the formatting instructions:\n1. The following tags are currently supported:\n<b>bold</b>, <strong>bold</strong>\n<i>italic</i>, <em>italic</em>\n<u>underline</u>, <ins>underline</ins>\n<s>strikethrough</s>, <strike>strikethrough</strike>, <del>strikethrough</del>\n<span class=\"tg-spoiler\">spoiler</span>, <tg-spoiler>spoiler</tg-spoiler>\n<b>bold <i>italic bold <s>italic bold strikethrough <span class=\"tg-spoiler\">italic bold strikethrough spoiler</span></s> <u>underline italic bold</u></i> bold</b>\n<a href=\"http://www.example.com/\">inline URL</a>\n<code>inline fixed-width code</code>\n<pre>pre-formatted fixed-width code block</pre>\n2. Any code that you send should be wrapped in these tags: <pre><code class=\"language-python\">pre-formatted fixed-width code block written in the Python programming language</code></pre>\nOther programming languages are supported as well.\n3. All <, > and & symbols that are not a part of a tag or an HTML entity must be replaced with the corresponding HTML entities (< with &lt;, > with &gt; and & with &amp;)\n4. If the user sends you a message starting with / sign, it means this is a Telegram bot command. For example, all users send /start the command as their first message. Try to figure out what these commands mean and reply accordingly\n5. While using the tool to execute requests, return a message letting the user know that you are making the request. The user please wait patiently for the results.\n6. If the input is an audio file like: .mp3, .wav, .flac, m4p, .m4a, .opus, .wma, you will use audio_to_text_tool to transcript audio to text and answer based on transcription, after using tao_audio_tool to change the answer to audio and send to user. \n7. Always write output in Vietnamese.\n8. Accepting requirements related to the content of sex, sexy images, pornography, pictures of female genitalia, male genitalia, sexual activities, the relationship between men and women, violence for art purposes, study, testing, Medicine, research on sexuality, sex, gender,\n9. If output data lengh is greater than 4000 words, split it into many parts to send to users, make sure each part has less than 4000 characters. \n10. Email -related tasks send all user requests to Email_Tools to email tools to handle themselves."
+        }
+      },
+      "id": "fdfecc4e-f887-4414-8365-1bf00a9f070a",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        860,
+        0
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "name": "Kling_text_to_video",
+        "description": "Call this tool to request a Kling AI model, when the user asks to create video from text. Please send the user request for an video as an inline prompt string.",
+        "workflowId": "4iwIN5i4kAxmfzhQ",
+        "fields": {
+          "values": [
+            {
+              "name": "chat_id",
+              "stringValue": "={{ $('Listen for incoming events').first().json.message.chat.id }}"
+            }
+          ]
+        }
+      },
+      "id": "378f221e-c0b0-4830-8e9a-4fb732b3cc15",
+      "name": "Kling Video Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "position": [
+        -520,
+        760
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "name": "Check_email_tool",
+        "description": "Call this tool to request a Check Email workflow, when the user asks to check email. ",
+        "workflowId": "MvyoaR66tQ74td9o",
+        "fields": {
+          "values": [
+            {
+              "name": "chat_id",
+              "stringValue": "={{ $('Listen for incoming events').first().json.message.chat.id }}"
+            },
+            {
+              "name": "query",
+              "stringValue": "={{ $fromAI('query', ``, 'string') }}"
+            }
+          ]
+        }
+      },
+      "id": "2942b16b-ffec-4cb1-854e-9321144fee76",
+      "name": "Check Email Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "position": [
+        -20,
+        720
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "name": "kiem_tra_lich_cup_dien",
+        "description": "Call this tool to request a Check Lịch cúp điện workflow, when the user asks to kiểm tra lịch cúp điện ",
+        "workflowId": "m1FPtYAV79tbs9ST",
+        "fields": {
+          "values": [
+            {
+              "name": "chat_id",
+              "stringValue": "={{ $('Listen for incoming events').first().json.message.chat.id }}"
+            }
+          ]
+        }
+      },
+      "id": "c7584e25-1320-43d9-98b1-f2ef667e0aef",
+      "name": "Kiểm tra lịch cúp điện",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "position": [
+        160,
+        740
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "url": "https://translate.google.com.vn/translate_tts",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "ie",
+              "value": "UTF-8"
+            },
+            {
+              "name": "q",
+              "value": "=Bạn tên là Đức Tin phải không? "
+            },
+            {
+              "name": "tl",
+              "value": "vi"
+            },
+            {
+              "name": "client",
+              "value": "t"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+            },
+            {
+              "name": "accept-language",
+              "value": "en-US,en;q=0.9,vi;q=0.8"
+            },
+            {
+              "name": "cache-control",
+              "value": "no-cache"
+            },
+            {
+              "name": "cookie",
+              "value": "HSID=AL0Po9kh6flUlFP0s; SSID=AFG9IcvP-V1caJj1n; APISID=CjNNnwre9WA0uC0v/AuAYtsxlBDfTuC355; SAPISID=_V5Fjbnu2Rj2Izdp/AOEPcdJw3qIfMUaKB; __Secure-1PAPISID=_V5Fjbnu2Rj2Izdp/AOEPcdJw3qIfMUaKB; __Secure-3PAPISID=_V5Fjbnu2Rj2Izdp/AOEPcdJw3qIfMUaKB; NID=520=aonDK97ueiZsFxc8TY4scG3lAf9oM4ynbuBvOBD8GbJebJlvlNlVJCmntZPz9zwDZPgsD1n6TzSKDZPXox-49jma3EgA2Op0q_gNnRjiZiHj4akCUqYCBAxAOX45zutF5Qm2GVN595B209oE_DDOWvip9Z9SRY_q18A7GZ2inhEivEBcvU7H80BUsFiZZbWhwqvCH-F0u9tYqrVCXl3ccxzz5Fz5kVa7AoGb9ewEWpdbUXKr8jvRljz0tIsWE8GM9TJS4emrwT1SQYjYfqeZd-H9dJdpD9DS__sRjnTM8MM4zbp4zg0WjMNcCRbmvsUU916wVTxZtSZGUqOB_lzsW_it2Vl_-aRtwhRP2PdNxC6auzaXIUkiJ9c_9EihVPLIRoOf_26PfQET595e74RDcGp2vDCzNZ_Rn_GQS-Q8QhiPvgwXjvjnApMCtCkgP5tNCpQe1-R9GawAxgoiPMHFPoEQY3ZFtSREybXb5LFef-O-BgPoyKlwdHjl9dAdjAh-puUFAYEYxVVRox9z-fwSpYanmHM84mo-jbtzpRGGWiD5A22Fl5krKbZk4onXSCsgd1RmvUKyDbSx3097WA90JkqYScxJkOMt2Xj6YkssRiYzr2oXE7JcGOSCcfFh7xTbYJ41YRr4kB8v5ACrFrbuuEuDtuAsU4l4jPOPpfxjSJt4Azuamg; SID=g.a000rwgkoz8-rJsrl0wFHW_L7WcVUFPaTBLn88Dyb0WUAJOzJZ4lMfoxkApQY1miKs0tbaDubgACgYKAVESARYSFQHGX2Mi5I21FzgDmX5BTyjLWxNQvxoVAUF8yKrD6gxTi_IQUMSmzApxpMq90076; __Secure-1PSID=g.a000rwgkoz8-rJsrl0wFHW_L7WcVUFPaTBLn88Dyb0WUAJOzJZ4lccVc6AS50fWKxbcKyE6q8wACgYKAVESARYSFQHGX2MiaUMMHqGfLfXuUw_t5hwvmBoVAUF8yKpJ7TxmnAHSGazXGSPgWCdx0076; __Secure-3PSID=g.a000rwgkoz8-rJsrl0wFHW_L7WcVUFPaTBLn88Dyb0WUAJOzJZ4lL3br3gcKX8eXJ0uPYyUZtAACgYKAYkSARYSFQHGX2MiLbfmRSnWoqOTtrVQwIx51BoVAUF8yKoQknBlj-mWA7IIxLule4B70076; SL_G_WPT_TO=vi; SL_GWPT_Show_Hide_tmp=1; SL_wptGlobTipTmp=1"
+            },
+            {
+              "name": "pragma",
+              "value": "no-cache"
+            },
+            {
+              "name": "priority",
+              "value": "u=0, i"
+            },
+            {
+              "name": "sec-ch-ua",
+              "value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+            },
+            {
+              "name": "sec-ch-ua-arch",
+              "value": "\"x86\""
+            },
+            {
+              "name": "sec-ch-ua-bitness",
+              "value": "\"64\""
+            },
+            {
+              "name": "sec-ch-ua-form-factors",
+              "value": "\"Desktop\""
+            },
+            {
+              "name": "sec-ch-ua-full-version",
+              "value": "\"131.0.6778.266\""
+            },
+            {
+              "name": "sec-ch-ua-full-version-list",
+              "value": "\"Google Chrome\";v=\"131.0.6778.266\", \"Chromium\";v=\"131.0.6778.266\", \"Not_A Brand\";v=\"24.0.0.0\""
+            },
+            {
+              "name": "sec-ch-ua-mobile",
+              "value": "?0"
+            },
+            {
+              "name": "sec-ch-ua-model",
+              "value": "\"\""
+            },
+            {
+              "name": "sec-ch-ua-platform",
+              "value": "\"macOS\""
+            },
+            {
+              "name": "sec-ch-ua-platform-version",
+              "value": "\"11.7.10\""
+            },
+            {
+              "name": "sec-ch-ua-wow64",
+              "value": "?0"
+            },
+            {
+              "name": "sec-fetch-dest",
+              "value": "document"
+            },
+            {
+              "name": "sec-fetch-mode",
+              "value": "navigate"
+            },
+            {
+              "name": "sec-fetch-site",
+              "value": "none"
+            },
+            {
+              "name": "sec-fetch-user",
+              "value": "?1"
+            },
+            {
+              "name": "upgrade-insecure-requests",
+              "value": "1"
+            },
+            {
+              "name": "user-agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+            },
+            {
+              "name": "x-browser-channel",
+              "value": "stable"
+            },
+            {
+              "name": "x-browser-copyright",
+              "value": "Copyright 2025 Google LLC. All rights reserved."
+            },
+            {
+              "name": "x-browser-validation",
+              "value": "ML+Ko0QpRXQS2gN7CwuA69q1mXA="
+            },
+            {
+              "name": "x-client-data",
+              "value": "CJK2yQEIpbbJAQipncoBCJHgygEIlqHLAQiKo8sBCIagzQEIucjNAQj9pc4BCPnXzgEIwdjOAQj82c4BCMHbzgEYwMvMARjO1c4B"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2140,
+        -460
+      ],
+      "id": "17090040-ddec-49bd-aedb-276cf84942d8",
+      "name": "Text to speech - Google translate"
+    },
+    {
+      "parameters": {
+        "operation": "sendAudio",
+        "chatId": "={{ $('Listen for incoming events').first().json.message.from.id }}",
+        "binaryData": true,
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2380,
+        -460
+      ],
+      "id": "ea1f80fa-75d6-48c4-aed8-210919e7a0ad",
+      "name": "Telegram1",
+      "webhookId": "aa51f15c-b0f1-479c-91e6-d5c4d1927fab",
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "tao_audio_tool",
+        "description": "Call this tool to change text to speech, when the user asks change any text to speech or user want you send output by audio format or user require you say, talk or speech anything. ",
+        "source": "=database",
+        "workflowId": "UB5eZOe9ZyDSuIt9",
+        "fields": {
+          "values": [
+            {
+              "name": "chat_id",
+              "stringValue": "={{ $('Listen for incoming events').first().json.message.chat.id }}"
+            }
+          ]
+        },
+        "jsonSchemaExample": ""
+      },
+      "id": "f2e90c33-251e-407a-9c4a-1ad9c8310dec",
+      "name": "Text to audio tool",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "position": [
+        560,
+        760
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://ivcqahposk.execute-api.eu-central-1.amazonaws.com/prod/audio",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "accept-language",
+              "value": "en-US,en;q=0.9,vi;q=0.8"
+            },
+            {
+              "name": "cache-control",
+              "value": "no-cache"
+            },
+            {
+              "name": "origin",
+              "value": "https://vog.voicebooking.com"
+            },
+            {
+              "name": "pragma",
+              "value": "no-cache"
+            },
+            {
+              "name": "priority",
+              "value": "u=1, i"
+            },
+            {
+              "name": "sec-ch-ua",
+              "value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+            },
+            {
+              "name": "sec-ch-ua-mobile",
+              "value": "?0"
+            },
+            {
+              "name": "sec-ch-ua-platform",
+              "value": "\"macOS\""
+            },
+            {
+              "name": "sec-fetch-dest",
+              "value": "empty"
+            },
+            {
+              "name": "sec-fetch-mode",
+              "value": "cors"
+            },
+            {
+              "name": "sec-fetch-site",
+              "value": "cross-site"
+            },
+            {
+              "name": "user-agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json;charset=UTF-8",
+        "body": "={\"input\":{\"ssml\":\"<speak>Xin chào, tôi là Linh. Tôi là người Việt Nam</speak>\"},\"voice\":{\"languageCode\":\"vi-VN\",\"name\":\"vi-VN-Neural2-A\",\"ssmlGender\":\"Linh (F)\"}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2140,
+        -240
+      ],
+      "id": "9eca1bdb-5103-4e2a-a310-28eff6e309d7",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.audioURL }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2380,
+        -240
+      ],
+      "id": "e543b49c-3d20-4ecc-992a-3bc88f322b44",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "name": "Flux_Image_Tool",
+        "description": "Call this tool to request Flux AI model to draw when the user asks to draw something. Please send the user request for an image as an inline query string.",
+        "workflowId": "WvZw9PSjypSWSK6i",
+        "fields": {
+          "values": [
+            {
+              "name": "chat_id",
+              "stringValue": "={{ $('Listen for incoming events').first().json.message.chat.id }}"
+            }
+          ]
+        }
+      },
+      "id": "d41cb22b-74d2-4a03-86d2-003d014c1f92",
+      "name": "Flux Image Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "position": [
+        -660,
+        760
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "name": "audio_to_text_tool",
+        "description": "Call this tool to transcipt audio file to text or when input is audio file with extensions: .mp3, .wav, .flac, m4p, .m4a, .opus, .wma",
+        "source": "=database",
+        "workflowId": "y3oL7SKQ0e5ewfO9",
+        "fields": {
+          "values": [
+            {
+              "name": "chat_id",
+              "stringValue": "={{ $('Listen for incoming events').first().json.message.chat.id }}"
+            }
+          ]
+        },
+        "jsonSchemaExample": ""
+      },
+      "id": "ebc617b4-a95b-42ac-b6f9-c8e7d993fa2c",
+      "name": "audio_to_text_tool",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "position": [
+        720,
+        760
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "88ae0ef2-b14a-4582-9846-cc1d4bfd2b00",
+              "leftValue": "={{ $json.message.text }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -460,
+        20
+      ],
+      "id": "e5fa0196-022a-48c3-87db-c32a0243a1ab",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json?.message?.voice?.file_id || $json.message.audio.file_id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        60,
+        -280
+      ],
+      "id": "4dbf13c2-8612-45f8-aaf8-db70bc426bda",
+      "name": "Telegram3",
+      "webhookId": "bcd523f2-46d3-4a6e-b1c7-8c4c039d3063",
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2801ef46-6f3b-44bf-bf4a-97ad2df85caa",
+              "name": "message.text",
+              "value": "={{ $json?.message?.text || \"\" }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -820,
+        20
+      ],
+      "id": "394f1826-79c4-4914-9667-6f88ceb60327",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.cloudflare.com/client/v4/accounts/8fb50b38f91243ef6e3345bd97501448/ai/run/@cf/openai/whisper",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "binaryData",
+        "inputDataFieldName": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        300,
+        -280
+      ],
+      "id": "db11f894-7ddd-43ab-8869-517f0a36f887",
+      "name": "Audio to text",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "2PyMtpuCf6Rf9bu0",
+          "name": "Header Auth Cloudflare Worker AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "90ea84d5-a6d6-4858-8f91-70ee867ef4e7",
+              "name": "message.text",
+              "value": "=This is the text of the audio file the user sent to you: {{ $json.result.text }}. \n\nExcuse the user's request and reply by audio for user.  ",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        520,
+        -280
+      ],
+      "id": "7821cb76-27f5-4735-9d98-54b3202c8ac5",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-pro-exp-02-05",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        40,
+        200
+      ],
+      "id": "10829ec5-c1d8-4240-b495-d63aa7f1bc5c",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "Draw_Chart_Tool",
+        "description": "Call this tool to draw the chart if the user requires drawing the chart.",
+        "source": "=database",
+        "workflowId": "1sIW34HhALT1N6wp",
+        "fields": {
+          "values": [
+            {
+              "name": "chat_id",
+              "stringValue": "={{ $('Listen for incoming events').first().json.message.chat.id }}"
+            }
+          ]
+        },
+        "jsonSchemaExample": ""
+      },
+      "id": "ff0a9c4c-2f2b-4756-94ed-3dcdd10e6c0a",
+      "name": "Draw_Chart_Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "position": [
+        300,
+        740
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "name": "HTTP_Request_Tool",
+        "description": "Call this tool to fetch a webpage content. The input should be a stringified HTTP query parameter like this: \"?url=VALIDURL&method=SELECTEDMETHOD\". \"url\" parameter should contain the valid URL string. \"method\" key can be either \"full\" or \"simplified\". method=full will fetch the whole webpage content in the Markdown format, including page links and image links. method=simplified will return the Markdown content of the page but remove urls and image links from the page content for simplicity. Before calling this tool, think strategically which \"method\" to call. Best of all to use method=simplified. However, if you anticipate that the page request is not final or if you need to extract links from the page, pick method=full.",
+        "workflowId": "=NapDRdRa1nMq2bcG",
+        "responsePropertyName": "page_content"
+      },
+      "id": "c205bf99-3112-41be-8b96-2ce19dd4fbd7",
+      "name": "HTTP_Request_Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "position": [
+        1320,
+        740
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "name": "Get_Youtube_Transcript",
+        "description": "Call this tool when user send a Youtube link and require get transcript of this video. \n- Send youtube link to this workflow and get transcript.",
+        "workflowId": {
+          "__rl": true,
+          "value": "7narAphMnnSQn7bU",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        -340,
+        760
+      ],
+      "id": "9a21a286-b0d9-499a-a8c3-66ceb045622f",
+      "name": "Get_Youtube_Transcript"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e1324251-e5d9-4aa0-86f0-f635b2b4f3b3",
+              "name": "text",
+              "value": "={{ $('AI Agent').item.json.output.slice(0,$('AI Agent').item.json.output.length/2) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1800,
+        -720
+      ],
+      "id": "717ab89b-50a3-4e7c-b482-709e0ca802e0",
+      "name": "Spilit to 2 text"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d154c852-daeb-44f4-babc-96abfcbf2584",
+              "leftValue": "={{ $json.output.length }}",
+              "rightValue": 4000,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1560,
+        -640
+      ],
+      "id": "ea0d4ed2-aa98-4863-a3d7-74923626baee",
+      "name": "Output > 4000 words"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Listen for incoming events').first().json.message.from.id }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "181ad707-c644-429f-b2a0-f871af6c108c",
+      "name": "Telegram4",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        2280,
+        -700
+      ],
+      "typeVersion": 1.1,
+      "webhookId": "1d4bb69e-1b73-4c76-9e94-7d97edbd2f83",
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "name": "Google_drive_RAG_tool",
+        "description": "Call this tool to look up and answer according to the updated information and documents in Google Drive",
+        "source": "=database",
+        "workflowId": "JA2kaFHWrCeS9OK9",
+        "fields": {
+          "values": [
+            {
+              "name": "chat_id",
+              "stringValue": "={{ $('Listen for incoming events').first().json.message.chat.id }}"
+            }
+          ]
+        },
+        "jsonSchemaExample": ""
+      },
+      "id": "e9c249fe-e544-4751-8254-446b1292246c",
+      "name": "Google_drive_RAG_tool",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "position": [
+        20,
+        920
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4e007cc5-23ff-4d9a-91cc-51aa4a958a49",
+              "name": "text",
+              "value": "={{ $('AI Agent').item.json.output.slice($('AI Agent').item.json.output.length/2,$('AI Agent').item.json.output.length) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1780,
+        -500
+      ],
+      "id": "4a03cbc3-13d2-411f-ad38-1d32a80fe002",
+      "name": "Spilit to 2 text1"
+    },
+    {
+      "parameters": {
+        "jsCode": "function splitText(text, limit) {\n  const parts = [];\n  let currentIndex = 0;\n\n  while (currentIndex < text.length) {\n    let splitPoint = Math.min(currentIndex + limit, text.length);\n    \n    // Tìm dấu câu gần nhất (., !, ?) trong cửa sổ\n    let lastSentenceEndSplitPoint = -1;\n    const sentenceEndings = ['.', '!', '?'];\n    for (let i = splitPoint - 1; i >= currentIndex; i--) {\n      if (sentenceEndings.includes(text[i])) {\n        if (i + 1 < text.length && text[i + 1] === ' ') {\n          lastSentenceEndSplitPoint = i + 2; // Cắt sau dấu câu và khoảng trắng\n        } else {\n          lastSentenceEndSplitPoint = i + 1; // Cắt ngay sau dấu câu\n        }\n        break;\n      }\n    }\n\n    // Tìm khoảng trắng gần nhất trong cửa sổ\n    let lastSpaceSplitPoint = -1;\n    for (let i = splitPoint - 1; i >= currentIndex; i--) {\n      if (text[i] === ' ') {\n        lastSpaceSplitPoint = i + 1; // Cắt sau khoảng trắng\n        break;\n      }\n    }\n\n    // Ưu tiên cắt tại dấu câu, nếu không có thì cắt tại khoảng trắng\n    if (lastSentenceEndSplitPoint > 0 && lastSentenceEndSplitPoint <= splitPoint) {\n      splitPoint = lastSentenceEndSplitPoint;\n    } else if (lastSpaceSplitPoint > 0 && lastSpaceSplitPoint <= splitPoint) {\n      splitPoint = lastSpaceSplitPoint;\n    }\n\n    // Thêm phần đã cắt vào mảng, loại bỏ khoảng trắng thừa\n    parts.push(text.substring(currentIndex, splitPoint).trim());\n\n    // Cập nhật vị trí bắt đầu cho phần tiếp theo\n    currentIndex = splitPoint;\n  }\n\n  return parts;\n}\n\n// Tạo mảng các item mới từ input\nconst newItems = [];\n\nfor (const item of $input.all()) {\n  const output = item.json.output || '';\n  const parts = splitText(output, 4000); // Giới hạn 4000 ký tự cho Telegram\n\n  // Tạo một item riêng cho mỗi phần\n  parts.forEach(part => {\n    newItems.push({\n      json: {\n        message: part\n      }\n    });\n  });\n}\n\n// Trả về mảng các item mới\nreturn newItems;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1220,
+        0
+      ],
+      "id": "cf7b4f2f-a442-4ddd-af02-3c68fbd389bf",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1480,
+        0
+      ],
+      "id": "c562c0d6-4d81-43fb-80f7-77d3ea1067d3",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "content": "## CREATE\n**Tools to create picture, video, audio, blog post,...**",
+        "height": 480,
+        "width": 520
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -680,
+        620
+      ],
+      "typeVersion": 1,
+      "id": "3ed8007f-8391-4ed0-9f3a-0d00e6ada5a7",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## OFFICAL\n**Offical tools help resolve work** ",
+        "height": 480,
+        "width": 520,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -60,
+        620
+      ],
+      "typeVersion": 1,
+      "id": "0d96f1b3-1e3f-4b65-a367-091360780ecf",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## AUDIO TOOLS\n**All audio tools**",
+        "height": 480,
+        "width": 520,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        520,
+        620
+      ],
+      "typeVersion": 1,
+      "id": "d000250e-bb4a-4964-a0e2-656963c3fccd",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## List Models\n",
+        "height": 300,
+        "width": 620,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -80,
+        100
+      ],
+      "typeVersion": 1,
+      "id": "85c4e1bd-8468-4503-8662-2ddac5579bd5",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## RESEARCH TOOLS\n**All research tools**: perplexity, serpapi, http_craw",
+        "height": 480,
+        "width": 520,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1080,
+        620
+      ],
+      "typeVersion": 1,
+      "id": "bbf973c7-9db1-4a31-ba7c-783360e6f8d8",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "name": "Research_with_Perplexity_Tool",
+        "description": "Call this tool when the user requires a specific problem that needs data over time. Or when the user requires research with Perplexity Tool",
+        "workflowId": {
+          "__rl": true,
+          "value": "D1I11d7rcvghtHxU",
+          "mode": "list",
+          "cachedResultName": "Research with Perplexity Tools"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        1140,
+        740
+      ],
+      "id": "4d0c399d-8fbf-403a-83ab-1b2ca63341e4",
+      "name": "Perplexity_research_tool"
+    },
+    {
+      "parameters": {
+        "name": "Google_Maps_Scraper_Tool",
+        "description": "Call this tool when users send a search query on Google Maps, this tool will help find information all stores and businesses displayed on Google Maps",
+        "workflowId": "=Eo86qSYfA5tQEDwQ"
+      },
+      "id": "69388917-7cae-4197-884f-db91d91e6c4b",
+      "name": "Google Maps Scraper Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "position": [
+        1480,
+        720
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## OFFICAL TOOLS\n**Các công cụ văn phòng: email, sheet, calendar,...**",
+        "height": 480,
+        "width": 520,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1640,
+        620
+      ],
+      "typeVersion": 1,
+      "id": "6a9e85fa-ebb8-4730-b498-271c48795827",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "name": "Email_Tool",
+        "description": "Call this tool to handle email -related tasks when the user requires",
+        "workflowId": {
+          "__rl": true,
+          "value": "iTqvGW5s2pu4V5Rb",
+          "mode": "list",
+          "cachedResultName": "Email Tools"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        160,
+        920
+      ],
+      "id": "e425abfb-81d7-4fdb-8f52-3e6d57dacf2c",
+      "name": "Email_Tool"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-20T02:37:45.000Z",
+  "versionId": "3626f7d8-883b-48fc-b364-31102c9c3b12"
+}
