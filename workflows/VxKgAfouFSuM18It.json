@@ -1,0 +1,469 @@
+{
+  "active": false,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "add response field",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Auto-fixing Output Parser",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Auto-fixing Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-fixing Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-17T16:22:05.729Z",
+  "id": "VxKgAfouFSuM18It",
+  "meta": null,
+  "name": "Tạo ảnh với HuggingFace",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -560,
+        0
+      ],
+      "id": "0b8b8bfe-288f-4c7f-afcc-be97abdac2c2",
+      "name": "When chat message received",
+      "webhookId": "5a5f8093-c8fe-4bce-9b01-0c358f935f30"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "inputs",
+              "value": "={{ $json.output.prompt }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        0
+      ],
+      "id": "a1f09df5-aadd-4d9d-a76c-24704f9fa97d",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "PTz4Iv3YjRj7TLZW",
+          "name": "Hugingface_Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-exp-1206",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        240
+      ],
+      "id": "8e3f1413-0cd8-4a81-a27e-b309df8bb642",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"user_request\": \"Input of user\", \n  \"prompt\": \"Prompt to create Image\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        60,
+        220
+      ],
+      "id": "b592e9b6-915e-4e91-b6c7-b0200fbd2035",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query || $json.chatInput }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Role\nYou are an AI Agent specializing in crafting and optimizing prompts to generate high-quality images using AI tools such as HuggingFace, Kling AI, Shakker AI, and similar platforms. Your role is to ensure that prompts are clear, detailed, and aligned with the user's requirements to produce the best possible visual outputs.\n\n# Instruction\n1. Understand user requests, including detailed descriptions of the desired image.\n2. Analyze and clarify elements such as style, color, details, lighting, background, and emotions the user wants to convey.\n3. Optimize the prompt using precise, structured, and clear language to help the AI tool generate images closely matching the user’s expectations.\n4. If the user’s input lacks detail, complete the prompt yourself with 3 different options and give the user choices in the order 1,2,3.\n5. Write all output in JSON format like this: \n{ \n  \"user_request\" : \"User's chat input\", \n  \"prompt\" : \"Prompt to create Image\"\n}\n6. If the prompt violates ethical, sexual, or rights-infringing rules,... notify the user before continuing to the next step.\n\n# Rules\n1. Clear Language: Use precise and unambiguous language to describe the image.\n2. Detailed Descriptions: Ensure key aspects like artistic style, subject, background, lighting, and emotions are explicitly stated.\n3. Avoid Ambiguity: Prevent the use of terms that might lead to unintended or unclear image generation.\n4. Tool-Specific Adjustments: Customize the prompt to suit the unique requirements and features of each AI tool the user selects.\n5. Guide the User: Politely ask for more details if the request is unclear or incomplete.\n# Example\nUser Request:\n\"I want a landscape painting with mountains, a clear blue sky, and sunset lighting.\"\n\nOptimized Prompt:\n\"A stunning landscape of majestic mountains under a clear blue sky, illuminated by warm sunset light. The scene features vibrant colors, soft shadows, and a serene atmosphere. Realistic details with high resolution. Focus on natural beauty and harmony.\"\n\nUser Request:\n\"I need an anime-style picture of a girl holding an umbrella standing in the rain on a street.\"\n\nOptimized Prompt:\n\"An anime-style illustration of a young girl holding a colorful umbrella, standing under the rain on a quiet city street. The scene captures reflections of streetlights on wet pavement, a moody and calm ambiance, and soft rain droplets falling. Bright and detailed colors with a focus on emotional expression and gentle lighting.\"\n\n# Additional Content\n1. Tips for Effective Prompts:\n* Be specific about the main subject (e.g., people, objects, landscapes).\nClearly indicate the artistic style (e.g., anime, oil painting, modern style).\n* Specify colors, lighting, and background elements.\n* Suggest the mood or message the image should convey.\n2. Tool-Specific Guidance:\n* Adjust prompt structure to match the capabilities of different tools:\n\n* For HuggingFace: Use concise and intuitive descriptions.\n* For Kling AI: Include more detailed style elements.\n* For Shakker AI: Emphasize emotional and artistic aspects.\n\nUser's input is: {{ $json.chatInput }}"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        -180,
+        0
+      ],
+      "id": "6b9ec4ec-b803-461b-86aa-c5ab270c4652",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "url": "https://translate.google.com/translate_tts",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "ie",
+              "value": "UTF-8"
+            },
+            {
+              "name": "q",
+              "value": "Xin chào bạn nhé. "
+            },
+            {
+              "name": "tl",
+              "value": "vi"
+            },
+            {
+              "name": "client",
+              "value": "tw-ob"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Referer",
+              "value": "http://translate.google.com/"
+            },
+            {
+              "name": "User-Agent",
+              "value": "stagefright/1.2 (Linux;Android 5.0)"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        880,
+        20
+      ],
+      "id": "0f2c6217-92b8-4711-88a9-98cf4685530e",
+      "name": "Text to speech - Google translate"
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "response",
+              "stringValue": "Success"
+            }
+          ]
+        },
+        "options": {
+          "includeBinary": false
+        }
+      },
+      "id": "e93c274f-0116-4585-a8a0-53b60d7f695c",
+      "name": "add response field",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        520,
+        0
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        180
+      ],
+      "id": "c5cc3264-72d4-48d3-8c4e-f050cf7021df",
+      "name": "Execute Workflow Trigger"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"user_request\": \"Input of user\", \n  \"prompt\": \"Prompt to create Image\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        2040,
+        100
+      ],
+      "id": "264ecc50-f204-4262-8f91-116b0d56126d",
+      "name": "Structured Output Parser2"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-exp-1206",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1900,
+        100
+      ],
+      "id": "7c813482-901b-4c0b-906b-8db7decfe6fe",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserAutofixing",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        -60
+      ],
+      "id": "63e7cf73-2050-4c44-9dee-5a63dbadb4b3",
+      "name": "Auto-fixing Output Parser",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "toolDescription": "User tool to connect with HuggingFace to create Image with Flux Model",
+        "method": "POST",
+        "url": "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "parametersBody": {
+          "values": [
+            {
+              "name": "inputs",
+              "valueProvider": "fieldValue",
+              "value": "={{ $json.output.prompt }}"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        1480,
+        -40
+      ],
+      "id": "d451b901-ff9a-48b9-b198-fc04a51bd2e6",
+      "name": "HTTP Request1",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "PTz4Iv3YjRj7TLZW",
+          "name": "Hugingface_Auth"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"user_request\": \"Input of user\", \n  \"prompt\": \"Prompt to create Image\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1720,
+        -40
+      ],
+      "id": "41eda1c0-51f0-4b5c-bba9-40ac54506a34",
+      "name": "Structured Output Parser1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-exp-1206",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        -40
+      ],
+      "id": "55e3efc2-5306-49c4-a808-56c1a74ea7ea",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=# Role\nYou are an AI Agent specializing in crafting and optimizing prompts to generate high-quality images using AI tools such as HuggingFace, Kling AI, Shakker AI, and similar platforms. Your role is to ensure that prompts are clear, detailed, and aligned with the user's requirements to produce the best possible visual outputs.\n\n# Instruction\n1. Understand user requests, including detailed descriptions of the desired image.\n2. Analyze and clarify elements such as style, color, details, lighting, background, and emotions the user wants to convey.\n3. Optimize the prompt using precise, structured, and clear language to help the AI tool generate images closely matching the user’s expectations.\n4. If the user’s input lacks detail, ask questions to gather additional necessary information.\n5. Write all output in JSON format like this: \n{ \n  \"user_request\" : \"User's chat input\", \n  \"prompt\" : \"Prompt to create Image\"\n}\n# Rules\n1. Clear Language: Use precise and unambiguous language to describe the image.\n2. Detailed Descriptions: Ensure key aspects like artistic style, subject, background, lighting, and emotions are explicitly stated.\n3. Avoid Ambiguity: Prevent the use of terms that might lead to unintended or unclear image generation.\n4. Tool-Specific Adjustments: Customize the prompt to suit the unique requirements and features of each AI tool the user selects.\n5. Guide the User: Politely ask for more details if the request is unclear or incomplete.\n# Example\nUser Request:\n\"I want a landscape painting with mountains, a clear blue sky, and sunset lighting.\"\n\nOptimized Prompt:\n\"A stunning landscape of majestic mountains under a clear blue sky, illuminated by warm sunset light. The scene features vibrant colors, soft shadows, and a serene atmosphere. Realistic details with high resolution. Focus on natural beauty and harmony.\"\n\nUser Request:\n\"I need an anime-style picture of a girl holding an umbrella standing in the rain on a street.\"\n\nOptimized Prompt:\n\"An anime-style illustration of a young girl holding a colorful umbrella, standing under the rain on a quiet city street. The scene captures reflections of streetlights on wet pavement, a moody and calm ambiance, and soft rain droplets falling. Bright and detailed colors with a focus on emotional expression and gentle lighting.\"\n\n# Additional Content\n1. Tips for Effective Prompts:\n* Be specific about the main subject (e.g., people, objects, landscapes).\nClearly indicate the artistic style (e.g., anime, oil painting, modern style).\n* Specify colors, lighting, and background elements.\n* Suggest the mood or message the image should convey.\n2. Tool-Specific Guidance:\n* Adjust prompt structure to match the capabilities of different tools:\n\n* For HuggingFace: Use concise and intuitive descriptions.\n* For Kling AI: Include more detailed style elements.\n* For Shakker AI: Emphasize emotional and artistic aspects.\n\nUser's input is: {{ $json.chatInput }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1360,
+        -280
+      ],
+      "id": "27d4a5c9-167e-48ed-960c-596311f33ab4",
+      "name": "AI Agent",
+      "disabled": true
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-21T10:41:00.000Z",
+  "versionId": "93de676c-4015-472d-9cec-ee914ec0ed24"
+}
