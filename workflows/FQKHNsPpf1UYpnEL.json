@@ -1,0 +1,1077 @@
+{
+  "active": false,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wikipedia1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload media": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Get hình ảnh",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get hình ảnh": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tạo ảnh - Kling AI": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Binary_file": {
+      "main": [
+        [
+          {
+            "node": "Upload media",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Binary_file",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Tạo ảnh - Kling AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Google Gemini Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent3": {
+      "main": [
+        []
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Markdown1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown1": {
+      "main": [
+        []
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-10T09:57:03.625Z",
+  "id": "FQKHNsPpf1UYpnEL",
+  "meta": null,
+  "name": "Đăng bài WP",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "fcd39453-6492-420d-b2d7-88fd875153de",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1660,
+        240
+      ],
+      "webhookId": "a889d2ae-2159-402f-b326-5f61e90f602e"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-exp",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        480
+      ],
+      "id": "800a1ae0-84c8-4640-9a01-b187757eccaf",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "=",
+        "destinationKey": "noidungbv",
+        "options": {
+          "completeHTMLDocument": false
+        }
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        120,
+        260
+      ],
+      "id": "64ddd793-062f-40c7-acf2-894bd0d89c41",
+      "name": "Markdown"
+    },
+    {
+      "parameters": {
+        "title": "={{ $json.title }}",
+        "additionalFields": {
+          "content": "=",
+          "slug": "={{ $json.slug }}",
+          "status": "draft",
+          "categories": "={{ 73 }}"
+        }
+      },
+      "type": "n8n-nodes-base.wordpress",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        0
+      ],
+      "id": "2d16347b-813c-42e8-8324-bee31a5b21d3",
+      "name": "Wordpress"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Create a detailed and structured SEO-optimized outline for an article on the topic: {{ $json?.chatInput || $json?.query }}. The outline must be include the following requirements:\n\n1. **Introduction**:\n   - Briefly introduce the topic and the reason for writing.\n   - Ensure the introduction is engaging and includes 1-2 keywords for SEO.\n\n2. **Main Content**:\n   - The content must include 3-5 `h2` headings representing the main ideas of the article.\n   - Each `h2` must have 2-3 `h3` subheadings to expand on specific subtopics.\n   - For more detailed sections, include `h4` subheadings if needed.\n   - Break each paragraph into sections of approximately 150 words for readability and SEO optimization.\n\n3. **Images**:\n   - After every 150-word section, insert a prompt to generate an image relevant to the content of the section. Ensure the image topic aligns with the paragraph’s main idea.\n\n4. **Conclusion**:\n   - Summarize the content and provide a strong closing statement.\n   - Include 1-2 keywords in the conclusion for SEO.\n\n5. **Output Format**:\n   - Return the outline as seamless text without line breaks, Markdown formatting, or unnecessary symbols.\n   - Clearly label each section (e.g., Introduction, Main Idea 1, Sub Idea 1.1) for easy parsing in the next step.\n\n6. **SEO Integration**:\n   - Ensure keyword density is balanced (1-2%).\n   - Provide a strong focus on user intent and search engine ranking factors.\n\n7. **Example of Image Prompt**:\n   - At the end of each section, include a phrase like: *\"Create an illustration of [specific topic here] to enhance the visual appeal of this section.\"*",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are content Creator. You have access to different tools to do research. Base on user's query, you will decide the best tool to do research."
+        }
+      },
+      "id": "f4ad3840-600c-4a73-859e-d17769de4836",
+      "name": "AI Agent1",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -1420,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-lite-preview",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -1560,
+        500
+      ],
+      "id": "edbc83fc-3c89-411b-b204-f5c119b3ec01",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolWikipedia",
+      "typeVersion": 1,
+      "position": [
+        -1240,
+        480
+      ],
+      "id": "5afbac55-7da5-4c2e-9164-a8e1db8c251d",
+      "name": "Wikipedia1"
+    },
+    {
+      "parameters": {},
+      "id": "cdba17c3-6534-4a6f-8e3e-9a0b468efc1b",
+      "name": "Memory1",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -1380,
+        460
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "imagesPrompts",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        740
+      ],
+      "id": "d947c90c-ed1d-46a9-b412-fa549d2f94c2",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://hanaweb.vn/wp-json/wp/v2/media",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "wordpressApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Disposition",
+              "value": "=attachment; filename=\"{{ $('Split Out').first().json.img_slug }}.png\""
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "binaryData",
+        "inputDataFieldName": "data",
+        "options": {}
+      },
+      "id": "5eb9cf11-f1eb-430f-a327-21c75c306252",
+      "name": "Upload media",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1580,
+        740
+      ],
+      "typeVersion": 4.1
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://hanaweb.vn/wp-json/wp/v2/posts/{{ $('Post on Wordpress').item.json.id }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "wordpressApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "featured_media",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3a783999-761e-40d0-a60d-888ad5c3e67f",
+      "name": "Set image ID for the post",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1520,
+        540
+      ],
+      "typeVersion": 4.1
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        820,
+        760
+      ],
+      "id": "0b2e00aa-a47e-4bc7-a41e-8e39aacc3b10",
+      "name": "Wait",
+      "webhookId": "97ba6afd-6396-4ea0-9ef7-9b22ebd4768b",
+      "retryOnFail": true,
+      "maxTries": 4
+    },
+    {
+      "parameters": {
+        "url": "https://www.klingai.com/api/user/works/personal/v2",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "pageNum",
+              "value": "1"
+            },
+            {
+              "name": "pageSize",
+              "value": "40"
+            },
+            {
+              "name": "contentType",
+              "value": "image"
+            },
+            {
+              "name": "statusType"
+            },
+            {
+              "name": "favored",
+              "value": "false"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "accept-language",
+              "value": "en"
+            },
+            {
+              "name": "cookie",
+              "value": "weblogger_did=web_898521622BB70F61; did=web_79a9ab0de7161a57bb17f0c372dd272ade57; _gcl_au=1.1.943079510.1735706907; _ga=GA1.1.1895706672.1735706907; _clck=11eryi8%7C2%7Cfs7%7C0%7C1827; userId=9196021; skip-background-questionnaire=true; notice-kling-1.6=true; first-use-motion-brush=true; ksi18n.ai.portal_st=ChNrc2kxOG4uYWkucG9ydGFsLnN0EqAB_28q6DYpdLpKcqRPFSEIJvB24GKVeIhPQNWGY-fYGRjre6cqitxu8Tf8VmHoEecPHkl4661s2T3u41L-_TrcE0E-H2vXbCRgOeAQis6d13KpSYKn0Oa5agpMJ1UTLI8HIm0C9jEsF48So4MCZusBoXingTXixe-BxAS8m_72i_TWUjq-3PVTs_nxJNFBuLz9MYLXaK2VX5PHSIrbGj0TwRoSYbyO0302z4UY08ctfW5KI2jvIiCCGQJrIGhPMD9P2_j-5-XWCRcoo1yXEWBxVV42kzmh_CgFMAE; ksi18n.ai.portal_ph=7442890beb54d5c26b6b66216ee8cbdcca72; release-notes-2024-12-27=true; operation-popup-dialogs=true; notice-kolors-1.5=true; _uetsid=412342d0cc1211efb238cd4f55c314f1; _uetvid=a379fa20c7fb11efa41f17b5424b9f6d; _ga_MWG30LDQKZ=GS1.1.1736156424.3.1.1736156455.29.0.1332689879"
+            },
+            {
+              "name": "priority",
+              "value": "u=1, i"
+            },
+            {
+              "name": "referer",
+              "value": "https://www.klingai.com/text-to-image/106587675"
+            },
+            {
+              "name": "sec-ch-ua",
+              "value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+            },
+            {
+              "name": "sec-ch-ua-mobile",
+              "value": "?0"
+            },
+            {
+              "name": "sec-ch-ua-platform",
+              "value": "\"macOS\""
+            },
+            {
+              "name": "sec-fetch-dest",
+              "value": "empty"
+            },
+            {
+              "name": "sec-fetch-mode",
+              "value": "cors"
+            },
+            {
+              "name": "sec-fetch-site",
+              "value": "same-origin"
+            },
+            {
+              "name": "user-agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1020,
+        760
+      ],
+      "id": "d170529c-429a-4482-8e82-623bbce380bf",
+      "name": "Get hình ảnh"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.klingai.com/api/task/submit",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "accept-language",
+              "value": "en"
+            },
+            {
+              "name": "cookie",
+              "value": "weblogger_did=web_898521622BB70F61; did=web_79a9ab0de7161a57bb17f0c372dd272ade57; _gcl_au=1.1.943079510.1735706907; _ga=GA1.1.1895706672.1735706907; _clck=11eryi8%7C2%7Cfs7%7C0%7C1827; userId=9196021; skip-background-questionnaire=true; notice-kling-1.6=true; first-use-motion-brush=true; ksi18n.ai.portal_st=ChNrc2kxOG4uYWkucG9ydGFsLnN0EqAB_28q6DYpdLpKcqRPFSEIJvB24GKVeIhPQNWGY-fYGRjre6cqitxu8Tf8VmHoEecPHkl4661s2T3u41L-_TrcE0E-H2vXbCRgOeAQis6d13KpSYKn0Oa5agpMJ1UTLI8HIm0C9jEsF48So4MCZusBoXingTXixe-BxAS8m_72i_TWUjq-3PVTs_nxJNFBuLz9MYLXaK2VX5PHSIrbGj0TwRoSYbyO0302z4UY08ctfW5KI2jvIiCCGQJrIGhPMD9P2_j-5-XWCRcoo1yXEWBxVV42kzmh_CgFMAE; ksi18n.ai.portal_ph=7442890beb54d5c26b6b66216ee8cbdcca72; release-notes-2024-12-27=true; operation-popup-dialogs=true; notice-kolors-1.5=true; _uetsid=412342d0cc1211efb238cd4f55c314f1; _uetvid=a379fa20c7fb11efa41f17b5424b9f6d; _ga_MWG30LDQKZ=GS1.1.1736156424.3.1.1736158011.52.0.1332689879"
+            },
+            {
+              "name": "origin",
+              "value": "https://www.klingai.com"
+            },
+            {
+              "name": "priority",
+              "value": "u=1, i"
+            },
+            {
+              "name": "referer",
+              "value": "https://www.klingai.com/text-to-image/106598855"
+            },
+            {
+              "name": "sec-ch-ua",
+              "value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+            },
+            {
+              "name": "sec-ch-ua-mobile",
+              "value": "?0"
+            },
+            {
+              "name": "sec-ch-ua-platform",
+              "value": "\"macOS\""
+            },
+            {
+              "name": "sec-fetch-dest",
+              "value": "empty"
+            },
+            {
+              "name": "sec-fetch-mode",
+              "value": "cors"
+            },
+            {
+              "name": "sec-fetch-site",
+              "value": "same-origin"
+            },
+            {
+              "name": "user-agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json;charset=UTF-8",
+        "body": "={\"type\":\"mmu_txt2img_aiweb\",\"arguments\":[{\"name\":\"prompt\",\"value\":\"{{ $('Split Out').item.json.prompt }}\"},{\"name\":\"style\",\"value\":\"默认\"},{\"name\":\"aspect_ratio\",\"value\":\"4:3\"},{\"name\":\"kolors_version\",\"value\":\"1.5\"},{\"name\":\"imageCount\",\"value\":\"1\"},{\"name\":\"biz\",\"value\":\"klingai\"}],\"inputs\":[]}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        600,
+        760
+      ],
+      "id": "e3efd90f-89e2-4e4e-b42a-f6dd23bb8915",
+      "name": "Tạo ảnh - Kling AI"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.data.history[0].works[0].resource.resource }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1380,
+        740
+      ],
+      "id": "5813017e-72b1-46e0-83e2-6270b2f4d6b9",
+      "name": "Binary_file"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        940,
+        260
+      ],
+      "id": "79ed2cee-a80b-4c4e-b3de-0ae9ed6bac64",
+      "name": "Merge",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "postId": "=$('Wordpress').item.json.id",
+        "updateFields": {
+          "content": "=$('Wordpress').item.json.content.rendered"
+        }
+      },
+      "type": "n8n-nodes-base.wordpress",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        320
+      ],
+      "id": "7b266d5b-5c05-4a1e-aa9f-de1f6c43c15e",
+      "name": "Wordpress1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "44cdab25-a3c6-478e-9450-a9605e138cf8",
+              "leftValue": "={{ $json.data.history[0].works[0].resource.resource }}",
+              "rightValue": "=200",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1180,
+        760
+      ],
+      "id": "f51005ed-3842-45ab-916e-c6e62f3c8d2d",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Dựa vào nội dung đã có hãy phân phối các bức ảnh vào trong nội dung cho phù hợp theo các tiêu chí: \n- Hình ảnh phải phù hợp với nội dung đang nói đến\n- Các hình ảnh cách nhau ít nhất 500 từ\nNội dung bài viết là: {{$('Merge').item.json.content.rendered}}\nCác hình ảnh bao gồm: ",
+        "options": {
+          "systemMessage": "You are a highly skilled copywriter with over 10 years of experience in crafting professional blogs, SEO-focused articles, compelling ad scripts, and impactful video sales letters. Tailor your content to the target audience, ensuring it is engaging, concise, and purpose-driven. Maintain a seamless flow without explicit labels like \"Introduction\" or \"Conclusion.\" Adapt your tone and style to match the context, whether formal, conversational, or dynamic, while prioritizing clarity, readability, and optimization for maximum impact."
+        }
+      },
+      "id": "049a1ee9-d9bd-49ad-8c42-5e2b22299c03",
+      "name": "AI Agent2",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1220,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-exp-1206",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        320
+      ],
+      "id": "db92c008-81b4-472d-a92c-6384bfadce4a",
+      "name": "Google Gemini Chat Model2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        320,
+        740
+      ],
+      "id": "f7af40a6-7d35-4367-8c59-54cf0dc19c7a",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "327779b8-f1f6-4cce-bb33-9399be320af8",
+              "leftValue": "={{ $('Code').item.json.error }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -180,
+        60
+      ],
+      "id": "29230b5e-89a1-46ff-badb-ab5de6ce7379",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-exp-1206",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -440,
+        20
+      ],
+      "id": "043eacf7-a5dc-4020-897d-82f5e7501f54",
+      "name": "Google Gemini Chat Model3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Check all data in output and fix erro. \nData in output: {{ $('Code').first().json.output }} and error: {{ $('Code').first().json.error }}",
+        "options": {
+          "systemMessage": "You are a helpful assistant to fix error in JSON data"
+        }
+      },
+      "id": "cb879de3-2d38-4c8a-a05c-961717772d24",
+      "name": "AI Agent3",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -460,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Hàm loại bỏ ký tự không mong muốn và kiểm tra JSON hợp lệ\nfunction cleanJsonString(input) {\n  if (typeof input !== \"string\") {\n    throw new Error(\"Invalid input type, expected a string\");\n  }\n\n  // Loại bỏ ký hiệu mở đầu và kết thúc JSON\n  let cleanedString = input.replace(/^```json\\n/, \"\").replace(/\\n```$/, \"\");\n\n  // Loại bỏ ký tự điều khiển không mong muốn\n  cleanedString = cleanedString.replace(/[\\u0000-\\u001F\\u007F-\\u009F]/g, \"\");\n\n  return cleanedString;\n}\n\n// Hàm xử lý nội dung để lấy ra các prompts và phân loại nội dung\nfunction processContent(content) {\n  if (!Array.isArray(content)) {\n    return { text: \"No valid content available.\", imagesPrompts: [] };\n  }\n\n  const imagesPrompts = [];\n  let textContent = [];\n\n  content.forEach((block, index) => {\n    switch (block.type) {\n      case \"paragraph\":\n        textContent.push(block.content);\n        break;\n      case \"heading\":\n        textContent.push(`${\"#\".repeat(block.level || 1)} ${block.content}`);\n        break;\n      case \"image_prompt\":\n        imagesPrompts.push({\n          image_id: `IMAGE_${index}`, // Tạo ID hình ảnh duy nhất\n          prompt: block.prompt || null, // Lấy prompt\n          alt_tag: block.alt_tag || null, // Lấy alt_tag nếu có\n          img_slug: block.img_slug || null, // Lấy img_slug nếu có\n        });\n        textContent.push(`{{IMAGE_PLACEHOLDER_${index}}}`); // Thêm placeholder vào văn bản\n        break;\n      default:\n        // Handle other types or ignore unrecognized types\n        break;\n    }\n  });\n\n  return { text: textContent.join(\"\\n\\n\"), imagesPrompts };\n}\n\n// Vòng lặp xử lý từng mục nhập\nfor (const item of $input.all()) {\n  try {\n    const cleanedJson = cleanJsonString(item.json.output); // Làm sạch chuỗi JSON\n    const parsedOutput = JSON.parse(cleanedJson); // Phân tích JSON\n\n    const { text, imagesPrompts } = processContent(parsedOutput.content || []);\n\n    // Cập nhật item.json với dữ liệu mới\n    item.json.title = parsedOutput.title;\n    item.json.slug = parsedOutput.slug;\n    item.json.meta_description = parsedOutput.meta_description;\n    item.json.keywords = parsedOutput.keywords;\n    item.json.content = text;\n    item.json.imagesPrompts = imagesPrompts;\n\n  } catch (error) {\n    item.json.error = `Error processing 'output': ${error.message}`;\n  }\n}\n\n// Trả về danh sách đã xử lý\nreturn $input.all();\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        540,
+        -120
+      ],
+      "id": "37767b2b-5411-474c-ace4-1410f58c5274",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $('Code1').item.json.content}}",
+        "destinationKey": "noidungbv",
+        "options": {
+          "completeHTMLDocument": false
+        }
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        740,
+        -120
+      ],
+      "id": "69c5f00c-491c-4a21-b7f0-74c57447cfc0",
+      "name": "Markdown1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1660,
+        720
+      ],
+      "id": "d157a2b1-d2d3-4659-a28b-f72244cb10cf",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1660,
+        80
+      ],
+      "id": "0e8f1b0c-9bee-4f13-a867-e0c6871ea67e",
+      "name": "Telegram Trigger",
+      "webhookId": "272a035a-82d8-4ebf-b1a2-d6208255a53a",
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Write a SEO-optimized blog in Vietnamese using the given outline. Ensure the output is returned in clean and valid JSON format without any additional text or markers. The JSON structure must include the following fields:\n\n1. **title**: A string representing the blog title.\n2. **meta_description**: A string summarizing the blog for SEO purposes.\n3. **keywords**: An array of relevant keywords for the blog.\n4. **slug**: A string for the blog URL slug.\n5. **content**: An array of content blocks, where:\n   - Each block must include:\n     - type: The type of the block (e.g., \"heading\", \"paragraph\", \"list\").\n     - content: The content of the block in Vietnamese.\n   - Create 3 image prompts relevant with the content and 1 image prompt for the feature image.  and musk follow the below rules:\n     - type: \"image_prompt\".\n     - prompt: A string in English describing the image to be created, relevant to the paragraph above. The image must be realistic, clear, vibrant, and attractive.\n     - alt_tag : A short string describing the image relevant to the paragraph above. \n      - img_slug : Image's slug to upload to host. Base on alt_tag set image slug relevant to good for SEO (example: image-slug)\n\nStrictly return only the JSON data. Do not include any extra explanations, comments, or formatting markers.\nThe outline is: {{ $json.output }}",
+        "hasOutputParser": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        -880,
+        240
+      ],
+      "id": "95298563-8101-4493-b7d6-6c4394ff728b",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"output\": [{\n  \"title\" : \"blog title\",\n  \"content\" : \"blog content\",\n  \"meta_description\": \"Blog description\",\n  \"slug\": \"\",\n  \"feature_image\" : [{\n    \"title\": \"image title\",\n    \"prompt\" : \"Prompt image\",\n    \"slug\" : \"Slug image\",\n    \"alt_tag\" : \"Alt of Image\" \n  }],\n  \"PromptImages\" : [\n    {\n    \"image_id\" : \"Image ID\", \n    \"title\": \"image title\",\n    \"prompt\" : \"Prompt image\",\n    \"slug\" : \"Slug image\",\n    \"alt_tag\" : \"Alt of Image\" \n  },\n    {\n    \"image_id\" : \"Image ID\", \n    \"title\": \"image title\",\n    \"prompt\" : \"Prompt image\",\n    \"slug\" : \"Slug image\",\n    \"alt_tag\" : \"Alt of Image\" \n    },\n    {\n    \"image_id\" : \"Image ID\", \n    \"title\": \"image title\",\n    \"prompt\" : \"Prompt image\",\n    \"slug\" : \"Slug image\",\n    \"alt_tag\" : \"Alt of Image\" \n  }\n  ]     \n  }]\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        -700,
+        480
+      ],
+      "id": "032edacc-5a7f-425b-8cea-2a770918901e",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-exp",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        80,
+        120
+      ],
+      "id": "999b9bf5-89b6-4ca5-93ad-4a16b7c59c97",
+      "name": "Google Gemini Chat Model4",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Check all data in output and fix erro. \nData in output: {{ $('Code').first().json.output }} and error: {{ $('Code').first().json.error }}",
+        "hasOutputParser": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        80,
+        -120
+      ],
+      "id": "e31cd0dd-26d4-460d-8bad-352e30bb5fba",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"output\": [{\n  \"title\" : \"blog title\",\n  \"content\" : \"blog content\",\n  \"meta_description\": \"Blog description\",\n  \"slug\": \"\",\n  \"feature_image\" : [{\n    \"title\": \"image title\",\n    \"prompt\" : \"Prompt image\",\n    \"slug\" : \"Slug image\",\n    \"alt_tag\" : \"Alt of Image\" \n  }],\n  \"PromptImages\" : [\n    {\n    \"image_id\" : \"Image ID\", \n    \"title\": \"image title\",\n    \"prompt\" : \"Prompt image\",\n    \"slug\" : \"Slug image\",\n    \"alt_tag\" : \"Alt of Image\" \n  },\n    {\n    \"image_id\" : \"Image ID\", \n    \"title\": \"image title\",\n    \"prompt\" : \"Prompt image\",\n    \"slug\" : \"Slug image\",\n    \"alt_tag\" : \"Alt of Image\" \n    },\n    {\n    \"image_id\" : \"Image ID\", \n    \"title\": \"image title\",\n    \"prompt\" : \"Prompt image\",\n    \"slug\" : \"Slug image\",\n    \"alt_tag\" : \"Alt of Image\" \n  }\n  ]     \n  }]\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        260,
+        120
+      ],
+      "id": "f6fb4efd-34de-4ea6-bcaf-c5cc6024642d",
+      "name": "Structured Output Parser1",
+      "disabled": true
+    }
+  ],
+  "pinData": {
+    "When chat message received": [
+      {
+        "json": {
+          "sessionId": "354ab2ff33394b1a9224053438d6e4e6",
+          "action": "sendMessage",
+          "chatInput": "Tìm hiểu về loài sư tử"
+        }
+      }
+    ],
+    "Telegram Trigger": [
+      {
+        "json": {}
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-11T01:53:47.000Z",
+  "versionId": "74f5fb93-a54f-42f0-aa85-d2c18125697c"
+}
