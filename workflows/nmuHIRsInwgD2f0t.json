@@ -1,0 +1,353 @@
+{
+  "active": false,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "FLUX.1-schnell-Free",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Flux-Midjourney-Mix2-LoRA": {
+      "main": [
+        []
+      ]
+    },
+    "FLUX.1-schnell-Free": {
+      "main": [
+        [
+          {
+            "node": "Convert to File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-30T19:06:59.885Z",
+  "id": "nmuHIRsInwgD2f0t",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Tạo ảnh free",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -240,
+        180
+      ],
+      "id": "f867af9f-6858-45d5-b5a2-a67c8f8fea07",
+      "name": "When chat message received",
+      "webhookId": "0b1e01eb-d21e-454c-8fb6-90318ccb52dd"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://ostris-flex-1-alpha.hf.space/gradio_api/call/infer",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n  \"data\": [\n\t\"{{ $json.chatInput }}\",\n\t0,\n\tfalse,\n\t512,\n\t512,\n\t1,\n\t1\n]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        40,
+        -100
+      ],
+      "id": "946c1b55-c702-4cef-9909-723c8c8ddfb9",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "PTz4Iv3YjRj7TLZW",
+          "name": "Hugingface_Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.data }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "url",
+              "description": "get image url from event: complete data",
+              "required": true
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "You are an expert extraction algorithm.\nOnly extract relevant information from the text.\nIf you do not know the value of an attribute asked to extract, you may omit the attribute's value."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1,
+      "position": [
+        480,
+        -100
+      ],
+      "id": "5e59bbbb-6160-415f-aad4-2bedd7dcfb10",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-exp",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        480,
+        80
+      ],
+      "id": "9e666739-0d80-4b0d-8b33-8adcfe522273",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.output.url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        840,
+        -100
+      ],
+      "id": "d7e624a4-fcb4-4ed4-81f5-e28f2c205567",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "url": "=https://ostris-flex-1-alpha.hf.space/gradio_api/call/infer/{{ $json.event_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        -100
+      ],
+      "id": "40df8fca-1337-4aa4-898d-8cc461530bbd",
+      "name": "HTTP Request1",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "PTz4Iv3YjRj7TLZW",
+          "name": "Hugingface_Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api-inference.huggingface.co/models/strangerzonehf/Flux-Midjourney-Mix2-LoRA",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\"inputs\": \"{{ $json.chatInput }}\",\n\"parameters\": {\n   \"negative_prompt\": \"blurry, broken\"\n},\n\"target_size\" : {\n      \"width\" : 512,\n      \"height\" : 1024\n}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        20,
+        140
+      ],
+      "id": "edea3dac-315d-4057-ba42-bc1339475b2b",
+      "name": "Flux-Midjourney-Mix2-LoRA",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "PTz4Iv3YjRj7TLZW",
+          "name": "Hugingface_Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.together.xyz/v1/images/generations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $TOGETHER_API_KEY"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n\"model\": \"black-forest-labs/FLUX.1-schnell-Free\",\n\"prompt\": \"{{ $json.chatInput }}\",\n\"width\": 1024,\n\"height\": 768,\n\"steps\": 1,\n\"n\": 1,\n\"response_format\": \"b64_json\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        20,
+        380
+      ],
+      "id": "e18af3be-6599-41fd-9844-04c2ed0ebdb7",
+      "name": "FLUX.1-schnell-Free",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Vm11EVXu8p9jBqXP",
+          "name": "Header Auth together.xyz"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data[0].b64_json",
+        "options": {
+          "fileName": "anh.png"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        220,
+        380
+      ],
+      "id": "01a99947-cde4-4bfe-9b76-3ac6a29568e4",
+      "name": "Convert to File1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-wait-for-model",
+              "value": "true"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n\"inputs\" : \"a beautiful woman\",\n\"parameters\" : {\n  \"negative_prompt\" : \"broken face\"\n}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        540,
+        380
+      ],
+      "id": "29d9066f-6b6c-4df8-a078-d676809ceb3e",
+      "name": "HTTP Request3",
+      "retryOnFail": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "PTz4Iv3YjRj7TLZW",
+          "name": "Hugingface_Auth"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-08T16:51:28.000Z",
+  "versionId": "f2e23b8d-53fb-4a20-b73e-eee7cfd06069"
+}
