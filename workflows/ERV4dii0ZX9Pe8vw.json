@@ -1,0 +1,635 @@
+{
+  "active": true,
+  "connections": {
+    "Form Đăng Ký Ref Genspark": {
+      "main": [
+        [
+          {
+            "node": "Cập nhật danh sách",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cập nhật danh sách": {
+      "main": [
+        [
+          {
+            "node": "Get anh",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get anh": {
+      "main": [
+        [
+          {
+            "node": "Form",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Tim theo Order ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tim theo Order ID": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Cập nhật danh sách1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cập nhật danh sách1": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram": {
+      "main": [
+        [
+          {
+            "node": "Gửi cấu trúc cho XGenspart",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-16T08:29:12.121Z",
+  "id": "ERV4dii0ZX9Pe8vw",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "auto refference genspark",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Genspark Auto Ref",
+        "formDescription": "Tự động đăng ký 20 ref cho tài khoản genspark.io",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email",
+              "fieldType": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Phone",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Link Genspark Ref",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Ref Number",
+              "fieldType": "number",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -280,
+        -20
+      ],
+      "id": "d297d39a-c150-4acf-980d-30344f31e95b",
+      "name": "Form Đăng Ký Ref Genspark",
+      "webhookId": "d99c6ac0-b660-4940-9976-c4b1c13b1a3d"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1xT8qbbbp2pGrDgWpL_tPeHE6GqDGZM6NlRFVck1iOjo/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1xT8qbbbp2pGrDgWpL_tPeHE6GqDGZM6NlRFVck1iOjo/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Họ tên": "={{ $json.Name }}",
+            "Email": "={{ $json.Email }}",
+            "Phone": "={{ $json.Phone }}",
+            "Link Genspak": "={{ $json['Link Genspark Ref'] }}",
+            "Ref Number": "={{ $json['Ref Number'] }}",
+            "Link thanh toán": "=https://img.vietqr.io/image/vietinbank-103870962165-compact2.jpg?amount={{ $json['Ref Number']*8000 }}&addInfo={{ \"GEN-\"+$runIndex+$json.Phone.slice(-3) }}&accountName=Pham%20Nguyen%20Duc%20Tin",
+            "Order ID": "={{ \"GEN-\"+$runIndex+$json.Phone.slice(-3) }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Order ID",
+              "displayName": "Order ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Họ tên",
+              "displayName": "Họ tên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link Genspak",
+              "displayName": "Link Genspak",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ref Number",
+              "displayName": "Ref Number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link thanh toán",
+              "displayName": "Link thanh toán",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Kiểm tra thanh toán",
+              "displayName": "Kiểm tra thanh toán",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -100,
+        -20
+      ],
+      "id": "3c6bedf7-0189-405e-87b3-4638b7bdb4c4",
+      "name": "Cập nhật danh sách",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json['Link thanh toán'] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        60,
+        -20
+      ],
+      "id": "2549b791-1fbc-4104-ab61-25087201cd79",
+      "name": "Get anh"
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "showText",
+        "responseText": "=<h1 style=\"text-align:center\">THANH TOÁN QUA MÃ QR</h1>\n<img width=\"100%\" src=\"{{ $('Cập nhật danh sách').item.json['Link thanh toán'] }}\"/>\n<p> Sau khi thanh toán thành công hệ thống sẽ tự động chạy chương trình đăng ký đủ số Ref mà quý khách yêu cầu. Việc này sẽ mất thời gian từ 30 phút đến 1h. Quý khách có thể tắt pop up này và kiểm tra lại tài khoản Genspark sau 1h nữa. </p> \n<p class=\"camon\">Xin chân thành cảm ơn sự ủng hộ của quý khách. Mọi thắc mắc, yêu cầu vui lòng liên lạc hotline: 0889048818 (Zalo)</p>\n</div>"
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        220,
+        -20
+      ],
+      "id": "fc8e8d64-a91b-420f-b395-a99ca34bb10a",
+      "name": "Form",
+      "webhookId": "8e8ee2b5-56db-44db-9e5b-067949a5bde7"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "check-thanhtoan",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -280,
+        260
+      ],
+      "id": "2a825900-7c0e-4e0a-9de3-278a107ce63f",
+      "name": "Webhook",
+      "webhookId": "7b1c02b7-2ea0-40df-8053-c9ddd24a2b34"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1xT8qbbbp2pGrDgWpL_tPeHE6GqDGZM6NlRFVck1iOjo/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1xT8qbbbp2pGrDgWpL_tPeHE6GqDGZM6NlRFVck1iOjo/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Order ID",
+              "lookupValue": "=GEN-0818"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -100,
+        260
+      ],
+      "id": "13341193-2a9c-4fd9-aae3-9636c1424bbc",
+      "name": "Tim theo Order ID",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "800008ce-5cae-4074-b8b6-0b563e19f347",
+              "leftValue": "={{ $('Webhook').item.json.body.data[0].amount }}",
+              "rightValue": "={{ $json['Số tiền thanh toán'] }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        80,
+        260
+      ],
+      "id": "8f74e162-903f-461c-8fa1-c92e5b22f42e",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1xT8qbbbp2pGrDgWpL_tPeHE6GqDGZM6NlRFVck1iOjo/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1xT8qbbbp2pGrDgWpL_tPeHE6GqDGZM6NlRFVck1iOjo/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Order ID": "={{ $json['Order ID'] }}",
+            "Kiểm tra thanh toán": "ĐÃ THANH TOÁN"
+          },
+          "matchingColumns": [
+            "Order ID"
+          ],
+          "schema": [
+            {
+              "id": "Order ID",
+              "displayName": "Order ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Họ tên",
+              "displayName": "Họ tên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Link Genspak",
+              "displayName": "Link Genspak",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Ref Number",
+              "displayName": "Ref Number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Link thanh toán",
+              "displayName": "Link thanh toán",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Kiểm tra thanh toán",
+              "displayName": "Kiểm tra thanh toán",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Số tiền thanh toán",
+              "displayName": "Số tiền thanh toán",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        320,
+        180
+      ],
+      "id": "4cfef3e2-a915-4be7-8448-332d54d093be",
+      "name": "Cập nhật danh sách1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "777643301",
+        "text": "=Có khách hàng cần tăng Ref cho tài khoản Genspark của họ, đã thanh toán thành công. Thông tin đơn hàng: \nName: {{ $('Tim theo Order ID').item.json['Họ tên'] }}\nOrder ID: {{ $('Tim theo Order ID').item.json['Order ID'] }}\nPhone: {{ $('Tim theo Order ID').item.json.Phone }}\nLink Ref: {{ $('Tim theo Order ID').item.json['Link Genspak'] }}\nRef Number: {{ $('Tim theo Order ID').item.json['Ref Number'] }}\nSố tiền đã thanh toán: {{ $('Tim theo Order ID').item.json['Số tiền thanh toán'] }}\nTình trạng thanh toán: {{ $('Tim theo Order ID').item.json['Kiểm tra thanh toán'] }}\n\nHãy giúp xử lý đơn hàng cho khách hàng nhé. Chúc thành công. ",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        520,
+        180
+      ],
+      "id": "12a8f657-65de-4b5c-9d6d-8b0223d2512b",
+      "name": "Telegram",
+      "webhookId": "15aa2276-3c08-46b7-9af2-b7bbdf4826f6",
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "777643301",
+        "text": "=/invite {{ $('Tim theo Order ID').item.json['Link Genspak'] }} {{ $('Tim theo Order ID').item.json['Ref Number'] }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        680,
+        180
+      ],
+      "id": "f2a48a23-9dd5-4653-a6f6-4c25c4699c7b",
+      "name": "Gửi cấu trúc cho XGenspart",
+      "webhookId": "15aa2276-3c08-46b7-9af2-b7bbdf4826f6",
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Form Đăng Ký Ref Genspark": [
+      {
+        "json": {
+          "Name": "Tin Pham",
+          "Email": "hanawebvn@gmail.com",
+          "Phone": "0889048818",
+          "Link Genspark Ref": "https://www.genspark.ai/invite?invite_code=ZGNmMzExYzhMNjQzOUw3OTQ0TDQyOThMMDE4OGZkZjg4NmRj",
+          "Ref Number": 20,
+          "submittedAt": "2025-03-16T15:52:29.733+07:00",
+          "formMode": "test"
+        }
+      }
+    ],
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.4vn.edu.vn",
+            "user-agent": "axios/0.21.4",
+            "content-length": "447",
+            "accept": "application/json, text/plain, */*",
+            "content-type": "application/json",
+            "secure-token": "null",
+            "x-forwarded-for": "103.245.251.193",
+            "x-forwarded-host": "n8n.4vn.edu.vn",
+            "x-forwarded-proto": "https",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "error": 0,
+            "data": [
+              {
+                "id": 0,
+                "tid": "MA_GIAO_DICH_THU_NGHIEM",
+                "description": "giao dich thu nghiem",
+                "amount": 599000,
+                "cusum_balance": 25000000,
+                "when": "2025-03-16 17:21:00",
+                "bank_sub_acc_id": "88888888",
+                "subAccId": "88888888",
+                "bankName": "VPBank",
+                "bankAbbreviation": "VPB",
+                "virtualAccount": "",
+                "virtualAccountName": "",
+                "corresponsiveName": "NGUYEN VAN A",
+                "corresponsiveAccount": "8888888888",
+                "corresponsiveBankId": "970415",
+                "corresponsiveBankName": "VietinBank"
+              }
+            ]
+          },
+          "webhookUrl": "https://n8n.4vn.edu.vn/webhook/check-thanhtoan",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 3,
+  "updatedAt": "2025-03-17T04:27:49.000Z",
+  "versionId": "944087a6-18e6-4f25-be97-d8b45816c48e"
+}
