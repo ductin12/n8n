@@ -1,0 +1,59 @@
+{
+  "active": false,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Browser Use",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-03T10:31:21.447Z",
+  "id": "zSBkZmQ6Q4D9DhZF",
+  "meta": null,
+  "name": "My workflow 9",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "e71933f5-ade0-4f55-803a-47d34aab0c9c",
+      "name": "When chat message received",
+      "webhookId": "0da09bea-0c10-406e-a795-d72a36349fb0"
+    },
+    {
+      "parameters": {
+        "connectionType": "local",
+        "operation": "listTasks"
+      },
+      "type": "n8n-nodes-browser-use.browserUse",
+      "typeVersion": 1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "8e14eba5-42cc-4f7f-984b-24f7b39e0460",
+      "name": "Browser Use"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-03T15:04:28.000Z",
+  "versionId": "a0a7f4ee-767f-4829-8bff-0d69aa2f2eb5"
+}
