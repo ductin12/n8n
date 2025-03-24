@@ -1,0 +1,18 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-02-24T11:12:10.616Z",
+  "id": "3RzWsgtoSsvRh0Z2",
+  "meta": null,
+  "name": "ZALO",
+  "nodes": [],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-24T11:12:10.616Z",
+  "versionId": "079a3eb0-d0f8-499e-b1ae-ed992827fe86"
+}
