@@ -1,0 +1,296 @@
+{
+  "active": false,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qwen Max": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Draw_Picture_Qwen": {
+      "main": [
+        []
+      ]
+    },
+    "Draw_tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call n8n Workflow Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-09T13:12:20.012Z",
+  "id": "CLltafC3GzhNuHOo",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 6",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -300,
+        0
+      ],
+      "id": "54ae5e34-dc88-4d3a-997b-29bae141a0b9",
+      "name": "When chat message received",
+      "webhookId": "00d4a9d3-569e-4699-a77f-3f18eb7c8f5f"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a helpful assistant"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -80,
+        0
+      ],
+      "id": "ce580a8d-c005-455c-9df1-c15b2b80b0a4",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "qwen-max",
+          "mode": "list",
+          "cachedResultName": "qwen-max"
+        },
+        "options": {
+          "responseFormat": "text"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -160,
+        220
+      ],
+      "id": "317e7464-41c8-42b8-87e1-8e65820d283b",
+      "name": "Qwen Max",
+      "credentials": {
+        "openAiApi": {
+          "id": "nwqoqgwEgzRMsgMs",
+          "name": "Alibaba AI Cloud"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        20,
+        220
+      ],
+      "id": "be55a9df-8ab6-4db5-89bd-2409edc96ad9",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://dashscope-intl.aliyuncs.com/api/v1/apps/9f30cec341794bdf81e930cc456f6561/completion",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"input\": {\n    \"prompt\": \"Draw a picture about: I visited Singapore last month\"\n  },\n  \"parameters\": {},\n  \"debug\": {}\n}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        760,
+        240
+      ],
+      "id": "44377c1c-be20-457e-b91a-d3f2673ceabd",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "UNhOSdekVLhnNzdc",
+          "name": "Header Auth Alibaba Cloud"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        520,
+        240
+      ],
+      "id": "f631f8ed-3e25-441e-ae08-ad7e2574bbe9",
+      "name": "Draw_Picture_Qwen"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Draw tool by Qwen",
+        "method": "POST",
+        "url": "https://dashscope-intl.aliyuncs.com/api/v1/apps/9f30cec341794bdf81e930cc456f6561/completion",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "parametersHeaders": {
+          "values": [
+            {
+              "name": "X-DashScope-SSE",
+              "valueProvider": "fieldValue",
+              "value": "enable"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"input\": {\n        \"prompt\": \"{{ $('When chat message received').item.json.chatInput }}\"\n    },\n    \"parameters\":  {},\n    \"debug\": {}\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        180,
+        220
+      ],
+      "id": "ff44306f-531a-42ed-9f54-d943f3d5ec2a",
+      "name": "Draw_tool",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "UNhOSdekVLhnNzdc",
+          "name": "Header Auth Alibaba Cloud"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        340,
+        160
+      ],
+      "id": "e74ba916-8f82-4092-886e-98a5cb4b6b65",
+      "name": "Call n8n Workflow Tool"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.data }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        980,
+        240
+      ],
+      "id": "309f16f7-5e2a-446e-9cf2-9a26bdaf10b2",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-lite-preview",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        960,
+        440
+      ],
+      "id": "80e394b6-bd4b-4622-8095-20115b05ee29",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-17T13:32:24.000Z",
+  "versionId": "d49f6abd-512f-4bd1-87d4-f5240068d718"
+}
