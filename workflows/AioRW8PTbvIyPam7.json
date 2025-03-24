@@ -1,0 +1,282 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        []
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-06T07:05:43.981Z",
+  "id": "AioRW8PTbvIyPam7",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Job Reserch",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -520,
+        -160
+      ],
+      "id": "9b569372-ea3f-4372-8dac-e0d46128a86f",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://jsearch.p.rapidapi.com/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "={{ $json.chatInput }}"
+            },
+            {
+              "name": "page",
+              "value": "1"
+            },
+            {
+              "name": "num_pages",
+              "value": "1"
+            },
+            {
+              "name": "country",
+              "value": "vn"
+            },
+            {
+              "name": "language",
+              "value": "vi"
+            },
+            {
+              "name": "date_posted",
+              "value": "all"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-rapidapi-host",
+              "value": "jsearch.p.rapidapi.com"
+            },
+            {
+              "name": "x-rapidapi-key",
+              "value": "6532611638msh46b50a189da5ac5p11e5ffjsnd6f30f12a59a"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -300,
+        -160
+      ],
+      "id": "6542e523-8891-41d8-9808-fa2ab624147e",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -160
+      ],
+      "id": "d169c022-e781-46cc-bfaf-d6c02814ad7a",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1FN2uxUqBw427CkZ9BxePtB46-7B-LaLOt8l8bWQc9LA",
+          "mode": "list",
+          "cachedResultName": "JOB RESEARCH IN HCM",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FN2uxUqBw427CkZ9BxePtB46-7B-LaLOt8l8bWQc9LA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Trang tính1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FN2uxUqBw427CkZ9BxePtB46-7B-LaLOt8l8bWQc9LA/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "VỊ TRÍ": "={{ $json.job_title }}",
+            "CÔNG TY": "={{ $json.employer_name }}",
+            "THỜI GIAN": "={{ $json.job_employment_type }}",
+            "MÔ TẢ CÔNG VIỆC": "={{ $json.job_description }}",
+            "ĐỊA ĐIỂM": "={{ $json.job_location }}",
+            "LINK ỨNG TUYỂN": "={{ $json.job_apply_link.replace('https://vn.','https://') }}",
+            "MỨC LƯƠNG": "=LƯƠNG: {{ $json?.job_salary }}\nMIN: {{ $json.job_min_salary }}\nMAX: {{ $json.job_max_salary }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "VỊ TRÍ",
+              "displayName": "VỊ TRÍ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CÔNG TY",
+              "displayName": "CÔNG TY",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "THỜI GIAN",
+              "displayName": "THỜI GIAN",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "MÔ TẢ CÔNG VIỆC",
+              "displayName": "MÔ TẢ CÔNG VIỆC",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ĐỊA ĐIỂM",
+              "displayName": "ĐỊA ĐIỂM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "MỨC LƯƠNG",
+              "displayName": "MỨC LƯƠNG",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "LINK ỨNG TUYỂN",
+              "displayName": "LINK ỨNG TUYỂN",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        140,
+        -160
+      ],
+      "id": "5cf4b782-5393-4961-9873-fdcc6c314497",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -520,
+        40
+      ],
+      "id": "6e998e3a-1884-49d6-92b7-fd5e1b59cb74",
+      "name": "When chat message received",
+      "webhookId": "2d15d192-a158-4136-90a0-06ca1923b20e"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-06T08:33:58.000Z",
+  "versionId": "d248d27a-e324-4c0e-9c0b-e6a410a8852e"
+}
