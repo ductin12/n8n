@@ -1,0 +1,405 @@
+{
+  "active": false,
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        []
+      ]
+    },
+    "layMessage": {
+      "main": [
+        [
+          {
+            "node": "nếu là link youtube",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nếu là link youtube": {
+      "main": [
+        [
+          {
+            "node": "chờ em chút",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "videoId": {
+      "main": [
+        [
+          {
+            "node": "YouTube Transcript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "YouTube Transcript": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "nối chuổi",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nối chuổi": {
+      "main": [
+        [
+          {
+            "node": "Tóm tắc phụ đề",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tóm tắc phụ đề": {
+      "main": [
+        [
+          {
+            "node": "GỬI KẾT QUẢ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "chờ em chút": {
+      "main": [
+        [
+          {
+            "node": "videoId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Tóm tắc phụ đề",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "layMessage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-08T08:42:58.777Z",
+  "id": "s8ko2qZD6hx8IlV8",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 4",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -660,
+        220
+      ],
+      "id": "139864bb-1ddc-4064-a8cb-70a8a6ab2e2a",
+      "name": "Telegram Trigger",
+      "webhookId": "d1aa8c78-fa17-4efe-aef1-d627b36dc290",
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "Nhận link từ Telegram > Lấy tin nhắn > nếu là link youtube > thì xử lý > Lấy ID Video > Lấy phụ đề > Đưa vào AI > gửi lại Telegram",
+        "height": 120
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -620,
+        40
+      ],
+      "id": "6ef98203-c46d-4fbb-b4c6-718f753cc8e3",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "dba5d9f8-f085-45d8-959a-338ee0b6366f",
+              "name": "message",
+              "value": "={{ $json?.message?.text || $json.chatInput }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -360,
+        240
+      ],
+      "id": "83581c1b-5eff-41e9-92b8-22820cd1ffa6",
+      "name": "layMessage"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c7cc1adb-995e-466b-a684-567a9577c1e0",
+              "leftValue": "={{ $json.message }}",
+              "rightValue": "youtube.com",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -140,
+        240
+      ],
+      "id": "0e4496db-258a-4b4c-8c9c-ea9eecf816d9",
+      "name": "nếu là link youtube"
+    },
+    {
+      "parameters": {
+        "videoId": "={{ $json.videoID }}"
+      },
+      "id": "da86f6f6-13bc-4c9c-b68a-79ba00f7cf22",
+      "name": "YouTube Transcript",
+      "type": "n8n-nodes-youtube-transcription.youtubeTranscripter",
+      "position": [
+        480,
+        0
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e8b2932d-4e40-4b8e-932b-64eb0ace7219",
+              "name": "videoID",
+              "value": "={{ $('nếu là link youtube').item.json.message.split(\"=\").last() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ],
+      "id": "66011dc2-d82d-451d-ba93-bd2ab75806aa",
+      "name": "videoId"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "transcript",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        820,
+        0
+      ],
+      "id": "f19b3de3-93e2-45f5-9b5e-9221432218a9",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "aggregation": "concatenate",
+              "field": "text",
+              "separateBy": " "
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1,
+      "position": [
+        180,
+        360
+      ],
+      "id": "c717cf94-6770-447f-9c55-a6822e25ad8d",
+      "name": "nối chuổi"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=hãy là một nhà TÓM TẮC video youtube CHUYÊN NGHIỆP VÀ TÓM TẮC PHỤ ĐỀ VIDEO SAU sau bằng tiếng việt.\n\nYÊU CẦU:\n- ngắn gọn, dễ hiểu\n\nnội dung văn bản là:\n {{ $json.concatenated_text }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        580,
+        360
+      ],
+      "id": "63228d0d-5482-49f2-8c88-7a168006f811",
+      "name": "Tóm tắc phụ đề"
+    },
+    {
+      "parameters": {
+        "chatId": "=777643301",
+        "text": "=ĐÂY LÀ BẢN TÓM TẮC:\n{{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        940,
+        360
+      ],
+      "id": "858473e9-d006-4adf-989d-269e260d6636",
+      "name": "GỬI KẾT QUẢ",
+      "webhookId": "cadb4755-98cd-4577-bc18-cfbfe50340b6",
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "=777643301",
+        "text": "Sếp chờ em chút ...",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        20,
+        0
+      ],
+      "id": "7fb46705-447b-491c-aa90-9b2cdcd2f476",
+      "name": "chờ em chút",
+      "webhookId": "2416538e-7584-4c9f-95bd-2defba3afdfe",
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-pro-exp",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        600,
+        580
+      ],
+      "id": "68a35546-5526-4f84-8b5f-d3a0079dd979",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -640,
+        380
+      ],
+      "id": "a8eefe20-5aa2-4fee-8a11-c7082abce22f",
+      "name": "When chat message received",
+      "webhookId": "bdbf9fd5-8281-4afe-8f5a-905d934d7bb4"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-02-08T08:40:02.201Z",
+      "updatedAt": "2025-02-08T08:40:02.201Z",
+      "id": "teAcDLUSmS6d5O49",
+      "name": "share"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-02-08T15:33:45.000Z",
+  "versionId": "92e0c2ba-8b9c-498b-85da-4afd10994303"
+}
