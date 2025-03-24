@@ -1,0 +1,1133 @@
+{
+  "active": false,
+  "connections": {
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Short Text 1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Video Search Terms2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Video Search Terms2",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Format Video Links",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Search Videos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get The Video Details": {
+      "main": [
+        [
+          {
+            "node": "Find Smaller Video File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Videos": {
+      "main": [
+        [
+          {
+            "node": "Get The Video Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Smaller Video File": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Voice": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Short Text 1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Short Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Video Links": {
+      "main": [
+        [
+          {
+            "node": "List Short Music Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set File Permissions": {
+      "main": [
+        [
+          {
+            "node": "Create Short",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Short": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Check Video Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Video Status": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Audio": {
+      "main": [
+        [
+          {
+            "node": "Finished",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List Short Music Files": {
+      "main": [
+        [
+          {
+            "node": "Choose Music",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Choose Music": {
+      "main": [
+        [
+          {
+            "node": "Generate Voice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Set File Permissions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format For Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Short Text",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Short Text",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Video Search Terms",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser3": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Video Search Terms",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Short Text 1": {
+      "main": [
+        []
+      ]
+    },
+    "Short Text": {
+      "main": [
+        [
+          {
+            "node": "Video Search Terms",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Video Search Terms2": {
+      "main": [
+        []
+      ]
+    },
+    "Video Search Terms": {
+      "main": [
+        [
+          {
+            "node": "Format For Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Google Drive1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive1": {
+      "main": [
+        [
+          {
+            "node": "Delete Audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-22T16:33:30.500Z",
+  "id": "sRpvcZQKe5QXnkDd",
+  "meta": null,
+  "name": "Create Video Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "model": "claude-3-5-sonnet-20241022",
+        "options": {}
+      },
+      "id": "f6498b89-1bdb-4c32-9d4a-6aff0dfe6219",
+      "name": "Anthropic Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        -2260,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "a880a070-79af-40a0-ac38-0e2cd2c90c0d",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        -1880,
+        520
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "mE4tY6rLFI7CyMqz",
+          "name": "OpenrouterAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n    \"terms\": [\"string\"]\n}"
+      },
+      "id": "bf6bcbb9-d20e-4694-bba3-d7664327cd2e",
+      "name": "Structured Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        -1680,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "3fcd28f0-2580-4bea-8edf-25ce706961bd",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -860,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Input data\nconst inputData = $input.all(); \n\n// Prepare output array\nlet outputData = [];\n\n// Loop through each input item and extract terms\ninputData.forEach(item => {\n    if (item.json.output && item.json.output.terms) {\n        const terms = item.json.output.terms;\n        terms.forEach(term => {\n            outputData.push({ term });\n        });\n    }\n});\n\n// Return the reformatted data\nreturn outputData.map(item => ({ json: item }));\n"
+      },
+      "id": "a6c51b26-eaa8-4474-aa19-df562fc58914",
+      "name": "Format For Loop Over Items",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1480,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.pexels.com/videos/videos/{{ $json.videos[0].id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "id": "94eb97f0-9d75-4e5a-bd2c-64a44fa04fb1",
+      "name": "Get The Video Details",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -480,
+        780
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qQALxtwTyNikcb65",
+          "name": "Header Auth Pexels.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://api.pexels.com/videos/search?query={{ $json.term }}&orientation=portrait",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "per_page",
+              "value": "1"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "id": "8c04e8d6-878b-470e-b3dd-0bfc1f090366",
+      "name": "Search Videos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -680,
+        780
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "qQALxtwTyNikcb65",
+          "name": "Header Auth Pexels.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Input data\nconst inputData = $input.all();\n\n// Output array for biggest video URLs under 50MB\nlet biggestVideos = [];\n\ninputData.forEach(item => {\n    // Check if video_files exist\n    if (item.json.video_files && item.json.video_files.length > 0) {\n        // Filter video files to only those under 50MB\n        const filteredVideos = item.json.video_files.filter(video => video.size < 50000000);\n\n        // If any video files meet the criteria, find the biggest\n        if (filteredVideos.length > 0) {\n            const biggestVideo = filteredVideos.reduce((biggest, current) => {\n                return current.size > biggest.size ? current : biggest;\n            });\n\n            // Push the URL of the biggest video under 50MB\n            biggestVideos.push({ url: biggestVideo.link });\n        }\n    }\n});\n\n// Return the result\nreturn biggestVideos.map(video => ({ json: video }));\n"
+      },
+      "id": "796e5db7-8007-4d7b-b731-533a07411a9b",
+      "name": "Find Smaller Video File",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -300,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "id": "a5c98b32-fa27-4347-aafb-ae5646803c52",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -140,
+        780
+      ],
+      "webhookId": "6b13bcaf-135f-4a08-9ba7-1b24fb4c0323"
+    },
+    {
+      "parameters": {
+        "content": "## Download Videos\n",
+        "height": 295.11176788587335,
+        "width": 977.630497964493,
+        "color": 4
+      },
+      "id": "f666162d-33bc-416b-b759-c50822bc5b53",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -920,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.elevenlabs.io/v1/text-to-speech/cgSgspJ2msm6clMCkdW9",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "={{ $('Short Text').first().json.output.script }}"
+            },
+            {
+              "name": "model_id",
+              "value": "eleven_flash_v2_5"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "9585ffc9-b2c4-49ce-bbd8-4f7eab757f5d",
+      "name": "Generate Voice",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -320,
+        1220
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "rrKSc6F43WkeY9xT",
+          "name": "Header Auth Elevenlabs 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"script\": \"string\"\n}\n"
+      },
+      "id": "7790f520-ab29-4ad8-9c94-5647fc289e65",
+      "name": "Structured Output Parser1",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        -2080,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "7e5bfc63-6d1d-40c7-97c6-12b5d9594119",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -2460,
+        840
+      ],
+      "webhookId": "c135d406-0728-4e86-a215-06e506a647b4"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://www.googleapis.com/drive/v3/files/{{ $json.id }}/permissions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"role\": \"reader\",\n  \"type\": \"anyone\"\n}",
+        "options": {}
+      },
+      "id": "d1ae53b7-54b2-4dbe-8207-ca464018facc",
+      "name": "Set File Permissions",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        100,
+        1220
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "FAKXKk8dfHvUPexs",
+          "name": "Google Drive hanawebvn@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const combined = items.map(item => item.json);\n\n// Return the combined list as a single item\nreturn [{ json: { combined } }];"
+      },
+      "id": "ebec49a3-3b10-4bbd-acd8-e878ee1bb933",
+      "name": "Format Video Links",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -920,
+        1220
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.creatomate.com/v1/renders",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"template_id\": \"8c39a3bf-3928-4474-89e7-b9127c9abcd3\",\n  \"modifications\": {\n    \"Voice\": \"{{ $('Google Drive').first().json.webContentLink }}\",\n    \"Music.source\": \"https://drive.google.com/uc?id={{ $('Choose Music').first().json.id }}&export=download\",\n  \"Music.volume\" : \"30%\",\n    \"Background-1\": \"{{ $('Format Video Links').first().json.combined[0].url }}\",\n    \"Background-2\": \"{{ $('Format Video Links').first().json.combined[1].url }}\",\n    \"Background-3\": \"{{ $('Format Video Links').first().json.combined[2].url }}\",\n    \"Background-4\": \"{{ $('Format Video Links').first().json.combined[3].url }}\",\n    \"Background-5\": \"{{ $('Format Video Links').first().json.combined[4].url }}\",\n    \"Background-6\": \"{{ $('Format Video Links').first().json.combined[5].url }}\",\n    \"Background-7\": \"{{ $('Format Video Links').first().json.combined[6].url }}\",\n    \"Background-8\": \"{{ $('Format Video Links').first().json.combined[7].url }}\"\n  }\n}\n",
+        "options": {}
+      },
+      "id": "21f3ed80-4898-460a-8770-4f6829ea4990",
+      "name": "Create Short",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        960
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "giW04KScdX2fhc2p",
+          "name": "Header Auth creatomate.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "id": "8dfbd779-ff4d-4c10-8595-c60dd419327e",
+      "name": "Wait1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        860,
+        960
+      ],
+      "webhookId": "baa1ec61-20bb-456d-887e-acfe495f0eff"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "3b05e989-e492-4ceb-824d-c3bb87431864",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "failed",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "id": "263c3855-1bd0-4974-a5c9-08f466a2e70c",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1240,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.creatomate.com/v1/renders/{{ $('Create Short').first().json.id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "id": "fabc2304-df34-4141-a77c-1832a40e93fc",
+      "name": "Check Video Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1040,
+        960
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "giW04KScdX2fhc2p",
+          "name": "Header Auth creatomate.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Generate Voices & Grab Music\n",
+        "height": 264.0374786163546,
+        "width": 1249.1681084410664,
+        "color": 5
+      },
+      "id": "d43470ec-9c5a-43cb-94d5-23fabbebd7b6",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -960,
+        1140
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "id": "f1b4ff01-cb9a-41fc-a7db-7f2d328e8958",
+      "name": "Finished",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2100,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "deleteFile",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Google Drive').first().json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "655adcf3-8f0b-45f7-9ead-248f525cfbb1",
+      "name": "Delete Audio",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1900,
+        720
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "FAKXKk8dfHvUPexs",
+          "name": "Google Drive hanawebvn@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://www.googleapis.com/drive/v3/files",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "'1ajRYcDZ6iyht8wDoHVp5h72bHdso97HS' in parents"
+            },
+            {
+              "name": "fields",
+              "value": "files(id,name,mimeType)"
+            },
+            {
+              "name": "pageSize",
+              "value": "100"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a94f391d-e564-4bcb-9932-0a0fdafcc722",
+      "name": "List Short Music Files",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -720,
+        1220
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "FAKXKk8dfHvUPexs",
+          "name": "Google Drive hanawebvn@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Render Video",
+        "height": 256.82731466057686,
+        "width": 1200,
+        "color": 6
+      },
+      "id": "109fa799-835a-42f5-b27c-1928695cc361",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        580,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Generate Short Text & Search Queries",
+        "height": 411.0417846333279,
+        "width": 1186.0311463024343,
+        "color": 3
+      },
+      "id": "05fbe48b-6e11-4a49-a26a-ba3fecb76cc0",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2500,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the list of files from the previous node\nconst files = $json.files;\n\n// Ensure the list is not empty\nif (!files || files.length === 0) {\n  throw new Error('No files available to select from.');\n}\n\n// Randomly select one file\nconst randomIndex = Math.floor(Math.random() * files.length);\nconst selectedFile = files[randomIndex];\n\n// Return the selected file\nreturn [\n  {\n    json: selectedFile\n  }\n];\n"
+      },
+      "id": "90e5222e-ecf7-4958-9f87-33f28f3ff70f",
+      "name": "Choose Music",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -520,
+        1220
+      ]
+    },
+    {
+      "parameters": {
+        "name": "Data",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1M4G88nXcVAF5ymepaiHu4e5eiVpL-Qj3",
+          "mode": "list",
+          "cachedResultName": "Youtube Short",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1M4G88nXcVAF5ymepaiHu4e5eiVpL-Qj3"
+        },
+        "options": {}
+      },
+      "id": "33181c38-64cc-4a0a-a20a-f42d2b8a355f",
+      "name": "Google Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -120,
+        1220
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "FAKXKk8dfHvUPexs",
+          "name": "Google Drive hanawebvn@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-exp",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -2260,
+        1040
+      ],
+      "id": "593fa9fd-8e77-4fa8-846d-a91b56f26411",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"script\": \"string\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        -2080,
+        1040
+      ],
+      "id": "1ddb5b94-72fa-4867-ad1a-0e69cb4efd17",
+      "name": "Structured Output Parser2"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-exp",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -1840,
+        1020
+      ],
+      "id": "13185882-8127-45c4-951c-37732b09b3f2",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n    \"terms\": [\"string\"]\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        -1660,
+        1040
+      ],
+      "id": "80724659-67ee-43b4-90d6-00e44c785e5e",
+      "name": "Structured Output Parser3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Generate a YouTube Shorts script that is between 98 and 106 words EXACTLY. NO MORE then 98 words for the entire script.\n\nUse the following structure:\n\nHook (3-Step Formula):\n\n1. Context Lean-In: Start with a clear statement to establish relevance, addressing a pain point, benefit, or shared interest.\n\n2. Scroll-Stop Interjection: Add a surprising twist using contrasting words like \"but\" or \"however.\"\n\n3. Contrarian Snapback: End the hook with a shocking or intriguing twist to deepen curiosity.\nMain Content: Provide a simple, actionable explanation or demonstration that fulfills the curiosity created in the hook. Keep the language clear and concise.\n\nMain Content: Provide a simple, actionable explanation or demonstration that fulfills the curiosity created in the hook. Keep the language clear and concise.\n\nClosing: End the script in a way that smoothly flows back into the first sentence, creating a seamless loop when the Short is replayed. \n\n\nEnsure the tone is conversational and engaging. Focus on delivering value quickly while holding the viewer's attention throughout the script. Do not include any other text other then the output script Remember, the scripcan not have more then 90 words. \n\nThis script will be about the following topic:\n{{ $json.chatInput }}",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "id": "52c1934e-1276-4c9e-a235-b4acf486802f",
+      "name": "Short Text 1",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -2260,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Generate a YouTube Shorts script that is between 98 and 106 words EXACTLY. NO MORE then 98 words for the entire script. Write all output in Vietnamese\n\nUse the following structure:\n\nHook (3-Step Formula):\n\n1. Context Lean-In: Start with a clear statement to establish relevance, addressing a pain point, benefit, or shared interest.\n\n2. Scroll-Stop Interjection: Add a surprising twist using contrasting words like \"but\" or \"however.\"\n\n3. Contrarian Snapback: End the hook with a shocking or intriguing twist to deepen curiosity.\nMain Content: Provide a simple, actionable explanation or demonstration that fulfills the curiosity created in the hook. Keep the language clear and concise.\n\nMain Content: Provide a simple, actionable explanation or demonstration that fulfills the curiosity created in the hook. Keep the language clear and concise.\n\nClosing: End the script in a way that smoothly flows back into the first sentence, creating a seamless loop when the Short is replayed. \n\n\nEnsure the tone is conversational and engaging. Focus on delivering value quickly while holding the viewer's attention throughout the script. Do not include any other text other then the output script Remember, the scripcan not have more then 90 words. \n\nThis script will be about the following topic:\n{{ $json.chatInput }}",
+        "hasOutputParser": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        -2260,
+        840
+      ],
+      "id": "a970ff35-bb77-49c9-b578-6b62f808ebca",
+      "name": "Short Text"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Based on the text provided, create 8 generic search terms for video clips that are broadly related to the subject. The search terms should describe visual concepts, objects, or general scenarios that could convey the text's ideas in a metaphorical or indirect way. Avoid specific product names, technical terms, or abstract concepts that are unlikely to appear in stock footage (e.g., \"self-hosted software\" or \"complex logic automation\"). Instead, focus on common scenes or objects that represent broader ideas. Make sure all the videos are tech, corperate or office related. Also you can put the word happy in there. \n\nFor example:\n\nInstead of \"workflow automation,\" use \"person typing at desk.\"\nInstead of \"data manipulation tools,\" use \"charts and graphs.\"\n\n\nHere’s the text for the video: {{ $json.output.script }}",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "id": "722f875d-7548-4463-b5c0-283907a84368",
+      "name": "Video Search Terms2",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -1860,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=#context\nHere’s the text script for the video: {{ $json.output.script }}. \n\n#Role\n\nYou are an expert in finding media resources like images and videos. You can come up with the best search queries to illustrate a particular idea.\n\n#Rule\n1. If the text script is not in English, translate it into English. \n2. Based on the paragraph provided, give me 8 keywords related to the content provided. The order of keywords will be arranged according to the sequence of the provided text. \n3. The search terms should describe visual concepts, objects, emotions, or general scenarios that could convey the text's ideas metaphorically or indirectly.\n\n#Instruction: \n1. Avoid specific product names, technical terms, or abstract concepts that are unlikely to appear in stock footage (e.g., \"self-hosted software\" or \"complex logic automation\"). \n2. Instead, focus on common scenes or objects representing broader ideas. Make sure all the videos are tech, corporate or office-related. \n#Example\n\nInstead of \"workflow automation,\" use \"person typing at a desk.\"\nInstead of \"data manipulation tools,\" use \"charts and graphs.\"\n\n3. Also you can put the word happy in there. \n5. Write all output in English. Output in JSON format like this: \n{\n    \"terms\": [\"string\"]\n}\n\n\n\n\n",
+        "hasOutputParser": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        -1840,
+        840
+      ],
+      "id": "47d92b1b-3c41-480e-88d2-3a4e0e68842f",
+      "name": "Video Search Terms"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1460,
+        720
+      ],
+      "id": "edc0c6eb-b58a-4ba6-b6fa-e03a4b834fa8",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "name": "={{ $('Check Video Status').item.json.id }}.mp4",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1M4G88nXcVAF5ymepaiHu4e5eiVpL-Qj3",
+          "mode": "list",
+          "cachedResultName": "Youtube Short",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1M4G88nXcVAF5ymepaiHu4e5eiVpL-Qj3"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1660,
+        720
+      ],
+      "id": "f46d3c45-3ae9-4adb-8b09-b9967a042e15",
+      "name": "Google Drive1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "FAKXKk8dfHvUPexs",
+          "name": "Google Drive hanawebvn@gmail.com"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-28T17:57:02.000Z",
+  "versionId": "c5ad21ef-50e6-4e01-a402-37c5b75fe6df"
+}
