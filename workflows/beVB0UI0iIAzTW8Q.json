@@ -1,0 +1,679 @@
+{
+  "active": false,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get_File": {
+      "main": [
+        []
+      ]
+    },
+    "Flux_Together": {
+      "main": [
+        [
+          {
+            "node": "Get_File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Flux_Together",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Completed?": {
+      "main": [
+        [
+          {
+            "node": "Get Image Result URL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait 3 Sec",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Status": {
+      "main": [
+        [
+          {
+            "node": "Completed?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 3 Sec": {
+      "main": [
+        [
+          {
+            "node": "Check Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Image Result URL": {
+      "main": [
+        [
+          {
+            "node": "Download Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fal Flux": {
+      "main": [
+        [
+          {
+            "node": "Wait 3 Sec",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Fal Flux",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive1": {
+      "main": [
+        [
+          {
+            "node": "Response1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Image": {
+      "main": [
+        [
+          {
+            "node": "Google Drive1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-28T12:39:40.624Z",
+  "id": "beVB0UI0iIAzTW8Q",
+  "meta": {
+    "templateId": "2644",
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Flux Image Tool",
+  "nodes": [
+    {
+      "parameters": {
+        "name": "={{ $('Basic LLM Chain').first().json.output.title }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1bhC84CdMk0brD2dA2wFB1mLHVKZ-ly8I",
+          "mode": "list",
+          "cachedResultName": "Flux Image",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1bhC84CdMk0brD2dA2wFB1mLHVKZ-ly8I"
+        },
+        "options": {}
+      },
+      "id": "dd2efd2c-8712-4a77-8786-cccebdec876b",
+      "name": "Google Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        1900,
+        760
+      ],
+      "typeVersion": 3,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "FAKXKk8dfHvUPexs",
+          "name": "Google Drive hanawebvn@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        440,
+        680
+      ],
+      "id": "65b862bd-1597-42ea-948a-2d7f776d3318",
+      "name": "When chat message received",
+      "webhookId": "e5f70162-f592-415f-8ec2-719a2f7ae034"
+    },
+    {
+      "parameters": {
+        "url": "=data:image/jpeg;charset=utf-8;base64,{{ $json.data[0].b64_json }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1520,
+        760
+      ],
+      "id": "137b557c-5f67-4843-bcab-cf2d7429e54d",
+      "name": "Get_File"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.together.xyz/v1/images/generations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"model\": \"black-forest-labs/FLUX.1-schnell-Free\",\n    \"prompt\": {{ JSON.stringify($json.output.Prompt) }},\n    \"negative_prompt\": {{ JSON.stringify($json?.output?.negative_prompt) || '' }},\n    \"width\": {{ $json.output.Width }},\n    \"height\": {{ $json.output.Height }},\n    \"steps\": 4,\n    \"guidance\": {{ $json.output.Guidance }},\n    \"n\": 1,\n    \"response_format\": \"b64_json\"\n   }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1300,
+        760
+      ],
+      "id": "e04dd66c-8a17-45fd-b4fa-90226fa7f582",
+      "name": "Flux_Together",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Vm11EVXu8p9jBqXP",
+          "name": "Header Auth together.xyz"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "facce7d8-3f9a-4665-92ef-50f6592526aa",
+              "name": "image",
+              "value": "={{ $json.webViewLink }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2160,
+        760
+      ],
+      "id": "d8a8e6fc-cc27-4482-a059-f85655ea1a2b",
+      "name": "Response"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Based on the user input, provide the JSON data to Flux Model to create a picture follow request of user. \nCheck the language of the prompt. If it is different from English, please translate it into English according to the standard prompt to create the image of Flux Model.\nDựa vào tỉ lệ ảnh người dùng yêu cầu hãy xác định kích thước phù hợp.\n- Width and height is a number and must be between 64 and 1792. \n- Height must be a multiple of 16\n- Steps is a number in the range from 1 to 4, 4 for the best quality.\nReturn the result in JSON format.\nExample JSON result:  \n{\n  \"title\": \"string\",\n  \"Prompt\": \"string\",\n  \"negative_prompt\": \"string\",\n    \"Width\": 1028,\n    \"Height\": 1028,\n    \"Steps\": 4,\n    \"Guidance\": 3.5\n}\nPrompt to check: {{ $json?.chatInput || $json.query }}",
+        "hasOutputParser": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        880,
+        760
+      ],
+      "id": "a3ce0f9a-2672-4bb1-940d-15dbc62197fe",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-exp",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        860,
+        960
+      ],
+      "id": "ff6d6d8f-14fc-46bb-bb5e-0349f1bb181c",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"title\": \"string\",\n  \"Prompt\": \"string\",\n  \"negative_prompt\": \"string\",\n    \"Width\": 1028,\n    \"Height\": 1028,\n    \"Steps\": 4,\n    \"Guidance\": 3.5\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1080,
+        940
+      ],
+      "id": "3442471b-6396-42c7-bb17-bb6f941e2966",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        460,
+        900
+      ],
+      "id": "63f0dc64-1ce6-4ced-b119-fe8da067e644",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "299a7c34-dcff-4991-a73f-5b1a84f188ea",
+              "operator": {
+                "name": "filter.operator.equals",
+                "type": "string",
+                "operation": "equals"
+              },
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "COMPLETED"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7ee45dab-8e31-44de-bbb1-e99a565ee19c",
+      "name": "Completed?",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        1460,
+        240
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/flux/requests/{{ $json.request_id }}/status",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "b27ac2f1-3f14-467e-81c4-af8b8fb37138",
+      "name": "Check Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1280,
+        240
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "rW7b71mgcJcRxulK",
+          "name": "Header Auth fal.ai"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "id": "d39e85a8-3ddd-4f10-ba4c-beb86a850e10",
+      "name": "Wait 3 Sec",
+      "type": "n8n-nodes-base.wait",
+      "position": [
+        1080,
+        240
+      ],
+      "webhookId": "61a8626c-e281-4d4b-abb0-b9d87d1b4e7c",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.images[0].url }}",
+        "options": {}
+      },
+      "id": "56e13e53-1697-4970-9bea-b75e0e849425",
+      "name": "Download Image",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1840,
+        220
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.response_url }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "3032a543-2e21-415e-a5bd-d56ea33e4411",
+      "name": "Get Image Result URL",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1660,
+        220
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "rW7b71mgcJcRxulK",
+          "name": "Header Auth fal.ai"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://queue.fal.run/fal-ai/flux/dev",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"prompt\": \"{{ $json.Prompt }}\",\n  \"image_size\": {\n  \"width\": {{ $json.Width }},\n  \"height\": {{ $json.Height }}\n},\n  \"num_inference_steps\": {{ $json.Steps }},\n  \"guidance_scale\": {{ $json.Guidance }},\n  \"num_images\": 1,\n  \"enable_safety_checker\": false\n}",
+        "options": {}
+      },
+      "id": "00f3a7d9-9931-40a4-8eb5-5b9086d6995c",
+      "name": "Fal Flux",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        860,
+        240
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "rW7b71mgcJcRxulK",
+          "name": "Header Auth fal.ai"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"Prompt\": {{ JSON.stringify($json.output.Prompt) }},\n    \"Width\": 1024,\n    \"Height\": 768,\n    \"Steps\": 30,\n    \"Guidance\": 3.5\n  }",
+        "options": {}
+      },
+      "id": "587043c4-e808-4c3f-910f-60f5eb8aff15",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        620,
+        240
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {},
+      "id": "a598d868-0461-41fc-b6aa-f9998e9d6146",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        -180,
+        240
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Based on the user input, provide the JSON data to Flux Model to create a picture follow request of user. \nCheck the language of the prompt. If it is different from English, please translate it into English according to the standard prompt to create the image of Flux Model.\n- Width and height is a number and must be between 64 and 1792. \n- Height must be a multiple of 16\n- Steps is a number in the range from 1 to 4, 4 for the best quality.\nReturn the result in JSON format.\nExample JSON result:  \n{\n  \"title\": \"string\",\n  \"Prompt\": \"string\",\n  \"negative_prompt\": \"string\",\n    \"Width\": 1028,\n    \"Height\": 1028,\n    \"Steps\": 4,\n    \"Guidance\": 3.5\n}\nPrompt to check: {{ $json?.chatInput || $json.query }}",
+        "hasOutputParser": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        200,
+        240
+      ],
+      "id": "c7f9e6cd-a773-43b0-863a-a02d7e3b5e73",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-exp",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        200,
+        440
+      ],
+      "id": "79f0584a-87b5-4373-8bc9-b8e035b47999",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"title\": \"string\",\n  \"Prompt\": \"string\",\n  \"negative_prompt\": \"string\",\n    \"Width\": 1028,\n    \"Height\": 1028,\n    \"Steps\": 4,\n    \"Guidance\": 3.5\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        400,
+        440
+      ],
+      "id": "b5b35abc-0d78-465c-9811-b878fc6e2354",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "name": "={{ $('Basic LLM Chain1').first().json.output.title }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1bhC84CdMk0brD2dA2wFB1mLHVKZ-ly8I",
+          "mode": "list",
+          "cachedResultName": "Flux Image",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1bhC84CdMk0brD2dA2wFB1mLHVKZ-ly8I"
+        },
+        "options": {}
+      },
+      "id": "0df9b29b-f72b-420e-b6b4-95309f60bf4f",
+      "name": "Google Drive1",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        2060,
+        220
+      ],
+      "typeVersion": 3,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "FAKXKk8dfHvUPexs",
+          "name": "Google Drive hanawebvn@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "facce7d8-3f9a-4665-92ef-50f6592526aa",
+              "name": "image",
+              "value": "={{ $json.webViewLink }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2320,
+        220
+      ],
+      "id": "c6f54981-0eaa-4d1b-9efa-52e730ba8e01",
+      "name": "Response1"
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-13T09:28:11.000Z",
+  "versionId": "3de17b38-3a14-49ee-9335-aacc0e30e04e"
+}
