@@ -1,0 +1,561 @@
+{
+  "active": true,
+  "connections": {
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Telegram - Thông báo lịch cúp điện",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Không cúp điện",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram - Thông báo lịch cúp điện": {
+      "main": [
+        []
+      ]
+    },
+    "Không cúp điện": {
+      "main": [
+        []
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-11T13:37:47.453Z",
+  "id": "m1FPtYAV79tbs9ST",
+  "meta": null,
+  "name": "Lịch cúp điện tại Tân Hải - Cây Găng",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "94dd9cc3-8b3c-492c-8c5f-3d5263aa5b2d",
+              "leftValue": "={{ $('Filter') }}",
+              "rightValue": "=",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "aede0da3-3d1e-47af-bd2b-c01874d82426",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "06331485-a807-40a9-a573-4e53183228d3",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -500,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-4721102551",
+        "text": "=CHÚ Ý CHÚ Ý: \nLịch cúp điện ngày {{ DateTime.now().plus({ days: 1 }).setZone(\"Asia/Ho_Chi_Minh\").toFormat(\"dd/MM/yyyy\"); }} tại {{ $json['Địa điểm ngừng cung cấp điện'] }}\nThời gian bắt đầu: {{ $json['Thời gian bắt đầu ngừng cung cấp điện'] }}\nThời gian dự kiến có điện: {{ $json['Thời gian dự kiến đóng điện trở lại'] }}\nLý do: {{ $json['Lý do ngừng cung cấp điện'] }}\n",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "293279c0-ed2a-46cc-a90a-eb52b5d8cdaf",
+      "name": "Telegram - Thông báo lịch cúp điện",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -40,
+        -40
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://hanaweb.vn/lichcupdien.php",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "from",
+              "value": "={{ $json.timestamp.toDateTime().plus(1, 'days').format('dd-LL-yyyy') }}"
+            },
+            {
+              "name": "to",
+              "value": "={{ $json.timestamp.toDateTime().plus(2, 'days').format('dd-LL-yyyy') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6fcfca6f-8110-4c13-a6b7-6caa9c3dbf1b",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1000,
+        -40
+      ],
+      "alwaysOutputData": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "32089041-7b3d-4ac7-885f-9dea99b0b88a",
+              "leftValue": "={{ $json['Địa điểm ngừng cung cấp điện'] }}",
+              "rightValue": "Xã Tân Hải",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "838f06a9-a559-4982-bd85-56213703012b",
+              "leftValue": "={{ $json['Địa điểm ngừng cung cấp điện'] }}",
+              "rightValue": "thôn Cây Găng",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "08ccc330-6333-4c8a-8923-286471849983",
+              "leftValue": "={{ $json['Địa điểm ngừng cung cấp điện'] }}",
+              "rightValue": "Kê Gà",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "dd01e77d-7897-4ba0-a9e1-b5350208bca9",
+      "name": "Filter",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -760,
+        140
+      ],
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 19
+            }
+          ]
+        }
+      },
+      "id": "25d4a9c0-b906-4c31-b554-a43f46677c78",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1320,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-4721102551",
+        "text": "Chúc mừng không có lịch cúp điện.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "443aa4d7-e42e-47e9-978c-2f8c5de34f3c",
+      "name": "Không cúp điện",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -20,
+        240
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://play.ht/api/v2/tts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "AUTHORIZATION",
+              "value": "Bearer 95262b0336414aa381d772674ad34413"
+            },
+            {
+              "name": "X-USER-ID",
+              "value": "KngxFZpuudTvtZMiQXJorLNvMxX2"
+            },
+            {
+              "name": "accept",
+              "value": "text/event-stream"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "Không tìm thấy lịch cúp điện."
+            },
+            {
+              "name": "voice",
+              "value": "s3://peregrine-voices/oliver_narrative2_parrot_saad/manifest.json"
+            },
+            {
+              "name": "voice_engine",
+              "value": "PlayHT2.0"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -280,
+        240
+      ],
+      "id": "2c27bc4c-dc14-4684-b93b-38879625a324",
+      "name": "HTTP Request1",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1700,
+        160
+      ],
+      "id": "c87e2b1c-3fe9-43a9-87b6-afebe5de821f",
+      "name": "Execute Workflow Trigger"
+    },
+    {
+      "parameters": {
+        "url": "=https://hanaweb.vn/lichcupdien.php",
+        "sendQuery": true,
+        "specifyQuery": "json",
+        "jsonQuery": "=?from={{ $now.toDateTime().plus(1, 'days').format('dd-LL-yyyy') }}&to={{ $now.toDateTime().plus(2, 'days').format('dd-LL-yyyy') }}",
+        "options": {}
+      },
+      "id": "20e02bf2-7bd1-4376-b183-6c1147700665",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1000,
+        160
+      ],
+      "alwaysOutputData": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b9ed8c12-6f8b-4b82-a5d4-c83593bda210",
+              "name": "response",
+              "value": "Thông báo lịch cúp điện",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -300,
+        -120
+      ],
+      "id": "5748fc1e-87ed-4a56-84a3-c698f28f5e36",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b9ed8c12-6f8b-4b82-a5d4-c83593bda210",
+              "name": "response",
+              "value": "Không cúp điện",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -20,
+        440
+      ],
+      "id": "65762ef2-865f-411c-9e37-5704a32784ec",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-exp-1206",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -1400,
+        440
+      ],
+      "id": "e56b52e8-5758-45b0-b1b0-b57541167f8a",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n \"from\" : \"From date to check\",\n \"to\" : \"To date to check\" \n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        -1220,
+        440
+      ],
+      "id": "02a52df1-5c20-46ae-88b5-889e2fa0a1be",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query || $json.chatInput}}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "type": "HumanMessagePromptTemplate",
+              "message": "=Today is: {{ $today.toISO() }}.\nYou are a helpful assistant. Based on the request of the user, write a javascript code to request in the next step. \nCode sample to output:\n?from={{ $now.toDateTime().plus(1, 'days').format('dd-LL-yyyy') }}&to={{ $now.toDateTime().plus(2, 'days').format('dd-LL-yyyy') }}\n\nUser's request: {{ $json.query }}. If the user does not specify the time, the default will be to check within the last 2 days."
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        -1420,
+        160
+      ],
+      "id": "78d79b47-de37-4911-90f3-15024804b3a1",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1660,
+        -60
+      ],
+      "id": "3cbee5bb-d020-4f18-81ef-fe8f55b494c3",
+      "name": "When chat message received",
+      "webhookId": "4885fc0c-b774-42ae-a502-bbed0c07c548"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 3,
+  "updatedAt": "2025-01-19T19:20:24.000Z",
+  "versionId": "9933a388-5676-428b-a45c-caedb58108bc"
+}
