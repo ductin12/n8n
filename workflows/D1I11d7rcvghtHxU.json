@@ -1,0 +1,264 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Chat with Perplexity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat with Perplexity": {
+      "main": [
+        [
+          {
+            "node": "Thinking",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Result",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Source",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Chat with Perplexity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Thinking": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Result": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Source": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-28T09:55:50.032Z",
+  "id": "D1I11d7rcvghtHxU",
+  "meta": null,
+  "name": "Research with Perplexity Tools",
+  "nodes": [
+    {
+      "parameters": {
+        "chatId": "777643301",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "ea839826-c580-4f58-b5f8-d024e1cb28ea",
+      "name": "Telegram1",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        640,
+        120
+      ],
+      "typeVersion": 1.1,
+      "webhookId": "96a75bb0-a152-487b-9adf-800091f22911",
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -600,
+        -40
+      ],
+      "id": "5a9a5391-af49-4d86-82f7-068cd3deec39",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.perplexity.ai/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"sonar-reasoning-pro\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"{{ $json?.query || $json.chatInput }}\"\n    }\n  ],\n  \"max_tokens\": 6000\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -300,
+        60
+      ],
+      "id": "721096d0-67e4-48cb-bc36-13dd4d7eb83d",
+      "name": "Chat with Perplexity",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "X3igE0h4nQTKMTMm",
+          "name": "Perplexity Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -600,
+        160
+      ],
+      "id": "4ad60516-0984-4094-9ca0-b04b7c4e4bf7",
+      "name": "When chat message received",
+      "webhookId": "4ca525f1-3b21-4683-a1e4-f93280845219"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d4063b6a-f4a6-4a8f-ad6b-e2b949e518a5",
+              "name": "think",
+              "value": "={{ $json.choices[0].message.content.match(/<think>[\\s\\S]*?<\\/think>/g)[0].substring(0,3000)}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": false
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        -40
+      ],
+      "id": "637f842a-94d9-442b-9957-d24068491a51",
+      "name": "Thinking"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f5d3c605-882f-458c-bfbc-50ae29426c7e",
+              "name": "content",
+              "value": "={{ $json.choices[0].message.content.replace(/<think>[\\s\\S]*?<\\/think>/g, '').trim() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": false
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        140
+      ],
+      "id": "64e29190-23e8-4e6e-9377-81c31b49a1d8",
+      "name": "Result"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6a7d1e42-5439-41b5-b35c-e82a9285f307",
+              "name": "source",
+              "value": "={{ $json.citations.map((item, index) => `- Nguồn ${index + 1}: ${item}`).join('\\n') }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": true
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        320
+      ],
+      "id": "ef00fee2-e825-444b-a108-b9d9e78b56da",
+      "name": "Source"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        280,
+        140
+      ],
+      "id": "609fb8ea-37cb-4085-95d0-42a052a47597",
+      "name": "Aggregate"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-28T10:03:18.000Z",
+  "versionId": "c79b6c08-f7f7-4f5f-8fbd-510d78251dc5"
+}
