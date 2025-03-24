@@ -1,0 +1,477 @@
+{
+  "active": true,
+  "connections": {
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "return Keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Clean Keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean Keywords": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Keywords": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Receive Keyword": {
+      "main": [
+        [
+          {
+            "node": "Autogenerate Keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Autogenerate Keywords": {
+      "main": [
+        [
+          {
+            "node": "Format Keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "get keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get keywords": {
+      "main": [
+        [
+          {
+            "node": "Format Keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "get keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-23T09:02:18.316Z",
+  "id": "5z3hNWTeqPVFXQdG",
+  "meta": {
+    "templateId": "2155"
+  },
+  "name": "Generating Keywords using Google Autosuggest",
+  "nodes": [
+    {
+      "parameters": {
+        "fieldToSplitOut": "toplevel.CompleteSuggestion",
+        "options": {}
+      },
+      "id": "551a3a1f-07ad-48aa-bc9a-18f39c883929",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        980,
+        300
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "Keywords"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f451dc0d-a78d-4ba6-adcf-c1180502a904",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "position": [
+        1300,
+        300
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "* Generating keywords for your SEO",
+        "height": 224.79012345679018,
+        "width": 1323.884773662551,
+        "color": 4
+      },
+      "id": "ccad69b0-7f88-490e-bfbd-50ef702f48ce",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        380,
+        240
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "path": "googleautosuggest",
+        "responseMode": "lastNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "accept-language",
+                "value": "vi-VN;q=0.9,vi;q=0.8"
+              }
+            ]
+          }
+        }
+      },
+      "id": "9ed26e36-e05a-416e-a517-3f5d07718256",
+      "name": "Receive Keyword",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        340,
+        20
+      ],
+      "webhookId": "76a63718-b3cb-4141-bc55-efa614d13f1d",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "url": "=https://google.com/complete/search?output=toolbar&gl=VN",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "={{ $json.query.q }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "51aa0811-7f31-4476-9460-4eacad81e469",
+      "name": "Autogenerate Keywords",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        580,
+        20
+      ],
+      "typeVersion": 4.1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "f3bd360c-bf72-4e5f-92ec-ca08c8e4daed",
+      "name": "Format Keywords",
+      "type": "n8n-nodes-base.xml",
+      "position": [
+        800,
+        300
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fb95058f-0c20-4249-8a45-7b935fde1874",
+              "name": "Keywords",
+              "type": "array",
+              "value": "={{ $json.suggestion.data }}"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": true
+        }
+      },
+      "id": "17bef508-47e1-482b-8dc1-aeb1f6faca63",
+      "name": "Clean Keywords",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1140,
+        300
+      ],
+      "typeVersion": 3.3
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "id": "81e3ced0-d3b7-4019-a6a7-5e940ad33df1",
+      "name": "return Keywords",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        1500,
+        300
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "* If you are using this one, just copy the this webhook url http://localhost:5678/webhook/76a63718-b3cb-4141-bc55-efa614d13f1d?q=keyword%20research\n* All you need is to change the keyword to e your desired keyword and you will be good to go\n\n* You can use the keyword with a space and the results will be the same",
+        "width": 767.7695473251028
+      },
+      "id": "fafc57a6-64e1-4463-bbf0-c9dccd880345",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        400,
+        500
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        400,
+        300
+      ],
+      "id": "b4a575c6-11df-4ee4-a1e0-12fdccd41d83",
+      "name": "When chat message received",
+      "webhookId": "068f5ef4-aba8-4cbe-9c84-97026800cfc6"
+    },
+    {
+      "parameters": {
+        "url": "https://google.com/complete/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "output",
+              "value": "toolbar"
+            },
+            {
+              "name": "gl",
+              "value": "VN"
+            },
+            {
+              "name": "q",
+              "value": "={{ $json?.query || $input.first().json.chatInput }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+            },
+            {
+              "name": "accept-language",
+              "value": "en-US,en;q=0.9,vi;q=0.8"
+            },
+            {
+              "name": "cache-control",
+              "value": "no-cache"
+            },
+            {
+              "name": "cookie",
+              "value": "HSID=AdCXgOZLuCyBwdQ2l; SSID=AVChDs2RYem6uFYis; APISID=CjNNnwre9WA0uC0v/AuAYtsxlBDfTuC355; SAPISID=_V5Fjbnu2Rj2Izdp/AOEPcdJw3qIfMUaKB; __Secure-1PAPISID=_V5Fjbnu2Rj2Izdp/AOEPcdJw3qIfMUaKB; __Secure-3PAPISID=_V5Fjbnu2Rj2Izdp/AOEPcdJw3qIfMUaKB; SID=g.a000rwgkoz8-rJsrl0wFHW_L7WcVUFPaTBLn88Dyb0WUAJOzJZ4lMfoxkApQY1miKs0tbaDubgACgYKAVESARYSFQHGX2Mi5I21FzgDmX5BTyjLWxNQvxoVAUF8yKrD6gxTi_IQUMSmzApxpMq90076; __Secure-1PSID=g.a000rwgkoz8-rJsrl0wFHW_L7WcVUFPaTBLn88Dyb0WUAJOzJZ4lccVc6AS50fWKxbcKyE6q8wACgYKAVESARYSFQHGX2MiaUMMHqGfLfXuUw_t5hwvmBoVAUF8yKpJ7TxmnAHSGazXGSPgWCdx0076; __Secure-3PSID=g.a000rwgkoz8-rJsrl0wFHW_L7WcVUFPaTBLn88Dyb0WUAJOzJZ4lL3br3gcKX8eXJ0uPYyUZtAACgYKAYkSARYSFQHGX2MiLbfmRSnWoqOTtrVQwIx51BoVAUF8yKoQknBlj-mWA7IIxLule4B70076; ADS_VISITOR_ID=00000000-0000-0000-0000-000000000000; AEC=AZ6Zc-XCKWaqhtXikOOI4-Bvx9T4XVpuJ64vJS0jvX9M5UacK7E9IEr--BM; SEARCH_SAMESITE=CgQIj50B; SL_G_WPT_TO=vi; SL_GWPT_Show_Hide_tmp=1; SL_wptGlobTipTmp=1; NID=521=cwEsOUSFt_lPmiYwSckjJDw-GOSyG6P-IWfl7AuTvqzgeP90E0Km-H_cvxJXyzjoZCLUdf0KAoomE5GxX6WBEqN2giiRQl4VyFQOTkiHi5HzwCwuGfIbVj8LCBDTf_YrLa80iCscXZC30hIEIZGFpQlAZelyamJyHLQRMtKR0F7zonQRE8zXbwqDnI16u3rJMcT4ATiKyzFavLgUg-7JzeymJPIUbEAyHQJUlyqLDAwi23RqxUf3NFUjk665RivIKGzex9Y5ULQ2qhuVki9Ok-9HuSie6JpTsI7PJ9c4vv_r6m_nwYBnKpJRR68Kbl04MKzMpmBA0LGe36Mk39F5g5G7jYJkgujSKMZKDwZp2GxQBavrcnsodNRJM5WDQYZJ7qDjzLq7Y70kk7iUfOwiYF3iEu9oCbteis7soioW0LTib7KdHwvxWHeXdoC4ldPG7-24FRFHEGrIZl8Gpai90Bjr2SFzLJvivjgK5va96jh-Qxn0P5CvhMla90dvrIiV4Uc0NWrYRHLYN_yOrmplEsdICgydi0FtWFMy0GIUUlZDkb-fB14EEyqGCRjP-mbYzWXWtmOa8p7kkePZPF37hrDhbeWsL-RPpXlIAP-wBPRrc1O3mvmRt7iNPVZexuwYSjqqhtcQ; __Secure-1PSIDTS=sidts-CjIBmiPuTXwbfB8UZMIf7Yn184xJ4hqqhkRzZH4QA5qV8gWHULG7NO_n_KrM9HQMESQAHBAA; __Secure-3PSIDTS=sidts-CjIBmiPuTXwbfB8UZMIf7Yn184xJ4hqqhkRzZH4QA5qV8gWHULG7NO_n_KrM9HQMESQAHBAA; SIDCC=AKEyXzWot-vigvflJJgVsuq_ZuDFOHom4hNQ3ha7KrwBdpuwQ8gikpor4hpWwwhcqPHUOgk9nVto; __Secure-1PSIDCC=AKEyXzVKRXKU870L-b-ColdYBG7kr1kMfyookmxHygT5NMYE9YKEx0T48CfF1RVMQPCBKZo4ixEk; __Secure-3PSIDCC=AKEyXzWd1bKr8hZcLYG3tb3UV6698wEMcUZFyUddexUkgAZK_EKXYp4n4IHxw_ksh97DCxjekjc"
+            },
+            {
+              "name": "pragma",
+              "value": "no-cache"
+            },
+            {
+              "name": "priority",
+              "value": "u=0, i"
+            },
+            {
+              "name": "rtt",
+              "value": "100"
+            },
+            {
+              "name": "sec-ch-prefers-color-scheme",
+              "value": "light"
+            },
+            {
+              "name": "sec-ch-ua",
+              "value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+            },
+            {
+              "name": "sec-ch-ua-arch",
+              "value": "\"x86\""
+            },
+            {
+              "name": "sec-ch-ua-bitness",
+              "value": "\"64\""
+            },
+            {
+              "name": "sec-ch-ua-form-factors",
+              "value": "\"Desktop\""
+            },
+            {
+              "name": "sec-ch-ua-full-version",
+              "value": "\"131.0.6778.266\""
+            },
+            {
+              "name": "sec-ch-ua-full-version-list",
+              "value": "\"Google Chrome\";v=\"131.0.6778.266\", \"Chromium\";v=\"131.0.6778.266\", \"Not_A Brand\";v=\"24.0.0.0\""
+            },
+            {
+              "name": "sec-ch-ua-mobile",
+              "value": "?0"
+            },
+            {
+              "name": "sec-ch-ua-model",
+              "value": "\"\""
+            },
+            {
+              "name": "sec-ch-ua-platform",
+              "value": "\"macOS\""
+            },
+            {
+              "name": "sec-ch-ua-platform-version",
+              "value": "\"11.7.10\""
+            },
+            {
+              "name": "sec-ch-ua-wow64",
+              "value": "?0"
+            },
+            {
+              "name": "sec-fetch-dest",
+              "value": "document"
+            },
+            {
+              "name": "sec-fetch-mode",
+              "value": "navigate"
+            },
+            {
+              "name": "sec-fetch-site",
+              "value": "none"
+            },
+            {
+              "name": "sec-fetch-user",
+              "value": "?1"
+            },
+            {
+              "name": "upgrade-insecure-requests",
+              "value": "1"
+            },
+            {
+              "name": "user-agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+            },
+            {
+              "name": "x-browser-channel",
+              "value": "stable"
+            },
+            {
+              "name": "x-browser-copyright",
+              "value": "Copyright 2025 Google LLC. All rights reserved."
+            },
+            {
+              "name": "x-browser-validation",
+              "value": "ML+Ko0QpRXQS2gN7CwuA69q1mXA="
+            },
+            {
+              "name": "x-browser-year",
+              "value": "2025"
+            },
+            {
+              "name": "x-client-data",
+              "value": "CJK2yQEIpbbJAQipncoBCJHgygEIlqHLAQiKo8sBCIagzQEIucjNAQj9pc4BCKzHzgEI+dfOAQjB2M4BCPzZzgEIwdvOARjAy8wBGM7VzgE="
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        600,
+        300
+      ],
+      "id": "b828d666-1c99-4d6d-9493-004d69363eee",
+      "name": "get keywords"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        180,
+        480
+      ],
+      "id": "8eb49c6e-fd07-46d6-97aa-59d4844b0950",
+      "name": "When Executed by Another Workflow"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 3,
+  "updatedAt": "2025-03-04T13:58:24.000Z",
+  "versionId": "66eed1e2-eb66-4503-b866-4696dc0c4fe8"
+}
