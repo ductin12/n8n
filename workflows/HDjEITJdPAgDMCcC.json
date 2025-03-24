@@ -1,0 +1,546 @@
+{
+  "active": false,
+  "connections": {
+    "Merge chapters title and text": {
+      "main": [
+        [
+          {
+            "node": "Final article text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Final article text": {
+      "main": [
+        [
+          {
+            "node": "Editor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "n8n Form Trigger": {
+      "main": [
+        [
+          {
+            "node": "Research Leader 🔬",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create title": {
+      "main": [
+        [
+          {
+            "node": "Ghost",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Perplexity API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perplexity_tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "Research Leader 🔬",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perplexity_tool1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Research Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perplexity API": {
+      "main": [
+        [
+          {
+            "node": "Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Research Leader 🔬": {
+      "main": [
+        [
+          {
+            "node": "Project Planner",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delegate to Research Assistants": {
+      "main": [
+        [
+          {
+            "node": "Merge chapters title and text",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Research Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Research Assistant": {
+      "main": [
+        [
+          {
+            "node": "Merge chapters title and text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Project Planner": {
+      "main": [
+        [
+          {
+            "node": "Delegate to Research Assistants",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Project Planner",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Editor",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Create title",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Research Assistant",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Editor": {
+      "main": [
+        [
+          {
+            "node": "Create title",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perplexity_tool2": {
+      "ai_tool": [
+        [
+          {
+            "node": "Project Planner",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-20T08:48:42.246Z",
+  "id": "HDjEITJdPAgDMCcC",
+  "meta": null,
+  "name": "Research w Perplexity",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "3d2115f8-8034-4dc7-a2c4-0b43b2d76703",
+      "name": "Merge chapters title and text",
+      "type": "n8n-nodes-base.merge",
+      "position": [
+        2360,
+        180
+      ],
+      "typeVersion": 2.1
+    },
+    {
+      "parameters": {},
+      "id": "c85f3e6f-0170-4222-9863-c94c2978aafc",
+      "name": "Final article text",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        2620,
+        180
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "path": "1927fe96-de32-46d0-805a-b8b98fbbc136",
+        "formFields": {
+          "values": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "id": "a0053014-6b36-4020-869f-677d54e93ead",
+      "name": "n8n Form Trigger",
+      "type": "n8n-nodes-base.formTrigger",
+      "position": [
+        520,
+        180
+      ],
+      "webhookId": "1927fe96-de32-46d0-805a-b8b98fbbc136",
+      "typeVersion": 2.1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "c8b63334-7401-4961-bf40-4ed45b3d00c5",
+      "name": "Ghost",
+      "type": "n8n-nodes-base.ghost",
+      "position": [
+        3640,
+        180
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "id": "195be425-37ad-43ce-b8ea-cb5624afefdf",
+      "name": "Create title",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "position": [
+        3320,
+        180
+      ],
+      "typeVersion": 1.4
+    },
+    {
+      "parameters": {},
+      "id": "ec24d30a-7a7b-4ca8-a341-ab597d04de79",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        700,
+        60
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "id": "1804a85a-4310-448a-bebc-23457a97d850",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1200,
+        60
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "id": "5ae2b46e-723e-4a49-bd91-503acb35d7c6",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1860,
+        60
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "id": "7ddcde48-9ef0-4598-a445-c298aa0effe7",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2580,
+        60
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "id": "f7bf0e15-f188-49f5-a426-b5409f93f5b1",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3280,
+        60
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "id": "0f9d5bd7-0341-4cd1-8184-d0bb11b72687",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        1300,
+        620
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "fafb8cce-4670-45e1-9515-8ba40e1ae0d1",
+      "name": "Response",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1760,
+        620
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {},
+      "id": "1c701f3b-7128-46b7-80ea-947463de38cd",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1200,
+        560
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "id": "9751caf0-a1dd-48f1-8107-b150ef04c4d0",
+      "name": "Perplexity_tool",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "position": [
+        1000,
+        400
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {},
+      "id": "8a87c93d-f261-44cb-ac8a-2991277214e4",
+      "name": "Perplexity_tool1",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "position": [
+        2120,
+        400
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "ed4bcb06-a585-49dd-8755-1469a5707d6d",
+      "name": "Perplexity API",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1540,
+        620
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "f0595781-354e-4fa3-afdf-b2b5484f9fda",
+      "name": "Research Leader 🔬",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        780,
+        180
+      ],
+      "typeVersion": 1.6
+    },
+    {
+      "parameters": {},
+      "id": "505d96b2-b918-4cb2-85eb-826f72fffcb9",
+      "name": "Structured Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "position": [
+        1420,
+        380
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "086d6ac1-0a0b-4146-8ecf-923313e0f146",
+      "name": "Delegate to Research Assistants",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        1620,
+        180
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "f8c7fd0a-70d1-4676-920f-db9f37b3109d",
+      "name": "Research Assistant",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        1940,
+        180
+      ],
+      "retryOnFail": true,
+      "typeVersion": 1.6
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "1ec97533-bedf-479a-91ad-13f09c0c5f52",
+      "name": "Project Planner",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        1240,
+        180
+      ],
+      "typeVersion": 1.7
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "dc722f1b-9e4c-466d-b83c-47aaacef8f5c",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        1240,
+        380
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "e8dd6f09-b78b-46f4-be3a-595230ffc8ae",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        3080,
+        380
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "acc63c4a-e87e-4ebd-accf-800ad603e726",
+      "name": "OpenAI Chat Model3",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        1940,
+        380
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "369a0b83-61c7-43f8-816b-14aed4302f2f",
+      "name": "Editor",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        2840,
+        180
+      ],
+      "typeVersion": 1.6
+    },
+    {
+      "parameters": {},
+      "id": "803ea284-6ee1-486e-b9a8-0539376e3981",
+      "name": "Perplexity_tool2",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "position": [
+        1600,
+        380
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {},
+      "id": "45191e4c-f09a-432c-8785-5813e26d7242",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -180,
+        20
+      ],
+      "typeVersion": 1
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-22T12:46:51.000Z",
+  "versionId": "eadf687f-2bc2-472e-aff5-8cfbfec75eb5"
+}
