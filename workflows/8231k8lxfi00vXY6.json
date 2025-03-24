@@ -1,0 +1,1195 @@
+{
+  "active": false,
+  "connections": {
+    "Get Post": {
+      "main": [
+        [
+          {
+            "node": "Social Media Manager",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Publish on X": {
+      "main": [
+        [
+          {
+            "node": "X OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Get Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Publish on Facebook": {
+      "main": [
+        [
+          {
+            "node": "Facebook Ok",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Publish on LinkedIn": {
+      "main": [
+        [
+          {
+            "node": "Linkedin OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Publish on Instagram": {
+      "main": [
+        [
+          {
+            "node": "Instagram OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Social Media Manager": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Social Media Manager",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Social Media Manager",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call n8n Workflow Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Get_anh",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get_anh": {
+      "main": [
+        [
+          {
+            "node": "Publish on Facebook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Trigger": {
+      "main": [
+        []
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-03-10T03:06:52.903Z",
+  "id": "8231k8lxfi00vXY6",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Quảng bá bài viết trên Website đến các Fanpage",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "aeaafcde-ae8c-4c10-bb05-ea606cf2d66d",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        -180,
+        420
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1y4eF6U1hAyod4NhUuFkFRUuRh17UhqATYjX32RdVqy8",
+          "mode": "list",
+          "cachedResultName": "Social Media post",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1y4eF6U1hAyod4NhUuFkFRUuRh17UhqATYjX32RdVqy8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Post",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1y4eF6U1hAyod4NhUuFkFRUuRh17UhqATYjX32RdVqy8/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "FACEBOOK 1"
+            },
+            {
+              "lookupColumn": "FACEBOOK 2"
+            },
+            {
+              "lookupColumn": "FACEBOOK 3"
+            }
+          ]
+        },
+        "combineFilters": "OR",
+        "options": {}
+      },
+      "id": "2230fd81-452c-4704-b98d-dc5a6dc23129",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [
+        220,
+        600
+      ],
+      "typeVersion": 4.5,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n\t\t\"Twitter\": {\n            \"title\" : \"string\",\n    \t\t\"content\": \"string\",\n            \"prompt\" : \"string\",\n            \"hastags\" : \"string\"\n\t\t},\n\t\t\"Facebook\": {\n\t\t\t\"title\" : \"string\",\n    \t\t\"content\": \"string\",\n            \"prompt\" : \"string\",\n            \"hastags\" : \"string\"\n\t\t},\n        \"Linkedin\": {\n\t\t\t\"title\" : \"string\",\n    \t\t\"content\": \"string\",\n            \"prompt\" : \"string\",\n            \"hastags\" : \"string\"\n\t\t},\n        \"Instagram\": {\n\t\t\t\"title\" : \"string\",\n    \t\t\"content\": \"string\",\n            \"prompt\" : \"string\",\n            \"hastags\" : \"string\"\n\t\t}\n}"
+      },
+      "id": "3d106074-af91-4d0c-9f6b-0c73e87861da",
+      "name": "Structured Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "position": [
+        860,
+        840
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Generate social content from the following text with title \"{{ $json.title.rendered }}\" (in the same language):\n\n'''\n{{ $json.content.rendered }}\n'''",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Your goal is to create engaging and informative content for LinkedIn, Instagram, Facebook, Twitter (X) while ensuring each post aligns with the platform’s audience, tone, and style. Content should reflect the company’s expertise, providing value-driven insights, tutorials, reviews, and discussions that resonate with tech professionals, enthusiasts, and businesses.\n\nEach post should be optimized for engagement, using platform-specific hashtags to improve reach and SEO. Maintain a professional yet approachable tone that promotes trust and authority in the tech space.\n\nContent Creation Best Practices:\nPost Optimization: Adapt content format, style, and hashtags based on each social media platform’s algorithm and audience engagement patterns.\nSEO & Hashtags: Use a balanced mix of general hashtags and platform-specific trending hashtags to maximize reach.\nEngagement-driven content: Focus on tech tutorials, IT industry updates, comparisons, reviews, and in-depth discussions that spark engagement.\nConsistency: Maintain a consistent tone and visual identity across all platforms, while tailoring content to each audience.\nData-driven trends: Regularly analyze post performance and adjust your hashtag strategy to reflect trending discussions within your topic. High-quality, relevant, and engaging copy that appeals to professionals, businesses, and enthusiasts of your topic must be provided.\nComes with the content is a prompt to create an illustration of that content, requiring the image to be honest, high quality 4K or more, no text on the picture.\n### Platform-specific requirements:\n1. **LinkedIn**:\n- Style: Professional and informative.\n- Tone: Focus on business results, employee gratitude, and community impact.\n- Content length: 3-4 sentences, detailed and insightful.\n- Hashtags: Create hashtags that are compatible with your topic.\n- Call to action: Engage businesses and professionals by encouraging comments or visits to Al Ansari's website.\n\n2. **Instagram**:\n- Style: Visual storytelling.\n- Tone: Inspiring and engaging.\n- Content length: 2-3 sentences, paired with creative captions and emojis.\n- Images: Highlight events, giveaways, and milestones (e.g., 50th anniversary keychains, eco-friendly tote bags).\n- Call to action: Use phrases like “Swipe to see more,” “Tag your coworkers,” or “Celebrate with us!”\n- Hashtags: Create hashtags that resonate with your topic\n\n3. **Facebook**:\n- Style: Friendly and relevant.\n- Tone: Community-focused, sharing employee stories, accomplishments, or event updates.\n- Content length: 4-10 sentences, slightly informal but still reflective of your company’s values.\n- Call to Action: Encourage likes, shares, and comments from connected families and communities\n- Decoration: Use some icons to make more lively\n- Image prompt: realistic, 4K quality, description closely with the content, cheerful, luxury colors, Telling Story style. Alway write in English.\n-Hastag: create 5 hastags, always have branding hastag\n\n4. **Twitter (X)**:\n- Style: Concise and impactful.\n- Tone: Crisp, engaging, and catchy.\n- Content Length: 150 characters or less, including hashtags.\n- Create hashtags that are compatible with the topic being discussed\n- Call to Action: Focus on rapid engagement through retweets, likes, and replies.\n- Do not give any url in the content. \n\nWith this guide, generate posts for all platforms for the inputs below by inserting them into the specified json structure;\nWrite all output in Vietnamese excluding image prompt. \n\nJSON format output require: \n{\n\t\t\"Twitter\": {\n            \"title\" : \"string\",\n    \t\t\"content\": \"string\",\n            \"prompt\" : \"string\",\n            \"hastags\" : \"string\"\n\t\t},\n\t\t\"Facebook\": {\n\t\t\t\"title\" : \"string\",\n    \t\t\"content\": \"string\",\n            \"prompt\" : \"string\",\n            \"hastags\" : \"string\"\n\t\t},\n        \"Linkedin\": {\n\t\t\t\"title\" : \"string\",\n    \t\t\"content\": \"string\",\n            \"prompt\" : \"string\",\n            \"hastags\" : \"string\"\n\t\t},\n        \"Instagram\": {\n\t\t\t\"title\" : \"string\",\n    \t\t\"content\": \"string\",\n            \"prompt\" : \"string\",\n            \"hastags\" : \"string\"\n\t\t}\n}\n"
+            }
+          ]
+        }
+      },
+      "id": "25ecc016-1451-4040-804f-7050dfed8f67",
+      "name": "Social Media Manager",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "position": [
+        660,
+        600
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "1suPQNdgoAzrklleN4ok2mZnsq0GK1dt59oIHv8JWX5U",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1suPQNdgoAzrklleN4ok2mZnsq0GK1dt59oIHv8JWX5U/edit?usp=drivesdk",
+          "cachedResultName": "Social Media post"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gid=0",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1suPQNdgoAzrklleN4ok2mZnsq0GK1dt59oIHv8JWX5U/edit#gid=0",
+          "cachedResultName": "Foglio1"
+        },
+        "columns": {
+          "value": {
+            "LINKEDIN": "x",
+            "row_number": "={{ $('Google Sheets').item.json.row_number }}"
+          },
+          "schema": [
+            {
+              "id": "POST ID",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "POST ID",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TESTO",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "TESTO",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TWITTER",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "TWITTER",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "FACEBOOK",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "FACEBOOK",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "INSTAGRAM",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "INSTAGRAM",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "LINKEDIN",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "LINKEDIN",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "readOnly": true,
+              "required": false,
+              "displayName": "row_number",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            }
+          ],
+          "mappingMode": "defineBelow",
+          "matchingColumns": [
+            "row_number"
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "a7d26a35-041c-4b71-8aec-11aac61a1117",
+      "name": "Linkedin OK",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [
+        1960,
+        40
+      ],
+      "typeVersion": 4.5,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1y4eF6U1hAyod4NhUuFkFRUuRh17UhqATYjX32RdVqy8",
+          "mode": "list",
+          "cachedResultName": "Social Media post",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1y4eF6U1hAyod4NhUuFkFRUuRh17UhqATYjX32RdVqy8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Post",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1y4eF6U1hAyod4NhUuFkFRUuRh17UhqATYjX32RdVqy8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "POST ID": "={{ $('Google Sheets').item.json['POST ID'] }}"
+          },
+          "matchingColumns": [
+            "POST ID"
+          ],
+          "schema": [
+            {
+              "id": "POST ID",
+              "displayName": "POST ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "TESTO",
+              "displayName": "TESTO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "TWITTER",
+              "displayName": "TWITTER",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "FACEBOOK 1",
+              "displayName": "FACEBOOK 1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "FACEBOOK 2",
+              "displayName": "FACEBOOK 2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "FACEBOOK 3",
+              "displayName": "FACEBOOK 3",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "63d2016a-357f-46f0-8c8e-e28f73c7a86d",
+      "name": "Facebook Ok",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [
+        2260,
+        340
+      ],
+      "typeVersion": 4.5,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "1suPQNdgoAzrklleN4ok2mZnsq0GK1dt59oIHv8JWX5U",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1suPQNdgoAzrklleN4ok2mZnsq0GK1dt59oIHv8JWX5U/edit?usp=drivesdk",
+          "cachedResultName": "Social Media post"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gid=0",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1suPQNdgoAzrklleN4ok2mZnsq0GK1dt59oIHv8JWX5U/edit#gid=0",
+          "cachedResultName": "Foglio1"
+        },
+        "columns": {
+          "value": {
+            "INSTAGRAM": "x",
+            "row_number": "={{ $('Google Sheets').item.json.row_number }}"
+          },
+          "schema": [
+            {
+              "id": "POST ID",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "POST ID",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TESTO",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "TESTO",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TWITTER",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "TWITTER",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "FACEBOOK",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "FACEBOOK",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "INSTAGRAM",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "INSTAGRAM",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "LINKEDIN",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "LINKEDIN",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "readOnly": true,
+              "required": false,
+              "displayName": "row_number",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            }
+          ],
+          "mappingMode": "defineBelow",
+          "matchingColumns": [
+            "row_number"
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "19d12059-4a78-419e-8889-206b3aaa82d2",
+      "name": "Instagram OK",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [
+        540,
+        1100
+      ],
+      "typeVersion": 4.5,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "postId": "={{ $json['POST ID'] }}",
+        "options": {}
+      },
+      "id": "8fb2de54-aa27-43dd-aca8-f2d86106e14b",
+      "name": "Get Post",
+      "type": "n8n-nodes-base.wordpress",
+      "position": [
+        440,
+        600
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "wordpressApi": {
+          "id": "4dqp1RB993rj7nwx",
+          "name": "Wordpress tinthanhphat.com.vn"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "The SMM Chain analyses the content of the post and creates the most suitable caption based on the destination social network.\n",
+        "height": 260,
+        "width": 360
+      },
+      "id": "40b00cba-2469-4135-877c-e52f1b8a7aee",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        600,
+        520
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.output.twitter }}",
+        "additionalFields": {}
+      },
+      "id": "5c13e344-b2bc-4e4d-b4b9-baace6c599ed",
+      "name": "Publish on X",
+      "type": "n8n-nodes-base.twitter",
+      "position": [
+        1700,
+        -200
+      ],
+      "typeVersion": 2,
+      "credentials": {
+        "twitterOAuth2Api": {
+          "id": "Z6yRVdjiagaRDpVD",
+          "name": "X account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "1suPQNdgoAzrklleN4ok2mZnsq0GK1dt59oIHv8JWX5U",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1suPQNdgoAzrklleN4ok2mZnsq0GK1dt59oIHv8JWX5U/edit?usp=drivesdk",
+          "cachedResultName": "Social Media post"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gid=0",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1suPQNdgoAzrklleN4ok2mZnsq0GK1dt59oIHv8JWX5U/edit#gid=0",
+          "cachedResultName": "Foglio1"
+        },
+        "columns": {
+          "value": {
+            "TWITTER": "x",
+            "row_number": "={{ $('Google Sheets').item.json.row_number }}"
+          },
+          "schema": [
+            {
+              "id": "POST ID",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "POST ID",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TESTO",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "TESTO",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TWITTER",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "TWITTER",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "FACEBOOK",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "FACEBOOK",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "INSTAGRAM",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "INSTAGRAM",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "LINKEDIN",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "LINKEDIN",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "readOnly": true,
+              "required": false,
+              "displayName": "row_number",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            }
+          ],
+          "mappingMode": "defineBelow",
+          "matchingColumns": [
+            "row_number"
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "55b026f3-a012-4930-8aa8-6f2d82dd4175",
+      "name": "X OK",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [
+        1960,
+        -200
+      ],
+      "typeVersion": 4.5,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "postAs": "organization",
+        "organization": "xxxxxxx",
+        "text": "={{ $('Social Media Manager').item.json.output.linkedin }}",
+        "shareMediaCategory": "IMAGE",
+        "additionalFields": {}
+      },
+      "id": "0266b81d-38de-4963-924b-200f7fe58d2e",
+      "name": "Publish on LinkedIn",
+      "type": "n8n-nodes-base.linkedIn",
+      "position": [
+        1700,
+        40
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "wV4l2gEBoYkHRVSi",
+          "name": "LinkedIn account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "v20.0",
+        "node": "me",
+        "edge": "photos",
+        "sendBinaryData": true,
+        "binaryPropertyName": "data",
+        "options": {
+          "queryParameters": {
+            "parameter": [
+              {
+                "name": "message",
+                "value": "={{ $('Social Media Manager').item.json.output.Facebook.title.toUpperCase() }}\n\n{{ $('Social Media Manager').item.json.output.Facebook.content }}\n\nLink bài viết: {{ $('Get Post').item.json.link }}\n"
+              }
+            ]
+          }
+        }
+      },
+      "id": "3ecaeaf6-4d4b-412c-8d2f-f6a9a6c63d24",
+      "name": "Publish on Facebook",
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "position": [
+        2080,
+        340
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "2AHe7AN7oVe53Pxy",
+          "name": "Facebook Graph account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v20.0/433770813646235/media",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "facebookGraphApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "image_url",
+              "value": "={{ $json.url }}"
+            },
+            {
+              "name": "caption",
+              "value": "={{ $('Social Media Manager').item.json.output.instagram }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "bd65ed08-fa59-4d55-aca2-0dcda0bc1d46",
+      "name": "Publish on Instagram",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        280,
+        1100
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "2AHe7AN7oVe53Pxy",
+          "name": "Facebook Graph account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-pro-exp-02-05",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1080,
+        1020
+      ],
+      "id": "49f50677-6281-41a3-8616-d561ecb51b4f",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Use Flux Image Tool to create image follow the image prompt. \nImage prompt: {{ $json.output.Facebook.prompt }}\nOutput in JSON format require: \n{\n\"url\" : \"string\"\n}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are a useful assistant. You can use the tool to complete the job.\nWanted Output in JSON format require:\n{\n\"url\" : \"string\"\n}\nUnwanted format:: \n```\njson{\"url\" : \"string\"}\n```\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        1560,
+        340
+      ],
+      "id": "79e89a5d-2f78-4c7b-953b-ec6a42a9295c",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "name": "Flux_Image_Tool",
+        "description": "Call this tool to create images at the request of the user.",
+        "workflowId": {
+          "__rl": true,
+          "value": "WvZw9PSjypSWSK6i",
+          "mode": "list",
+          "cachedResultName": "Flux AI Image Generator"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        1560,
+        580
+      ],
+      "id": "33ba1e26-e93c-43d3-9f4d-87fcc78b2ad3",
+      "name": "Call n8n Workflow Tool"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\"url\" : \"string\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1780,
+        580
+      ],
+      "id": "2ca2ab3a-5994-4812-bf09-ccc2f4690ada",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.output.url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1880,
+        340
+      ],
+      "id": "350dea69-9bcd-458c-a9b1-e5ae5de9bab1",
+      "name": "Get_anh"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "hour": 8
+            },
+            {
+              "hour": 13
+            },
+            {
+              "hour": 19
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1y4eF6U1hAyod4NhUuFkFRUuRh17UhqATYjX32RdVqy8",
+          "mode": "list",
+          "cachedResultName": "Social Media post",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1y4eF6U1hAyod4NhUuFkFRUuRh17UhqATYjX32RdVqy8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Post",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1y4eF6U1hAyod4NhUuFkFRUuRh17UhqATYjX32RdVqy8/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -180,
+        880
+      ],
+      "id": "94fec711-145d-4bb0-a972-0417caedbb4f",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "eyjnkmY3Z9DM6ykH",
+          "name": "Google Sheets Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            },
+            {
+              "triggerAtHour": 12
+            },
+            {
+              "triggerAtHour": 19
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -180,
+        660
+      ],
+      "id": "3c10e20a-03b9-4e8f-9988-5d330fd0d68c",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Google Sheets').item.json['FACEBOOK 1'] }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "e5ee63f3-8220-48ce-a5f6-5ae8ce21e25b"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Face 1 trống"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "fe26c263-b81d-42d7-a7df-05550064a6ff",
+                    "leftValue": "={{ $('Google Sheets').item.json['FACEBOOK 2'] }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Face 2 trống"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ccec27e8-05a1-4be1-abd9-fbc1e80b7180",
+                    "leftValue": "={{ $('Google Sheets').item.json['FACEBOOK 3'] }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Face 3 trống"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1120,
+        600
+      ],
+      "id": "b9dac0b1-a0d4-48f5-a4bd-d7ec96ef2bdc",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "content": "Get the Post ID of the Wordpress article on which you want to generate the caption for social media",
+        "height": 260,
+        "width": 420
+      },
+      "id": "a079874e-a35c-4980-8b00-2d5a37ee6658",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        160,
+        520
+      ],
+      "typeVersion": 1
+    }
+  ],
+  "pinData": {
+    "When clicking ‘Test workflow’": [
+      {
+        "json": {}
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-20T02:32:28.000Z",
+  "versionId": "bc409241-9c22-4fec-a50e-389564d3f4eb"
+}
