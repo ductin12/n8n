@@ -1,0 +1,245 @@
+{
+  "active": false,
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Telegram2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram2": {
+      "main": [
+        [
+          {
+            "node": "add response field",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-19T16:04:33.016Z",
+  "id": "UB5eZOe9ZyDSuIt9",
+  "meta": null,
+  "name": "Text to speech tool",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://ivcqahposk.execute-api.eu-central-1.amazonaws.com/prod/audio",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "accept-language",
+              "value": "en-US,en;q=0.9"
+            },
+            {
+              "name": "cache-control",
+              "value": "no-cache"
+            },
+            {
+              "name": "origin",
+              "value": "https://vog.voicebooking.com"
+            },
+            {
+              "name": "pragma",
+              "value": "no-cache"
+            },
+            {
+              "name": "priority",
+              "value": "u=1, i"
+            },
+            {
+              "name": "sec-ch-ua",
+              "value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+            },
+            {
+              "name": "sec-ch-ua-mobile",
+              "value": "?0"
+            },
+            {
+              "name": "sec-ch-ua-platform",
+              "value": "\"macOS\""
+            },
+            {
+              "name": "sec-fetch-dest",
+              "value": "empty"
+            },
+            {
+              "name": "sec-fetch-mode",
+              "value": "cors"
+            },
+            {
+              "name": "sec-fetch-site",
+              "value": "cross-site"
+            },
+            {
+              "name": "user-agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json;charset=UTF-8",
+        "body": "={\"input\":{\"ssml\":\"<speak>{{ JSON.stringify($('Code').item.json.query).slice(1,-1) }}</speak>\"},\n\"voice\":{\"languageCode\":\"vi-VN\",\"name\":\"vi-VN-Neural2-A\",\"ssmlGender\":\"Linh (F)\"}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        500,
+        -120
+      ],
+      "id": "dad7de3f-32ea-4c19-b904-36946b8c441f",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.audioURL }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        -120
+      ],
+      "id": "b13c62d5-956e-484e-99e0-5e55f53d0f24",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "operation": "sendAudio",
+        "chatId": "777643301",
+        "binaryData": true,
+        "additionalFields": {
+          "fileName": "={{ $('Execute Workflow Trigger').item.json.chat_id }}_{{$now.format('dd-mm-yy')}}_{{$now.format('hh-mm-ss')}}.wav"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        980,
+        -120
+      ],
+      "id": "12877cac-f972-478a-b7ce-69caead10a06",
+      "name": "Telegram2",
+      "webhookId": "20d87d00-8db3-45c0-afcc-ce855fbd34b3",
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        -120
+      ],
+      "id": "5322fa9c-4d5b-418a-897a-e57e7d6a4335",
+      "name": "Execute Workflow Trigger"
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "response",
+              "stringValue": "Success"
+            }
+          ]
+        },
+        "include": "selected",
+        "includeFields": "data",
+        "options": {
+          "includeBinary": false
+        }
+      },
+      "id": "6a2f2aa0-c7d5-4443-b994-823765cd15c4",
+      "name": "add response field",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1220,
+        -120
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "jsCode": "for (const item of $input.all()) {\n  try {\n    // Chuyển đổi ký tự đặc biệt trong chuỗi để đảm bảo đúng định dạng JSON\n    const formattedQuery = item.json.query\n      .replace(/\\n/g, \"\")\n      .replace(/&/g, \"&amp;\");\n\n    // Cập nhật lại đối tượng với query đã được định dạng\n    item.json.query = formattedQuery;\n  } catch (error) {\n    console.error(\"Error processing item:\", item, error);\n  }\n}\n\n// Trả về danh sách đã xử lý\nreturn $input.all();\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        260,
+        -120
+      ],
+      "id": "e9e243d6-1d43-432a-ab26-72fb151c5662",
+      "name": "Code"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-17T09:30:35.000Z",
+  "versionId": "b61a69a3-2be5-431e-bc05-d088e7b2cdf2"
+}
