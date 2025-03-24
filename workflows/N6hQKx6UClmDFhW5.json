@@ -1,0 +1,549 @@
+{
+  "active": false,
+  "connections": {
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nếu ảnh rỗng": {
+      "main": [
+        [
+          {
+            "node": "Tải file video về",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tải file ảnh về",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tải file video về": {
+      "main": [
+        [
+          {
+            "node": "Facebook Post Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tải file ảnh về": {
+      "main": [
+        [
+          {
+            "node": "Facebook Post Ảnh",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Nếu ảnh rỗng",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Post Video": {
+      "main": [
+        [
+          {
+            "node": "Facebook Graph API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Post Ảnh": {
+      "main": [
+        [
+          {
+            "node": "Facebook Graph API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Graph API": {
+      "main": [
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        []
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        []
+      ]
+    },
+    "Google Vertex Chat Model": {
+      "ai_languageModel": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-01-10T15:36:41.796Z",
+  "id": "N6hQKx6UClmDFhW5",
+  "meta": null,
+  "name": "Post Fanpage Automation Schedule",
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1SL0OfhoCgsNtJsCJt_wt2r2HNT679lLdVoo_-8XVWxo",
+          "mode": "list",
+          "cachedResultName": "Content Facebook Auto",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1SL0OfhoCgsNtJsCJt_wt2r2HNT679lLdVoo_-8XVWxo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Facebook",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1SL0OfhoCgsNtJsCJt_wt2r2HNT679lLdVoo_-8XVWxo/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "STT",
+              "lookupValue": "={{ $('Code').first().json.current }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -800,
+        120
+      ],
+      "id": "d037d406-b34f-4ae4-97a2-79915a4d56f3",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aQ4Jdhgpq3rOohx",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1380,
+        120
+      ],
+      "id": "d3ae3e4d-7223-40f5-b014-49d0d63e2fd2",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6b73acbd-9459-4429-94da-5d995af90703",
+              "leftValue": "={{ $('Google Sheets').item.json.Image }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -220,
+        120
+      ],
+      "id": "f753940a-2227-4a29-adac-1af23e38076e",
+      "name": "Nếu ảnh rỗng"
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "v20.0",
+        "node": "me",
+        "edge": "videos",
+        "sendBinaryData": true,
+        "binaryPropertyName": "data",
+        "options": {
+          "queryParameters": {
+            "parameter": [
+              {
+                "name": "title",
+                "value": "={{ $('Google Sheets').item.json['Title'] }}"
+              },
+              {
+                "name": "description",
+                "value": "={{ $('Google Sheets').item.json['Content'] }}\n-----\n{{ $('AI Agent').item.json.output }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        260,
+        0
+      ],
+      "id": "402acb75-9e08-4556-b1ed-4a347ea9562f",
+      "name": "Facebook Post Video",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "2AHe7AN7oVe53Pxy",
+          "name": "Facebook Graph account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Google Sheets').item.json.Video }}",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "18366fcc-187f-4440-a34e-ff457befc655",
+      "name": "Tải file video về",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "FAKXKk8dfHvUPexs",
+          "name": "Google Drive hanawebvn@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Google Sheets').item.json.Image }}",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        0,
+        240
+      ],
+      "id": "689d4b51-2968-4d78-936b-235f07f130b4",
+      "name": "Tải file ảnh về",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "FAKXKk8dfHvUPexs",
+          "name": "Google Drive hanawebvn@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Bạn là một chuyên gia, hãy bình luận về nội dung trong đoạn sau:\n{{ $json.Title }}\n{{ $json.Content }}\n\nBình luận tích cực và gây chú ý để người dùng bình luận vào :D. Bỏ qua các câu giới thiệu, kết luận, tóm tắt,...",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -560,
+        120
+      ],
+      "id": "288f52b6-01f0-41b6-9f23-0111b55c45af",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "v20.0",
+        "node": "me",
+        "edge": "photos",
+        "sendBinaryData": true,
+        "binaryPropertyName": "data",
+        "options": {
+          "queryParameters": {
+            "parameter": [
+              {
+                "name": "message",
+                "value": "={{ $('Google Sheets').item.json.Title }}\n{{ $('Google Sheets').item.json.Content }}\n\n-------\n{{ $('AI Agent').item.json.output }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        260,
+        240
+      ],
+      "id": "88182136-4300-4005-a8a2-bc36c9be7fbf",
+      "name": "Facebook Post Ảnh",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "2AHe7AN7oVe53Pxy",
+          "name": "Facebook Graph account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\n\n// Initialize lastStatus if it doesn't exist\nif (typeof staticData.lastStatus === 'undefined') {\n    staticData.lastStatus = 0;\n}\n\n// Get new Status from Table\nconst newStatus = staticData.lastStatus + 1;\n\nif (newStatus === 30) {\n    staticData.lastStatus = 0;\n} else {\n    staticData.lastStatus = newStatus;\n}\n\nreturn [{\n    json: {\n        current: newStatus,\n        id : staticData\n    }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1120,
+        120
+      ],
+      "id": "8d9dbf63-0a49-435e-82ee-c54742a008fa",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-exp",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        360
+      ],
+      "id": "541c68d9-363c-4160-8af0-64e3aba63be3",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "-4693164697",
+        "text": "=Có bài viết mới trên fanpage. Click để xem: https://www.facebook.com/{{ $json.id }}/posts/{{ $('Facebook Post Ảnh').item.json.id }}/",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        860,
+        140
+      ],
+      "id": "290e5baa-7487-428c-ba14-427ebd208d9a",
+      "name": "Telegram1",
+      "webhookId": "469ccb69-419a-4a87-9e9f-26cf6923e9ce",
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v20.0",
+        "node": "me",
+        "options": {
+          "fields": {
+            "field": [
+              {
+                "name": "id"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        580,
+        140
+      ],
+      "id": "c3c9caec-7ca9-475f-a848-167bb3faf2bd",
+      "name": "Facebook Graph API",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "2AHe7AN7oVe53Pxy",
+          "name": "Facebook Graph account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "meta-llama/llama-3.2-90b-vision-instruct:free",
+        "options": {
+          "responseFormat": "json_object"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.1,
+      "position": [
+        -760,
+        460
+      ],
+      "id": "ea8a05f6-e92b-4bb9-a4cf-db939a2fe485",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "mE4tY6rLFI7CyMqz",
+          "name": "OpenrouterAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"title\" : \"Blog title\",\n  \"content\" : \"Blog content\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        -360,
+        380
+      ],
+      "id": "3c8ec1e3-5e96-4eb3-9106-242bb2f7f8f6",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "projectId": {
+          "__rl": true,
+          "value": "galvanic-portal-363303",
+          "mode": "list",
+          "cachedResultName": "My First Project"
+        },
+        "modelName": "gemini-2.0-flash-exp",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleVertex",
+      "typeVersion": 1,
+      "position": [
+        -960,
+        400
+      ],
+      "id": "0aa1fd75-43d5-4fe4-9ab7-55eeaaa31f68",
+      "name": "Google Vertex Chat Model",
+      "credentials": {
+        "googleApi": {
+          "id": "7nR2G5CiRt4O8nM3",
+          "name": "Google Service Account account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    },
+    "global": {
+      "lastStatus": 1
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-02-28T10:18:17.000Z",
+  "versionId": "82d490ad-460e-4387-bd8c-17da39aef216"
+}
