@@ -1,0 +1,767 @@
+{
+  "active": true,
+  "connections": {
+    "Organize Email Data - Morning": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Search_Gmail_Prompt",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        []
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Search_Gmail_Prompt",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Organize Email Data - Morning",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "add response field",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "add response field",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Emails": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "add response field1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search_Gmail_Prompt": {
+      "main": [
+        [
+          {
+            "node": "Fetch Emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Search_Gmail_Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Query": {
+      "main": [
+        [
+          {
+            "node": "Search_Gmail_Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-16T14:34:37.177Z",
+  "id": "MvyoaR66tQ74td9o",
+  "meta": null,
+  "name": "Check_email_tool",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "Fetches all emails received in the past 24 hours from the email address",
+        "height": 313.40934714314244,
+        "width": 213.36643278764896
+      },
+      "id": "c8af47d4-d0df-4980-97d1-e2302b106d43",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -820,
+        60
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "include": "specifiedFields",
+        "fieldsToInclude": "id, from, to, date, text",
+        "options": {}
+      },
+      "id": "e567e090-579b-481c-8742-d0eaa646d624",
+      "name": "Organize Email Data - Morning",
+      "type": "n8n-nodes-base.aggregate",
+      "position": [
+        -280,
+        160
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "Organizes the fetched email data, extracting fields like sender, receiver, CC, and a preview snippet.",
+        "height": 300,
+        "width": 227
+      },
+      "id": "0b5be025-b258-48a3-a40c-76b4e1e8cc80",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -320,
+        40
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-exp-1206",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        60,
+        420
+      ],
+      "id": "bf9a33bd-5acb-4d9f-89ec-bc377199e5e2",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Organize Email Data - Morning').first().json.data.toJsonString() }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "type": "HumanMessagePromptTemplate",
+              "message": "=Go through this email summary and identify all key details mentioned, any specific issues to look at, and action items. \nAlways write output in Vietnamese.\nInput Data:\n{{ $('Organize Email Data - Morning').first().json.data.toJsonString() }}\nUse JSON format below to write output:\n{\n  \"Information\" : [\n    \"user's request\",\n    \"datetime\"\n  ],\n  \"summary_of_emails\": [\n    \"Point 1\",\n    \"Point 2\",\n    \"Point 3\"\n  ],\n  \"actions\": [\n    {\n      \"name\": \"Name 1\",\n      \"action\": \"Action 1\",\n      \"from_address\" : \"email 1\",\n      \"link\" : \"link 1\"\n    },\n    {\n      \"name\": \"Name 1\",\n      \"action\": \"Action 2\",\n     \"from_address\" : \"email 2\",\n      \"link\" : \"link 2\"\n    },\n    {\n      \"name\": \"Name 2\",\n      \"action\": \"Action 3\",\n     \"from_address\" : \"email 3\",\n      \"link\" : \"link 3\"\n    }\n  ]\n}\n"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        60,
+        160
+      ],
+      "id": "18d26a55-d37f-45f0-b1d5-d7da2713e587",
+      "name": "Basic LLM Chain",
+      "retryOnFail": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"information\" : [\n    \"request\",\n    \"sender\",\n    \"datetime\"\n  ],\n  \"summary_of_emails\": [\n    \"Point 1\", \n    \"Point 2\",\n    \"Point 3\"\n  ],\n  \"actions\": [\n    {\n      \"name\": \"Name 1\",\n      \"action\": \"Action 1\",\n      \"link\" : \"link 1\"\n    },\n    {\n      \"name\": \"Name 1\",\n      \"action\": \"Action 2\",\n      \"link\" : \"link 2\"\n    },\n    {\n      \"name\": \"Name 2\",\n      \"action\": \"Action 3\",\n      \"link\" : \"link 3\"\n    }\n  ]\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        440
+      ],
+      "id": "0d3323fc-d1a1-46ec-a358-d93132031895",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "chatId": "777643301",
+        "text": "=Xin chào Sếp Tin, theo yêu cầu của Sếp em xin {{ $json.output.Information[0] }} \nThời gian: {{ $json.output.Information[1] }}\n\n{{ $json.output.summary_of_emails.map(email => `\\n- ${email}`).join('') }}\n\nCác hành động Sếp cần quan tâm:\n{{ $json.output.actions.map(action => `\\n- ${action.name}: ${action.action}\\n -Link tham khảo: ${action.link}\\n- Email phản hồi: ${action?.from_address || \"\"}`).join('') }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "5fb89879-19c1-4014-b73a-9b822a825f0a",
+      "name": "Telegram1",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        1760,
+        0
+      ],
+      "typeVersion": 1.1,
+      "webhookId": "96a75bb0-a152-487b-9adf-800091f22911",
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "fail",
+              "stringValue": "=Không tìm thấy email theo yêu cầu hoặc quá trình tóm tắt gặp lỗi. "
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "60f7ba3e-27f1-4bed-a35e-959130c40e5a",
+      "name": "add response field",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1220,
+        400
+      ],
+      "typeVersion": 3.2,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-thinking-exp-01-21",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -1160,
+        400
+      ],
+      "id": "e6fd6b84-5f19-4e11-84ee-72a8661280bf",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1560,
+        420
+      ],
+      "id": "d92873a1-3b4e-4b1c-a365-cb5cb92d7f95",
+      "name": "When chat message received",
+      "webhookId": "19a47a95-2d51-43df-92a2-f8268060be6c",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"search_query\": \"string\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        -980,
+        400
+      ],
+      "id": "8ecb7d55-8bca-4135-ad6c-5669ee81b7af",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "30809e06-0911-45db-935b-57b063abf75a",
+              "leftValue": "={{ $('Fetch Emails').item.json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -540,
+        180
+      ],
+      "id": "70850878-0673-4a69-a477-0085ae9cc7e5",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "db2d3349-c888-4ec7-b471-44d442b61a11",
+              "leftValue": "={{ $('Basic LLM Chain').item.json.output }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        680,
+        180
+      ],
+      "id": "b465fabb-2afb-4c9c-8830-f0dbf453c957",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 30,
+        "simple": false,
+        "filters": {
+          "q": "={{ $('Search_Gmail_Prompt').first().json.output }}"
+        },
+        "options": {}
+      },
+      "id": "aa40e7f3-3506-4724-974a-a0003359618e",
+      "name": "Fetch Emails",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        -760,
+        180
+      ],
+      "webhookId": "20f1d11d-8a69-43f3-9323-33eaf1b3b600",
+      "typeVersion": 2.1,
+      "alwaysOutputData": true,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "25tMkfYULzN1Pay4",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a9f53e32-81fb-422d-b5c7-a1bb2bcb0a0e",
+              "leftValue": "={{ $('Schedule Trigger') }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        980,
+        60
+      ],
+      "id": "e3912d93-67fe-4a75-bc86-94c5fc0ba2dc",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "response",
+              "stringValue": "=Tóm tắt Email:{{ $('Basic LLM Chain').first().json.output.summary_of_emails.map(email => `\\n- ${email}`).join('') }}\nHành động:{{ $('Basic LLM Chain').first().json.output.actions.map(action => `\\n- ${action.name}: ${action.action}`).join('') }}\n         "
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "643473de-04a6-4f92-ba58-218e902a6900",
+      "name": "add response field1",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1220,
+        180
+      ],
+      "typeVersion": 3.2,
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cf8d799f-2d20-458f-bd0e-ddc905a55760",
+              "leftValue": "={{ $('Basic LLM Chain').first().json.output }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        420,
+        160
+      ],
+      "id": "9420b5d1-2f55-447f-b726-e699b3264dea",
+      "name": "If3",
+      "retryOnFail": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json?.query || $('Query').item.json.query }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "type": "HumanMessagePromptTemplate",
+              "message": "=Today is: {{ $today.toISO() }}.\n\nYou are a helpful assistant. Based on Google's document about Refine searches in Gmail, write a Gmail search query to search email following the conditions of the user. \nRefine search rules in Gmail: \n\nCreate a structured list of search operators used in email filtering, including their descriptions and example usages. The format should be as follows:\n\nOperator: The specific search operator.\n\nDescription: A concise explanation of what the operator does.\n\nExamples: One or more example queries demonstrating the use of the operator.\n\nThe search operators to include are:\n\nfrom: - Find emails sent from a specific person. Example: from:me, from:amy@example.com\n\nto: - Find emails sent to a specific person. Example: to:me, to:john@example.com\n\ncc: / bcc: - Find emails that include specific people in the \"Cc\" or \"Bcc\" fields. Example: cc:john@example.com, bcc:david@example.com\n\nsubject: - Find emails by a word or phrase in the subject line. Example: subject:dinner, subject:anniversary party\n\nafter: / before: / older: / newer: - Search for emails received during a certain time period. Example: after:2004/04/16, before:04/18/2004\n\nolder_than: / newer_than: - Search for emails older or newer than a given time period. Example: older_than:1y, newer_than:2d\n\nOR / { } - Find emails matching one or more criteria. Example: from:amy OR from:david, {from:amy from:david}\n\nAND - Find emails that match all specified criteria. Example: from:amy AND to:david\n\n- - Exclude specific emails. Example: dinner -movie\n\nAROUND - Find emails with words near each other within a specific word range. Example: holiday AROUND 10 vacation, \"secret AROUND 25 birthday\"\n\nlabel: - Find emails under a specific label. Example: label:friends, label:important\n\ncategory: - Search emails under a specific inbox category. Example: category:primary, category:social, category:promotions\n\nhas: - Find emails that contain specific elements such as attachments, inline images, YouTube videos, Drive files, Google Docs, Sheets, or Slides. Example: has:attachment, has:youtube, has:drive\n\nlist: - Find emails from a mailing list. Example: list:info@example.com\n\nfilename: - Find emails with specific attachments by name or file type. Example: filename:pdf, filename:homework.txt\n\n\" \" - Search for an exact phrase. Example: \"dinner and movie tonight\"\n\n( ) - Group multiple search terms together. Example: subject:(dinner movie)\n\nin:anywhere - Find emails across all folders, including Spam and Trash. Example: in:anywhere movie\n\nin:snoozed - Find snoozed emails. Example: in:snoozed birthday reminder\n\nis:muted - Find muted emails. Example: is:muted subject:team celebration\n\nis: - Search emails by status (important, starred, unread, read). Example: is:important, is:starred, is:unread, is:read\n\nhas:yellow-star, has:orange-star, etc. - Search for emails with specific star types. Example: has:yellow-star OR has:purple-question\n\ndeliveredto: - Find emails delivered to a specific email address. Example: deliveredto:username@example.com\n\nsize: / larger: / smaller: - Search emails by size. Example: size:1000000, larger:10M\n\n+ - Find emails that match a word exactly. Example: +unicorn\n\nrfc822msgid: - Find emails with a specific message-ID header. Example: rfc822msgid:200503292@example.com\n\nhas:userlabels / has:nouserlabels - Find emails that have or do not have labels.\n\nOutput sample 1: \nfrom:(*@*) subject:Trump OR in:anywhere Trump after:2025/01/13 before:2025/01/21\n\nOutput sample 2: \nis:important after:2025/01/20\n\nUser's condition to make search query: {{ $json?.query || $('Query').item.json.query }}\n\nIf the user does not specify the time, the default will be to check within the last 2 days."
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        -1160,
+        180
+      ],
+      "id": "9f911e93-2895-4cdc-b285-850d43c5e6ae",
+      "name": "Search_Gmail_Prompt",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 7
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1580,
+        -60
+      ],
+      "id": "ac069b8e-7fb6-4282-857d-e1562e50fd21",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2fada903-633b-4a83-b9de-65fca2e22ed0",
+              "name": "query",
+              "value": "Tóm tắt tất cả email đã gửi cho tôi trong ngày hôm qua.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1380,
+        -60
+      ],
+      "id": "e7b21e83-0fd3-4ce1-9c69-fa96db7edcd5",
+      "name": "Query"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1560,
+        180
+      ],
+      "id": "f50ab7f7-091e-429a-93c9-928481c57329",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "jsCode": "function splitText(text, limit) {\n  const parts = [];\n  let currentIndex = 0;\n\n  while (currentIndex < text.length) {\n    let splitPoint = Math.min(currentIndex + limit, text.length);\n    \n    // Tìm dấu câu gần nhất (., !, ?) trong cửa sổ\n    let lastSentenceEndSplitPoint = -1;\n    const sentenceEndings = ['.', '!', '?'];\n    for (let i = splitPoint - 1; i >= currentIndex; i--) {\n      if (sentenceEndings.includes(text[i])) {\n        if (i + 1 < text.length && text[i + 1] === ' ') {\n          lastSentenceEndSplitPoint = i + 2; // Cắt sau dấu câu và khoảng trắng\n        } else {\n          lastSentenceEndSplitPoint = i + 1; // Cắt ngay sau dấu câu\n        }\n        break;\n      }\n    }\n\n    // Tìm khoảng trắng gần nhất trong cửa sổ\n    let lastSpaceSplitPoint = -1;\n    for (let i = splitPoint - 1; i >= currentIndex; i--) {\n      if (text[i] === ' ') {\n        lastSpaceSplitPoint = i + 1; // Cắt sau khoảng trắng\n        break;\n      }\n    }\n\n    // Ưu tiên cắt tại dấu câu, nếu không có thì cắt tại khoảng trắng\n    if (lastSentenceEndSplitPoint > 0 && lastSentenceEndSplitPoint <= splitPoint) {\n      splitPoint = lastSentenceEndSplitPoint;\n    } else if (lastSpaceSplitPoint > 0 && lastSpaceSplitPoint <= splitPoint) {\n      splitPoint = lastSpaceSplitPoint;\n    }\n\n    // Thêm phần đã cắt vào mảng, loại bỏ khoảng trắng thừa\n    parts.push(text.substring(currentIndex, splitPoint).trim());\n\n    // Cập nhật vị trí bắt đầu cho phần tiếp theo\n    currentIndex = splitPoint;\n  }\n\n  return parts;\n}\n\n// Tạo mảng các item mới từ input\nconst newItems = [];\n\nfor (const item of $input.all()) {\n  const output = item.json.output || '';\n  const parts = splitText(output, 4096); // Giới hạn 4096 ký tự cho Telegram\n\n  // Tạo một item riêng cho mỗi phần\n  parts.forEach(part => {\n    newItems.push({\n      json: {\n        message: part\n      }\n    });\n  });\n}\n\n// Trả về mảng các item mới\nreturn newItems;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1220,
+        -20
+      ],
+      "id": "cf8c14f7-e907-4493-8830-fd86991f0a56",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1480,
+        -20
+      ],
+      "id": "2b2c348f-44e1-47e0-b7e1-317ecb602ec2",
+      "name": "Loop Over Items"
+    }
+  ],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "query": "{\"date\": \"yesterday\"}",
+          "chat_id": "777643301"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Daily 7AM Trigger": {
+      "recurrenceRules": []
+    },
+    "node:Schedule Trigger": {
+      "recurrenceRules": [
+        20
+      ]
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-03T15:12:10.000Z",
+  "versionId": "a292544d-8128-4d38-96bb-e838514ff604"
+}
