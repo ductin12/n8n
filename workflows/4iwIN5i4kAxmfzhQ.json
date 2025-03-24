@@ -1,0 +1,412 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send back an image": {
+      "main": [
+        [
+          {
+            "node": "add response field",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Get video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Lưu Video",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get video": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lưu Video": {
+      "main": [
+        [
+          {
+            "node": "Send back an image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-15T04:47:52.400Z",
+  "id": "4iwIN5i4kAxmfzhQ",
+  "meta": null,
+  "name": "Kling AI make video tool",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "5764b47a-17f2-4763-aee0-3c5457a11beb",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -260,
+        20
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "operation": "sendVideo",
+        "chatId": "={{ $('Execute Workflow Trigger').first().json.chat_id }}",
+        "binaryData": true,
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "77896e95-ecf9-4716-ae05-318ad7d4cb34",
+      "name": "Send back an image",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        900,
+        0
+      ],
+      "typeVersion": 1.1,
+      "credentials": {
+        "telegramApi": {
+          "id": "vJqray7vnh0AFZMR",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "response",
+              "stringValue": "Success"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e8d969fd-1548-490d-9ae8-4928c34935eb",
+      "name": "add response field",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1080,
+        0
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "content": "## Generate an image with Kling AI and send it via Telegram",
+        "height": 287,
+        "width": 1912
+      },
+      "id": "f1781c1c-e2be-445f-af5f-5610a48bf9fa",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -400,
+        -40
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        180,
+        20
+      ],
+      "id": "00ef08dd-7140-4d91-8213-c57cc77bd560",
+      "name": "Wait",
+      "webhookId": "97ba6afd-6396-4ea0-9ef7-9b22ebd4768b",
+      "retryOnFail": true,
+      "maxTries": 4
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "44cdab25-a3c6-478e-9450-a9605e138cf8",
+              "leftValue": "={{ $json.data.works[0].resource.resource }}",
+              "rightValue": "=200",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        520,
+        20
+      ],
+      "id": "b9ac37eb-bbce-4152-b95d-4223a92e25ea",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://klingai.kuaishou.com/api/task/submit",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "zh"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Origin",
+              "value": "https://klingai.kuaishou.com"
+            },
+            {
+              "name": "Referer",
+              "value": "https://klingai.kuaishou.com/text-to-video/new"
+            },
+            {
+              "name": "Sec-Fetch-Dest",
+              "value": "empty"
+            },
+            {
+              "name": "Sec-Fetch-Mode",
+              "value": "cors"
+            },
+            {
+              "name": "Sec-Fetch-Site",
+              "value": "same-origin"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+            },
+            {
+              "name": "sec-ch-ua",
+              "value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+            },
+            {
+              "name": "sec-ch-ua-mobile",
+              "value": "?0"
+            },
+            {
+              "name": "sec-ch-ua-platform",
+              "value": "\"macOS\""
+            },
+            {
+              "name": "cookie",
+              "value": "weblogger_did=web_850799478D55E986;SL_G_WPT_TO=vi;SL_GWPT_Show_Hide_tmp=1;did=web_98de6823720658561760b98c684929f5c65d;userId=3617472809;notice-kling-1.6=true;operation-popup-dialogs=true;skip-background-questionnaire=true;dev-center-view-update-2025-01-07=true;kuaishou.ai.portal_st=ChVrdWFpc2hvdS5haS5wb3J0YWwuc3QSoAE5MtF-Q361zIeaehE-3_OR96khln4gtJWJI-krsJekmlfDXMqmibyFxxYjYzX0hsZzYFOC2RNJ5D-_JEWVpNIRDVOzNgL4PzfUJobvWmsZSW34xAmsL5iJ37YC8iWYBPqeeu9PFJt1vhRu7n91_gROM-ptNPfnCD1NIhcFQFl212KV63OVyx3o38qTurBLa6xon1HZO9HA2ipKK__osqAiGhLt3wU-QbOGsDDUiXLJMjvyX7EiIIgXKCmhYnjJyVaasVPumpg4AUfrxE2oAXm0QI5qMpKqKAUwAQ;kuaishou.ai.portal_ph=2be0baa13ad2ac71ed88cac774840aa9a4e9;SL_wptGlobTipTmp=1;"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json;charset=UTF-8",
+        "body": "={\"type\":\"m2v_txt2video\",\"arguments\":[{\"name\":\"prompt\",\"value\":\"{{ $('Execute Workflow Trigger').first().json.query }}\"},{\"name\":\"negative_prompt\",\"value\":\"\"},{\"name\":\"cfg\",\"value\":\"0.5\"},{\"name\":\"duration\",\"value\":\"5\"},{\"name\":\"imageCount\",\"value\":\"1\"},{\"name\":\"kling_version\",\"value\":\"1.5\"},{\"name\":\"aspect_ratio\",\"value\":\"16:9\"},{\"name\":\"camera_json\",\"value\":\"{\\\"type\\\":\\\"empty\\\",\\\"horizontal\\\":0,\\\"vertical\\\":0,\\\"zoom\\\":0,\\\"tilt\\\":0,\\\"pan\\\":0,\\\"roll\\\":0}\"},{\"name\":\"camera_control_enabled\",\"value\":\"false\"},{\"name\":\"biz\",\"value\":\"klingai\"}],\"inputs\":[]}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -60,
+        20
+      ],
+      "id": "3ba5eee1-5fc3-4a1a-bc89-7b1ba9ad7902",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "url": "https://klingai.kuaishou.com/api/task/status",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "value": "={{ $json.data.task.id }}"
+            },
+            {
+              "name": "pageSize",
+              "value": "40"
+            },
+            {
+              "name": "contentType",
+              "value": "image"
+            },
+            {
+              "name": "statusType"
+            },
+            {
+              "name": "favored",
+              "value": "false"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "zh"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Referer",
+              "value": "https://klingai.kuaishou.com/text-to-video/new"
+            },
+            {
+              "name": "Sec-Fetch-Dest",
+              "value": "empty"
+            },
+            {
+              "name": "Sec-Fetch-Mode",
+              "value": "cors"
+            },
+            {
+              "name": "Sec-Fetch-Site",
+              "value": "same-origin"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+            },
+            {
+              "name": "sec-ch-ua",
+              "value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+            },
+            {
+              "name": "sec-ch-ua-mobile",
+              "value": "?0"
+            },
+            {
+              "name": "sec-ch-ua-platform",
+              "value": "\"macOS\""
+            },
+            {
+              "name": "cookie",
+              "value": "weblogger_did=web_850799478D55E986;SL_G_WPT_TO=vi;SL_GWPT_Show_Hide_tmp=1;did=web_98de6823720658561760b98c684929f5c65d;userId=3617472809;notice-kling-1.6=true;operation-popup-dialogs=true;skip-background-questionnaire=true;dev-center-view-update-2025-01-07=true;kuaishou.ai.portal_st=ChVrdWFpc2hvdS5haS5wb3J0YWwuc3QSoAE5MtF-Q361zIeaehE-3_OR96khln4gtJWJI-krsJekmlfDXMqmibyFxxYjYzX0hsZzYFOC2RNJ5D-_JEWVpNIRDVOzNgL4PzfUJobvWmsZSW34xAmsL5iJ37YC8iWYBPqeeu9PFJt1vhRu7n91_gROM-ptNPfnCD1NIhcFQFl212KV63OVyx3o38qTurBLa6xon1HZO9HA2ipKK__osqAiGhLt3wU-QbOGsDDUiXLJMjvyX7EiIIgXKCmhYnjJyVaasVPumpg4AUfrxE2oAXm0QI5qMpKqKAUwAQ;kuaishou.ai.portal_ph=2be0baa13ad2ac71ed88cac774840aa9a4e9;SL_wptGlobTipTmp=1;"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        340,
+        20
+      ],
+      "id": "781b122e-55a4-41eb-b720-af2917284f0f",
+      "name": "Get video",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.data.works[0].resource.resource }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        0
+      ],
+      "id": "192d386b-9191-420c-ab5f-d352d6610e6e",
+      "name": "Lưu Video",
+      "alwaysOutputData": true
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-17T03:29:44.000Z",
+  "versionId": "8f5ad2ef-5028-47ab-8ae9-310a28180d23"
+}
