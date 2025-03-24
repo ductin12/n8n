@@ -1,0 +1,1418 @@
+{
+  "active": true,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Lấy danh sách sản",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lấy danh sách sản": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Data Format": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Lấy ảnh SP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lấy ảnh SP": {
+      "main": [
+        [
+          {
+            "node": "Upload Product to Gemini",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Product to Gemini": {
+      "main": [
+        [
+          {
+            "node": "Check User Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Phân tích ảnh sp": {
+      "main": [
+        [
+          {
+            "node": "Tao Prompt anh",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tao Prompt anh": {
+      "main": [
+        [
+          {
+            "node": "Tao anh voi Gemini Auto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Phan quyen xem anh": {
+      "main": [
+        [
+          {
+            "node": "Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload len drive": {
+      "main": [
+        [
+          {
+            "node": "Phan quyen xem anh",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lay anh SP": {
+      "main": [
+        [
+          {
+            "node": "Upload len drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Lấy san pham",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lấy san pham": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Lay anh SP",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Thong bao loi",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Data Format",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        []
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check User Prompt": {
+      "main": [
+        [
+          {
+            "node": "Phân tích ảnh sp",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tao anh bang User's Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tao anh bang User's Prompt": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tao anh voi Gemini Auto": {
+      "main": [
+        [
+          {
+            "node": "Cập nhật Prompt",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Data Format1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Data Format1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-20T08:05:39.522Z",
+  "id": "ajRBxMrrDVum5ser",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "AI Agent Product Mockup",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        0
+      ],
+      "id": "610ea9e2-f217-4769-83d3-74f7d0787dea",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appBa7O2cP5smNXq2",
+          "mode": "list",
+          "cachedResultName": "Ai Agent Auto Product With Model",
+          "cachedResultUrl": "https://airtable.com/appBa7O2cP5smNXq2"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblrRqQrjBLnL1Xpu",
+          "mode": "list",
+          "cachedResultName": "RUN",
+          "cachedResultUrl": "https://airtable.com/appBa7O2cP5smNXq2/tblrRqQrjBLnL1Xpu"
+        },
+        "options": {},
+        "sort": {
+          "property": [
+            {
+              "field": "IMAGE ID"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        160,
+        0
+      ],
+      "id": "7542bc48-7277-40e8-b686-99ddcd1609c2",
+      "name": "Lấy danh sách sản",
+      "credentials": {
+        "airtableOAuth2Api": {
+          "id": "KbxvNBFj1nT6q4d8",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ecffd6ab-4905-4bf7-9bd8-b931ec319541",
+              "name": "id",
+              "value": "={{ $('Filter').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "a19ed0f0-a3fb-4504-98cc-047a815f61ae",
+              "name": "imageUrl",
+              "value": "={{ $('Filter').item.json.IMAGE[0].url }}",
+              "type": "string"
+            },
+            {
+              "id": "499d1f65-4cb0-4d78-a2e6-5ec5af2a11ad",
+              "name": "require",
+              "value": "={{ $('Basic LLM Chain')?.first()?.json?.text || '' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1080,
+        -200
+      ],
+      "id": "226ac864-57bf-48ff-90f6-001ebc6d245f",
+      "name": "Data Format",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -20,
+        360
+      ],
+      "id": "a90f1219-be1f-4340-8db5-56fa3acec7a2",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.imageUrl }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        400,
+        380
+      ],
+      "id": "3c94fc74-c79b-41ee-81ac-c0d08d6093d6",
+      "name": "Lấy ảnh SP"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/upload/v1beta/files",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Goog-Upload-Command",
+              "value": "start, upload, finalize"
+            },
+            {
+              "name": "X-Goog-Upload-Header-Content-Length",
+              "value": "69420"
+            },
+            {
+              "name": "Content-Type",
+              "value": "={{ $binary.data.mimeType }}"
+            },
+            {
+              "name": "X-Goog-Upload-Header-Content-Type",
+              "value": "={{ $binary.data.mimeType }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "binaryData",
+        "inputDataFieldName": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        640,
+        380
+      ],
+      "id": "354cb00a-56f7-4661-89bd-ac17215e947a",
+      "name": "Upload Product to Gemini",
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "io463K2TIcGCQIUq",
+          "name": "Query Auth Google API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "openai/chatgpt-4o-latest",
+          "mode": "list",
+          "cachedResultName": "OPENAI/CHATGPT-4O-LATEST"
+        },
+        "text": "Explain exactly all details what this image is about in under 20 to 50 words include the shape, the color and the position of the product",
+        "imageUrls": "={{ $('Loop Over Items').item.json.imageUrl }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1040,
+        320
+      ],
+      "id": "a319bf77-9064-4c71-bf34-2e5c270aabe3",
+      "name": "Phân tích ảnh sp",
+      "credentials": {
+        "openAiApi": {
+          "id": "mE4tY6rLFI7CyMqz",
+          "name": "OpenrouterAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "google/gemini-2.0-pro-exp-02-05:free",
+          "mode": "list",
+          "cachedResultName": "GOOGLE/GEMINI-2.0-PRO-EXP-02-05:FREE"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Create a professional close-up product photography image featuring this [PRODUCT] with a professional and very beautiful human model.\n\n- If the product is wearable, showcase it worn by the model in a natural, stylish pose; if not, have the model holding or interacting with it, ensuring their face is visible for a lifestyle appeal. \n- If the product can interact by lying or sitting up, make it look as natural as possible, do not change or deform the product. \n\n- Don't change the color of the product. \n- Don't create any text on the product. \n- Use high-quality studio lighting for soft yet dynamic shadows, achieving a realistic and premium look. Capture the best angle that highlights the product’s details and texture while keeping the model’s posture natural and engaging. Ensure accurate color representation with a slight cinematic grain for a polished, high-end finish.\n- Create more backdrops suitable for the description of the product.\n\n- Always use popular standard image sizes such as: 2x3, 3x4, 4x6, 16x9, 9x16, square, ... Depending on the original image and content of the product, choose the right size. Put in the end of prompt.\nThe description of the product will be sent to you. Only reply with the final prompt in one paragraph, nothing else, not even double quotes.\n"
+            },
+            {
+              "content": "=The description of the product:  {{ $json.content }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1200,
+        320
+      ],
+      "id": "0a02898b-3171-403e-bb5f-2f3845bcb151",
+      "name": "Tao Prompt anh",
+      "credentials": {
+        "openAiApi": {
+          "id": "mE4tY6rLFI7CyMqz",
+          "name": "OpenrouterAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appBa7O2cP5smNXq2",
+          "mode": "list",
+          "cachedResultName": "Ai Agent Auto Product With Model",
+          "cachedResultUrl": "https://airtable.com/appBa7O2cP5smNXq2"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblrRqQrjBLnL1Xpu",
+          "mode": "list",
+          "cachedResultName": "RUN",
+          "cachedResultUrl": "https://airtable.com/appBa7O2cP5smNXq2/tblrRqQrjBLnL1Xpu"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Loop Over Items').item.json.id }}",
+            "FINAL IMAGE": "={{ $('Upload len drive').item.json.webViewLink }}",
+            "THÔNG BÁO": "Tạo ảnh thành công, bấm vào Link để xem ảnh, nếu không thích ảnh được tạo hãy xóa link ảnh và nhấn lại Nút Tạo ảnh"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "IMAGE ID",
+              "displayName": "IMAGE ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "IMAGE",
+              "displayName": "IMAGE",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "PROMPT",
+              "displayName": "PROMPT",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "FINAL IMAGE",
+              "displayName": "FINAL IMAGE",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "TẠO ẢNH",
+              "displayName": "TẠO ẢNH",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "THÔNG BÁO",
+              "displayName": "THÔNG BÁO",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        420,
+        780
+      ],
+      "id": "5ad920a4-5c44-46c0-8ce9-991c3907bd6b",
+      "name": "Airtable",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "Km9If46cHOYw0XeX",
+          "name": "Airtable Personal Access Token Product Mockup"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "anyone"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        200,
+        780
+      ],
+      "id": "1de801da-8854-4897-985f-a25c22ca3473",
+      "name": "Phan quyen xem anh",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "FAKXKk8dfHvUPexs",
+          "name": "Google Drive hanawebvn@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "finalImage",
+        "name": "=mockup-{{$now.format('ssmmhh')}}.png",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1T9UsJei4-XZxY6mF3mXUZ2Am5vRBwErR",
+          "mode": "list",
+          "cachedResultName": "Product Mockup n8n",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1T9UsJei4-XZxY6mF3mXUZ2Am5vRBwErR"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -20,
+        780
+      ],
+      "id": "5ef65193-834d-4005-8059-c05a87a4c125",
+      "name": "Upload len drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "FAKXKk8dfHvUPexs",
+          "name": "Google Drive hanawebvn@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "candidates[0].content.parts[0].inlineData.data",
+        "binaryPropertyName": "finalImage",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        2020,
+        340
+      ],
+      "id": "e5d9614a-4f7e-4a9d-a700-a0467186917d",
+      "name": "Lay anh SP"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "0b2cfcaa-a257-4cd6-a42e-d877bedd4676",
+              "leftValue": "={{ $json['FINAL IMAGE'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        340,
+        0
+      ],
+      "id": "785bb603-6b37-4bd1-a2d0-f4c1e70ec62e",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "path": "make-photo",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -20,
+        -160
+      ],
+      "id": "77097b38-5952-4c50-bfc0-437ff0634453",
+      "name": "Webhook",
+      "webhookId": "55647fb2-488d-47a7-ab7e-fd79f64042d1"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appBa7O2cP5smNXq2",
+          "mode": "list",
+          "cachedResultName": "Ai Agent Auto Product With Model",
+          "cachedResultUrl": "https://airtable.com/appBa7O2cP5smNXq2"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblrRqQrjBLnL1Xpu",
+          "mode": "list",
+          "cachedResultName": "RUN",
+          "cachedResultUrl": "https://airtable.com/appBa7O2cP5smNXq2/tblrRqQrjBLnL1Xpu"
+        },
+        "filterByFormula": "={IMAGE ID}= {{ $json.query.id }}",
+        "options": {},
+        "sort": {
+          "property": [
+            {
+              "field": "IMAGE ID"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        160,
+        -160
+      ],
+      "id": "1431be09-0e79-4d67-a11d-0fe2a93f1eb7",
+      "name": "Lấy san pham",
+      "credentials": {
+        "airtableOAuth2Api": {
+          "id": "KbxvNBFj1nT6q4d8",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "65b2185e-576f-4a4b-ac01-8c2ea3824454",
+              "leftValue": "={{ $json.candidates[0].content.parts[0].inlineData.data }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1820,
+        380
+      ],
+      "id": "2c12f23e-111c-42ec-ab9c-deaa3c10b2d4",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Check\nTranslate the following content to English if it is not in English. \nDon't translate the word or phrase in the tags \"\".\nThe result only translated text, don't use any introduction verses. \nThe content needs to be translated: \n{{ $('Filter').item.json['PROMPT'] }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are a professional translator with more than 50 years experiences."
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        740,
+        -200
+      ],
+      "id": "2b9eb58b-c0df-49c0-b11f-24a8a8532b1d",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash-lite-preview-02-05",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        980,
+        180
+      ],
+      "id": "9d9426b9-6857-4099-b3db-07d31c310408",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2n4TLSNuOIYkltQc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appBa7O2cP5smNXq2",
+          "mode": "list",
+          "cachedResultName": "Ai Agent Auto Product With Model",
+          "cachedResultUrl": "https://airtable.com/appBa7O2cP5smNXq2"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblrRqQrjBLnL1Xpu",
+          "mode": "list",
+          "cachedResultName": "RUN",
+          "cachedResultUrl": "https://airtable.com/appBa7O2cP5smNXq2/tblrRqQrjBLnL1Xpu"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Loop Over Items').item.json.id }}",
+            "THÔNG BÁO": "Có lỗi khi tạo ảnh, hãy bấm lại Nút Tạo ảnh một lần nữa. Nếu vẫn không thành công hãy thử nhập Prompt"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "IMAGE ID",
+              "displayName": "IMAGE ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "IMAGE",
+              "displayName": "IMAGE",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "PROMPT",
+              "displayName": "PROMPT",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "FINAL IMAGE",
+              "displayName": "FINAL IMAGE",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "TẠO ẢNH",
+              "displayName": "TẠO ẢNH",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "THÔNG BÁO",
+              "displayName": "THÔNG BÁO",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        2020,
+        520
+      ],
+      "id": "32b4f687-ca35-43c8-94c6-5e7115148009",
+      "name": "Thong bao loi",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "Km9If46cHOYw0XeX",
+          "name": "Airtable Personal Access Token Product Mockup"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Get Data\n**Lấy dữ liệu từ bảng Airtable**\n*Kích hoạt thủ công và tự động*\n",
+        "height": 560,
+        "width": 1500
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -160,
+        -320
+      ],
+      "typeVersion": 1,
+      "id": "7470a985-0357-4406-875b-652700fb3e09",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Generate Image with Gemini\n**Explain root image and create new image with Gemini**",
+        "height": 360,
+        "width": 2320
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -160,
+        260
+      ],
+      "typeVersion": 1,
+      "id": "b6528fc4-825a-4d9e-8ebd-95c92d272dcb",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Update new Image\n**Update new Image to Google drive and update to Airtable sheet**",
+        "height": 360,
+        "width": 880
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -160,
+        640
+      ],
+      "typeVersion": 1,
+      "id": "31de359d-cd75-4abd-9948-da89e171fd1d",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "model": "google/gemini-2.0-pro-exp-02-05:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        740,
+        180
+      ],
+      "id": "5356cedc-7167-45be-9857-c03918217f96",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "A2KcMTn8IUXdZGVS",
+          "name": "OpenRouter account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "0ea76fb2-f388-4687-a8c1-385842195c61",
+              "leftValue": "={{ $('Loop Over Items').item.json.require }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        840,
+        380
+      ],
+      "id": "47770152-79ee-4b4a-b8a6-182bb746187e",
+      "name": "Check User Prompt"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp-image-generation:generateContent",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\t\"contents\": [\n    \t{\n        \t\"role\": \"user\",\n        \t\"parts\": [\n            \t{\n                \t\"fileData\": {\n                    \t\"fileUri\": \"{{ $('Upload Product to Gemini').item.json.file.uri }}\",\n                    \t\"mimeType\": \"{{ $('Upload Product to Gemini').item.json.file.mimeType }}\"\n                \t}\n            \t},\n            \t{\n                \t\"text\": {{ JSON.stringify($('Loop Over Items').item.json.require.replaceAll('\\n','')) }}\n            \t}\n        \t]\n    \t}\n\t],\n\t\"generationConfig\": {\n    \t\"temperature\": 1,\n    \t\"topK\": 40,\n    \t\"topP\": 0.95,\n    \t\"maxOutputTokens\": 8192,\n    \t\"responseModalities\": [\"Text\", \"Image\"]\n\t},\n\"safety_settings\": [\n    {\n      \"category\": \"HARM_CATEGORY_HATE_SPEECH\",\n      \"threshold\": \"Off\"\n    },\n    {\n      \"category\": \"HARM_CATEGORY_DANGEROUS_CONTENT\",\n      \"threshold\": \"Off\"\n    },\n    {\n      \"category\": \"HARM_CATEGORY_HARASSMENT\",\n      \"threshold\": \"Off\"\n    },\n    {\n      \"category\":\n      \"HARM_CATEGORY_SEXUALLY_EXPLICIT\",\n      \"threshold\": \"Off\"\n    }\n  ]\n\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1540,
+        500
+      ],
+      "id": "af2eeed5-1aa5-4c18-8d74-b2bf6ebf75ad",
+      "name": "Tao anh bang User's Prompt",
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "io463K2TIcGCQIUq",
+          "name": "Query Auth Google API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp-image-generation:generateContent",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\t\"contents\": [\n    \t{\n        \t\"role\": \"user\",\n        \t\"parts\": [\n            \t{\n                \t\"fileData\": {\n                    \t\"fileUri\": \"{{ $('Upload Product to Gemini').item.json.file.uri }}\",\n                    \t\"mimeType\": \"{{ $('Upload Product to Gemini').item.json.file.mimeType }}\"\n                \t}\n            \t},\n            \t{\n                \t\"text\": {{ JSON.stringify($json.message.content.trim()) }}\n            \t}\n        \t]\n    \t}\n\t],\n\t\"generationConfig\": {\n    \t\"temperature\": 1,\n    \t\"topK\": 40,\n    \t\"topP\": 0.95,\n    \t\"maxOutputTokens\": 8192,\n    \t\"responseModalities\": [\"Text\", \"Image\"]\n\t},\n\"safety_settings\": [\n    {\n      \"category\": \"HARM_CATEGORY_HATE_SPEECH\",\n      \"threshold\": \"Off\"\n    },\n    {\n      \"category\": \"HARM_CATEGORY_DANGEROUS_CONTENT\",\n      \"threshold\": \"Off\"\n    },\n    {\n      \"category\": \"HARM_CATEGORY_HARASSMENT\",\n      \"threshold\": \"Off\"\n    },\n    {\n      \"category\":\n      \"HARM_CATEGORY_SEXUALLY_EXPLICIT\",\n      \"threshold\": \"Off\"\n    }\n  ]\n\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1540,
+        300
+      ],
+      "id": "81009fea-b2ab-4365-8002-12cab9781a6b",
+      "name": "Tao anh voi Gemini Auto",
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "io463K2TIcGCQIUq",
+          "name": "Query Auth Google API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8fc2f83e-91ea-47df-a778-72aed9e7ef43",
+              "leftValue": "={{ $json.PROMPT }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        520,
+        0
+      ],
+      "id": "6908dc53-3c48-4cd0-9485-5a31f4ae6273",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ecffd6ab-4905-4bf7-9bd8-b931ec319541",
+              "name": "id",
+              "value": "={{ $('Filter').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "a19ed0f0-a3fb-4504-98cc-047a815f61ae",
+              "name": "imageUrl",
+              "value": "={{ $('Filter').item.json.IMAGE[0].url }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1080,
+        20
+      ],
+      "id": "268d6efd-65dc-483d-af34-4a134bce9c2d",
+      "name": "Data Format1",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appBa7O2cP5smNXq2",
+          "mode": "list",
+          "cachedResultName": "Ai Agent Auto Product With Model",
+          "cachedResultUrl": "https://airtable.com/appBa7O2cP5smNXq2"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblrRqQrjBLnL1Xpu",
+          "mode": "list",
+          "cachedResultName": "RUN",
+          "cachedResultUrl": "https://airtable.com/appBa7O2cP5smNXq2/tblrRqQrjBLnL1Xpu"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Loop Over Items').item.json.id }}",
+            "PROMPT": "={{ $('Tao Prompt anh')?.item?.json?.message?.content || '' }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "IMAGE ID",
+              "displayName": "IMAGE ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "IMAGE",
+              "displayName": "IMAGE",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "PROMPT",
+              "displayName": "PROMPT",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "FINAL IMAGE",
+              "displayName": "FINAL IMAGE",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "TẠO ẢNH",
+              "displayName": "TẠO ẢNH",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "THÔNG BÁO",
+              "displayName": "THÔNG BÁO",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1820,
+        240
+      ],
+      "id": "a0a4445c-c17e-4111-b7e0-8f32b75189d2",
+      "name": "Cập nhật Prompt",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "Km9If46cHOYw0XeX",
+          "name": "Airtable Personal Access Token Product Mockup"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "openai/chatgpt-4o-latest",
+          "mode": "list",
+          "cachedResultName": "OPENAI/CHATGPT-4O-LATEST"
+        },
+        "text": "Explain exactly all details what this image is about in under 20 to 50 words include the shape, the color and the position of the product",
+        "imageUrls": "={{ $('Loop Over Items').item.json.imageUrl }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1040,
+        500
+      ],
+      "id": "a2e012de-f267-46fd-aa29-5b5647cd1a92",
+      "name": "Phân tích ảnh sp1",
+      "credentials": {
+        "openAiApi": {
+          "id": "mE4tY6rLFI7CyMqz",
+          "name": "OpenrouterAI account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-24T01:14:03.000Z",
+  "versionId": "388cc70a-1689-46a0-96d5-fddf1dffde89"
+}
